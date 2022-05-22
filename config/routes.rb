@@ -25,8 +25,6 @@ Rails.application.routes.draw do
   resources :pacientes
   resources :tipo_sangres
   resources :municipios
-  resources :caracols
-  resources :pruebas
   devise_for :users
   # devise_for :users do
     # get '/users/sign_out' => 'devise/sessions#destroy'

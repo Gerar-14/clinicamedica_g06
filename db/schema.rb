@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_22_193417) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_22_232338) do
   create_table "accesos", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "rol_id", null: false
     t.bigint "permiso_id", null: false
@@ -106,7 +106,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_193417) do
 
   create_table "menus", charset: "utf8mb4", force: :cascade do |t|
     t.string "nombre"
-    t.bigint "menu_id", null: false
+    t.bigint "menu_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["menu_id"], name: "index_menus_on_menu_id"
@@ -187,6 +187,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_193417) do
     t.string "nombre_permiso"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ruta"
   end
 
   create_table "pruebas", charset: "utf8mb4", force: :cascade do |t|
