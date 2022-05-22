@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Tipo examen parametros</h1>
+
+<div id="tipo_examen_parametros">
+  <% @tipo_examen_parametros.each do |tipo_examen_parametro| %>
+    <%= render tipo_examen_parametro %>
+    <p>
+      <%= link_to "Show this tipo examen parametro", tipo_examen_parametro %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New tipo examen parametro", new_tipo_examen_parametro_path %>

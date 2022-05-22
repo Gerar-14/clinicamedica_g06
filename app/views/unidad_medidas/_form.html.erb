@@ -1,0 +1,37 @@
+<%= form_with(model: unidad_medida) do |form| %>
+  <% if unidad_medida.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(unidad_medida.errors.count, "error") %> prohibited this unidad_medida from being saved:</h2>
+
+      <ul>
+        <% unidad_medida.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nombre_unidad_medida, style: "display: block" %>
+    <%= form.text_field :nombre_unidad_medida %>
+  </div>
+
+  <div>
+    <%= form.label :siglas, style: "display: block" %>
+    <%= form.text_field :siglas %>
+  </div>
+
+  <div>
+    <%= form.label :sistema_medida, style: "display: block" %>
+    <%= form.text_field :sistema_medida %>
+  </div>
+
+  <div>
+    <%= form.label :descripcion_unidad_medida, style: "display: block" %>
+    <%= form.text_field :descripcion_unidad_medida %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

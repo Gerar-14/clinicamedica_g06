@@ -1,0 +1,2 @@
+class TipoExamen < ApplicationRecord
+end

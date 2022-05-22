@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @laboratorista %>
+
+<div>
+  <%= link_to "Edit this laboratorista", edit_laboratorista_path(@laboratorista) %> |
+  <%= link_to "Back to laboratorista", laboratorista_index_path %>
+
+  <%= button_to "Destroy this laboratorista", @laboratorista, method: :delete %>
+</div>

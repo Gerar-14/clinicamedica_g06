@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Parametros</h1>
+
+<div id="parametros">
+  <% @parametros.each do |parametro| %>
+    <%= render parametro %>
+    <p>
+      <%= link_to "Show this parametro", parametro %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New parametro", new_parametro_path %>

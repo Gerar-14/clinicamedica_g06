@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Permisos</h1>
+
+<div id="permisos">
+  <% @permisos.each do |permiso| %>
+    <%= render permiso %>
+    <p>
+      <%= link_to "Show this permiso", permiso %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New permiso", new_permiso_path %>

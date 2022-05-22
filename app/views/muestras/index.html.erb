@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Muestras</h1>
+
+<div id="muestras">
+  <% @muestras.each do |muestra| %>
+    <%= render muestra %>
+    <p>
+      <%= link_to "Show this muestra", muestra %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New muestra", new_muestra_path %>

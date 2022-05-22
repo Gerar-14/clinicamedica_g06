@@ -1,0 +1,92 @@
+<%= form_with(model: paciente) do |form| %>
+  <% if paciente.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(paciente.errors.count, "error") %> prohibited this paciente from being saved:</h2>
+
+      <ul>
+        <% paciente.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nombre_paciente, style: "display: block" %>
+    <%= form.text_field :nombre_paciente %>
+  </div>
+
+  <div>
+    <%= form.label :apellido_paciente, style: "display: block" %>
+    <%= form.text_field :apellido_paciente %>
+  </div>
+
+  <div>
+    <%= form.label :genero_paciente, style: "display: block" %>
+    <%= form.text_field :genero_paciente %>
+  </div>
+
+  <div>
+    <%= form.label :fecha_nacimiento, style: "display: block" %>
+    <%= form.date_field :fecha_nacimiento %>
+  </div>
+
+  <div>
+    <%= form.label :direccion, style: "display: block" %>
+    <%= form.text_field :direccion %>
+  </div>
+
+  <div>
+    <%= form.label :telefono, style: "display: block" %>
+    <%= form.text_field :telefono %>
+  </div>
+
+  <div>
+    <%= form.label :telefono_celular, style: "display: block" %>
+    <%= form.text_field :telefono_celular %>
+  </div>
+
+  <div>
+    <%= form.label :telefono_contacto, style: "display: block" %>
+    <%= form.text_field :telefono_contacto %>
+  </div>
+
+  <div>
+    <%= form.label :correo_electronico, style: "display: block" %>
+    <%= form.text_field :correo_electronico %>
+  </div>
+
+  <div>
+    <%= form.label :apellido_casado, style: "display: block" %>
+    <%= form.text_field :apellido_casado %>
+  </div>
+
+  <div>
+    <%= form.label :estado_civil, style: "display: block" %>
+    <%= form.text_field :estado_civil %>
+  </div>
+
+  <div>
+    <%= form.label :dui_paciente, style: "display: block" %>
+    <%= form.text_field :dui_paciente %>
+  </div>
+
+  <div>
+    <%= form.label :pasaporte, style: "display: block" %>
+    <%= form.text_field :pasaporte %>
+  </div>
+
+  <div>
+    <%= form.label :municipio_id, style: "display: block" %>
+    <%= form.text_field :municipio_id %>
+  </div>
+
+  <div>
+    <%= form.label :tipo_sangre_id, style: "display: block" %>
+    <%= form.text_field :tipo_sangre_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

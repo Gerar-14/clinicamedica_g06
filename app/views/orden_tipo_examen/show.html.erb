@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @orden_tipo_examen %>
+
+<div>
+  <%= link_to "Edit this orden tipo examen", edit_orden_tipo_examen_path(@orden_tipo_examen) %> |
+  <%= link_to "Back to orden tipo examen", orden_tipo_examen_index_path %>
+
+  <%= button_to "Destroy this orden tipo examen", @orden_tipo_examen, method: :delete %>
+</div>

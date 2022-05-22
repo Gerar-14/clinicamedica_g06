@@ -1,0 +1,27 @@
+<%= form_with(model: menu_rol) do |form| %>
+  <% if menu_rol.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(menu_rol.errors.count, "error") %> prohibited this menu_rol from being saved:</h2>
+
+      <ul>
+        <% menu_rol.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :menu_id, style: "display: block" %>
+    <%= form.text_field :menu_id %>
+  </div>
+
+  <div>
+    <%= form.label :rol_id, style: "display: block" %>
+    <%= form.text_field :rol_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

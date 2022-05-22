@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @resultado %>
+
+<div>
+  <%= link_to "Edit this resultado", edit_resultado_path(@resultado) %> |
+  <%= link_to "Back to resultados", resultados_path %>
+
+  <%= button_to "Destroy this resultado", @resultado, method: :delete %>
+</div>

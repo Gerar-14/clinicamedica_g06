@@ -1,0 +1,27 @@
+<%= form_with(model: menu_permiso) do |form| %>
+  <% if menu_permiso.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(menu_permiso.errors.count, "error") %> prohibited this menu_permiso from being saved:</h2>
+
+      <ul>
+        <% menu_permiso.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :menu_id, style: "display: block" %>
+    <%= form.text_field :menu_id %>
+  </div>
+
+  <div>
+    <%= form.label :permiso_id, style: "display: block" %>
+    <%= form.text_field :permiso_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @valor_referencia %>
+
+<div>
+  <%= link_to "Edit this valor referencia", edit_valor_referencia_path(@valor_referencia) %> |
+  <%= link_to "Back to valor referencia", valor_referencia_index_path %>
+
+  <%= button_to "Destroy this valor referencia", @valor_referencia, method: :delete %>
+</div>

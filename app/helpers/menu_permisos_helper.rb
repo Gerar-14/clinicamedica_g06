@@ -1,0 +1,2 @@
+module MenuPermisosHelper
+end

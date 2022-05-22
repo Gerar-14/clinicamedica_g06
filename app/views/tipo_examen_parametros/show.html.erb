@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @tipo_examen_parametro %>
+
+<div>
+  <%= link_to "Edit this tipo examen parametro", edit_tipo_examen_parametro_path(@tipo_examen_parametro) %> |
+  <%= link_to "Back to tipo examen parametros", tipo_examen_parametros_path %>
+
+  <%= button_to "Destroy this tipo examen parametro", @tipo_examen_parametro, method: :delete %>
+</div>

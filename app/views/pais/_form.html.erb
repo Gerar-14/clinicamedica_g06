@@ -1,0 +1,22 @@
+<%= form_with(model: pais) do |form| %>
+  <% if pais.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(pais.errors.count, "error") %> prohibited this pais from being saved:</h2>
+
+      <ul>
+        <% pais.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nombre_pais, style: "display: block" %>
+    <%= form.text_field :nombre_pais %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

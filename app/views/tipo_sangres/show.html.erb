@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @tipo_sangre %>
+
+<div>
+  <%= link_to "Edit this tipo sangre", edit_tipo_sangre_path(@tipo_sangre) %> |
+  <%= link_to "Back to tipo sangres", tipo_sangres_path %>
+
+  <%= button_to "Destroy this tipo sangre", @tipo_sangre, method: :delete %>
+</div>

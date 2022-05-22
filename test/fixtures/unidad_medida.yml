@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre_unidad_medida: MyString
+  siglas: MyString
+  sistema_medida: MyString
+  descripcion_unidad_medida: MyString
+
+two:
+  nombre_unidad_medida: MyString
+  siglas: MyString
+  sistema_medida: MyString
+  descripcion_unidad_medida: MyString

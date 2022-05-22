@@ -1,0 +1,35 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre_paciente: MyString
+  apellido_paciente: MyString
+  genero_paciente: MyString
+  fecha_nacimiento: 2022-05-21
+  direccion: MyString
+  telefono: MyString
+  telefono_celular: MyString
+  telefono_contacto: MyString
+  correo_electronico: MyString
+  apellido_casado: MyString
+  estado_civil: MyString
+  dui_paciente: MyString
+  pasaporte: MyString
+  municipio: one
+  tipo_sangre: one
+
+two:
+  nombre_paciente: MyString
+  apellido_paciente: MyString
+  genero_paciente: MyString
+  fecha_nacimiento: 2022-05-21
+  direccion: MyString
+  telefono: MyString
+  telefono_celular: MyString
+  telefono_contacto: MyString
+  correo_electronico: MyString
+  apellido_casado: MyString
+  estado_civil: MyString
+  dui_paciente: MyString
+  pasaporte: MyString
+  municipio: two
+  tipo_sangre: two

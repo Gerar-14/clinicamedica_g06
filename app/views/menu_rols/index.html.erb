@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Menu rols</h1>
+
+<div id="menu_rols">
+  <% @menu_rols.each do |menu_rol| %>
+    <%= render menu_rol %>
+    <p>
+      <%= link_to "Show this menu rol", menu_rol %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New menu rol", new_menu_rol_path %>

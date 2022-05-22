@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @rol_empleado %>
+
+<div>
+  <%= link_to "Edit this rol empleado", edit_rol_empleado_path(@rol_empleado) %> |
+  <%= link_to "Back to rol empleados", rol_empleados_path %>
+
+  <%= button_to "Destroy this rol empleado", @rol_empleado, method: :delete %>
+</div>

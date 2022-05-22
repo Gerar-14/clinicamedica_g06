@@ -25,6 +25,10 @@ gem "jquery-datatables-rails"
 
 gem "font_awesome5_rails"
 
+gem "devise"
+
+gem "devise-encryptable"
+
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 

@@ -1,0 +1,2 @@
+module AreaTipoExamenHelper
+end

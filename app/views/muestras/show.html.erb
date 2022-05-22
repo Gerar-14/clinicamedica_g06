@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @muestra %>
+
+<div>
+  <%= link_to "Edit this muestra", edit_muestra_path(@muestra) %> |
+  <%= link_to "Back to muestras", muestras_path %>
+
+  <%= button_to "Destroy this muestra", @muestra, method: :delete %>
+</div>

@@ -1,0 +1,2 @@
+class UnidadMedida < ApplicationRecord
+end

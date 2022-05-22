@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Valor referencia</h1>
+
+<div id="valor_referencia">
+  <% @valor_referencia.each do |valor_referencia| %>
+    <%= render valor_referencia %>
+    <p>
+      <%= link_to "Show this valor referencia", valor_referencia %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New valor referencia", new_valor_referencia_path %>

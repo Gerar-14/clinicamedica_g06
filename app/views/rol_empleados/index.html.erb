@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Rol empleados</h1>
+
+<div id="rol_empleados">
+  <% @rol_empleados.each do |rol_empleado| %>
+    <%= render rol_empleado %>
+    <p>
+      <%= link_to "Show this rol empleado", rol_empleado %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New rol empleado", new_rol_empleado_path %>

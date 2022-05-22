@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  num_junta_vigilancia: MyString
+  laboratorio: one
+  empleado: one
+
+two:
+  num_junta_vigilancia: MyString
+  laboratorio: two
+  empleado: two

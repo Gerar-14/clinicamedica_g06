@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tipo_examen: one
+  orden: one
+
+two:
+  tipo_examen: two
+  orden: two

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Tipo sangres</h1>
+
+<div id="tipo_sangres">
+  <% @tipo_sangres.each do |tipo_sangre| %>
+    <%= render tipo_sangre %>
+    <p>
+      <%= link_to "Show this tipo sangre", tipo_sangre %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New tipo sangre", new_tipo_sangre_path %>

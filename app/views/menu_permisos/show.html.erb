@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @menu_permiso %>
+
+<div>
+  <%= link_to "Edit this menu permiso", edit_menu_permiso_path(@menu_permiso) %> |
+  <%= link_to "Back to menu permisos", menu_permisos_path %>
+
+  <%= button_to "Destroy this menu permiso", @menu_permiso, method: :delete %>
+</div>
