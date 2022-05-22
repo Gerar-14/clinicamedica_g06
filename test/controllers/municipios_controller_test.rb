@@ -2,7 +2,7 @@ require "test_helper"
 
 class MunicipiosControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @municipio = municipio(:one)
+    @municipio = municipios(:one)
   end
 
   test "should get index" do

@@ -2,7 +2,7 @@ require "test_helper"
 
 class MenuRolsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @menu_rol = menu_rol(:one)
+    @menu_rol = menu_rols(:one)
   end
 
   test "should get index" do

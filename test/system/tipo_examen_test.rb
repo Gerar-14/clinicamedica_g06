@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class TipoExamenTest < ApplicationSystemTestCase
   setup do
-    @tipo_examen = tipo_examen(:one)
+    @tipo_examan = tipo_examen(:one)
   end
 
   test "visiting the index" do
@@ -14,7 +14,7 @@ class TipoExamenTest < ApplicationSystemTestCase
     visit tipo_examen_url
     click_on "New tipo examen"
 
-    fill_in "Nombre tipo examen", with: @tipo_examen.nombre_tipo_examen
+    fill_in "Nombre tipo examen", with: @tipo_examan.nombre_tipo_examen
     click_on "Create Tipo examen"
 
     assert_text "Tipo examen was successfully created"
@@ -22,10 +22,10 @@ class TipoExamenTest < ApplicationSystemTestCase
   end
 
   test "should update Tipo examen" do
-    visit tipo_examen_url(@tipo_examen)
+    visit tipo_examan_url(@tipo_examan)
     click_on "Edit this tipo examen", match: :first
 
-    fill_in "Nombre tipo examen", with: @tipo_examen.nombre_tipo_examen
+    fill_in "Nombre tipo examen", with: @tipo_examan.nombre_tipo_examen
     click_on "Update Tipo examen"
 
     assert_text "Tipo examen was successfully updated"
@@ -33,7 +33,7 @@ class TipoExamenTest < ApplicationSystemTestCase
   end
 
   test "should destroy Tipo examen" do
-    visit tipo_examen_url(@tipo_examen)
+    visit tipo_examan_url(@tipo_examan)
     click_on "Destroy this tipo examen", match: :first
 
     assert_text "Tipo examen was successfully destroyed"

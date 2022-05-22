@@ -2,7 +2,7 @@ require "test_helper"
 
 class OrdensControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @orden = orden(:one)
+    @orden = ordens(:one)
   end
 
   test "should get index" do

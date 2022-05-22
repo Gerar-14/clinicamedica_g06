@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :empleados
   resources :departamentos
+  resources :countries
   resources :menu_permisos
   resources :accesos
   resources :permisos
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :ordens
   resources :laboratorista
   resources :laboratorios
+  resources :empleados
   resources :tipo_examen_parametros
   resources :valor_referencia
   resources :parametros
@@ -24,7 +25,8 @@ Rails.application.routes.draw do
   resources :pacientes
   resources :tipo_sangres
   resources :municipios
-  resources :pais
+  resources :caracols
+  resources :pruebas
   devise_for :users
   # devise_for :users do
     # get '/users/sign_out' => 'devise/sessions#destroy'

@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class LaboratoriosTest < ApplicationSystemTestCase
   setup do
-    @laboratorio = laboratorio(:one)
+    @laboratorio = laboratorios(:one)
   end
 
   test "visiting the index" do

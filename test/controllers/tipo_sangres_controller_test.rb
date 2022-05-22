@@ -2,7 +2,7 @@ require "test_helper"
 
 class TipoSangresControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @tipo_sangre = tipo_sangre(:one)
+    @tipo_sangre = tipo_sangres(:one)
   end
 
   test "should get index" do

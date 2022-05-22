@@ -2,7 +2,7 @@ require "test_helper"
 
 class RolsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @rol = rol(:one)
+    @rol = rols(:one)
   end
 
   test "should get index" do

@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class MuestrasTest < ApplicationSystemTestCase
   setup do
-    @muestra = muestra(:one)
+    @muestra = muestras(:one)
   end
 
   test "visiting the index" do

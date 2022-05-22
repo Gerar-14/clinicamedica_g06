@@ -2,7 +2,7 @@ require "test_helper"
 
 class AccesosControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @acceso = acceso(:one)
+    @acceso = accesos(:one)
   end
 
   test "should get index" do

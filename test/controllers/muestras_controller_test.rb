@@ -2,7 +2,7 @@ require "test_helper"
 
 class MuestrasControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @muestra = muestra(:one)
+    @muestra = muestras(:one)
   end
 
   test "should get index" do

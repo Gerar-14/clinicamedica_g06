@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class UnidadMedidasTest < ApplicationSystemTestCase
   setup do
-    @unidad_medida = unidad_medida(:one)
+    @unidad_medida = unidad_medidas(:one)
   end
 
   test "visiting the index" do

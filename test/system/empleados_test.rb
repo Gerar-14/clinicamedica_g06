@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class EmpleadosTest < ApplicationSystemTestCase
   setup do
-    @empleado = empleado(:one)
+    @empleado = empleados(:one)
   end
 
   test "visiting the index" do

@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class MunicipiosTest < ApplicationSystemTestCase
   setup do
-    @municipio = municipio(:one)
+    @municipio = municipios(:one)
   end
 
   test "visiting the index" do

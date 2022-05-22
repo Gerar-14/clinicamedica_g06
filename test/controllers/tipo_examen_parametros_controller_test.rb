@@ -2,7 +2,7 @@ require "test_helper"
 
 class TipoExamenParametrosControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @tipo_examen_parametro = tipo_examen_parametro(:one)
+    @tipo_examen_parametro = tipo_examen_parametros(:one)
   end
 
   test "should get index" do

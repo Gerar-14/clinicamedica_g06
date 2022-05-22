@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  descripcion: MyString
+  parametro: one
+  orden: one
+
+two:
+  descripcion: MyString
+  parametro: two
+  orden: two

@@ -2,7 +2,7 @@ require "test_helper"
 
 class ParametrosControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @parametro = parametro(:one)
+    @parametro = parametros(:one)
   end
 
   test "should get index" do

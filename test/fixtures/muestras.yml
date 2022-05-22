@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tipo_muestra: MyString
+  fecha_entrega_muestra: 2022-05-22 13:22:17
+  empleado: one
+  orden_tipo_examen: one
+
+two:
+  tipo_muestra: MyString
+  fecha_entrega_muestra: 2022-05-22 13:22:17
+  empleado: two
+  orden_tipo_examen: two

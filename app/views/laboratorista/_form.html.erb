@@ -1,10 +1,10 @@
-<%= form_with(model: laboratorista) do |form| %>
-  <% if laboratorista.errors.any? %>
+<%= form_with(model: laboratoristum) do |form| %>
+  <% if laboratoristum.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(laboratorista.errors.count, "error") %> prohibited this laboratorista from being saved:</h2>
+      <h2><%= pluralize(laboratoristum.errors.count, "error") %> prohibited this laboratoristum from being saved:</h2>
 
       <ul>
-        <% laboratorista.errors.each do |error| %>
+        <% laboratoristum.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

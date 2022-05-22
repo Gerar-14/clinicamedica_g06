@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class PermisosTest < ApplicationSystemTestCase
   setup do
-    @permiso = permiso(:one)
+    @permiso = permisos(:one)
   end
 
   test "visiting the index" do

@@ -65,6 +65,6 @@ class DepartamentosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def departamento_params
-      params.require(:departamento).permit(:nombre_departamento, :pais_id)
+      params.require(:departamento).permit(:nombre_departamento, :country_id)
     end
 end

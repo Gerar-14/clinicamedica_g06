@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class ResultadosTest < ApplicationSystemTestCase
   setup do
-    @resultado = resultado(:one)
+    @resultado = resultados(:one)
   end
 
   test "visiting the index" do

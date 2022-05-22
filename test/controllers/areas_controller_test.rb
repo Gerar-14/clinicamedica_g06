@@ -2,7 +2,7 @@ require "test_helper"
 
 class AreasControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @area = area(:one)
+    @area = areas(:one)
   end
 
   test "should get index" do

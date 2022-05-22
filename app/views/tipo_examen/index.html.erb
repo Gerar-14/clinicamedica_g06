@@ -3,12 +3,12 @@
 <h1>Tipo examen</h1>
 
 <div id="tipo_examen">
-  <% @tipo_examen.each do |tipo_examen| %>
-    <%= render tipo_examen %>
+  <% @tipo_examen.each do |tipo_examan| %>
+    <%= render tipo_examan %>
     <p>
-      <%= link_to "Show this tipo examen", tipo_examen %>
+      <%= link_to "Show this tipo examen", tipo_examan %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New tipo examen", new_tipo_examen_path %>
+<%= link_to "New tipo examen", new_tipo_examan_path %>

@@ -14,8 +14,8 @@ class DepartamentosTest < ApplicationSystemTestCase
     visit departamentos_url
     click_on "New departamento"
 
+    fill_in "Country", with: @departamento.country_id
     fill_in "Nombre departamento", with: @departamento.nombre_departamento
-    fill_in "Pais", with: @departamento.pais_id
     click_on "Create Departamento"
 
     assert_text "Departamento was successfully created"
@@ -26,8 +26,8 @@ class DepartamentosTest < ApplicationSystemTestCase
     visit departamento_url(@departamento)
     click_on "Edit this departamento", match: :first
 
+    fill_in "Country", with: @departamento.country_id
     fill_in "Nombre departamento", with: @departamento.nombre_departamento
-    fill_in "Pais", with: @departamento.pais_id
     click_on "Update Departamento"
 
     assert_text "Departamento was successfully updated"

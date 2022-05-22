@@ -3,12 +3,12 @@
 <h1>Laboratorista</h1>
 
 <div id="laboratorista">
-  <% @laboratorista.each do |laboratorista| %>
-    <%= render laboratorista %>
+  <% @laboratorista.each do |laboratoristum| %>
+    <%= render laboratoristum %>
     <p>
-      <%= link_to "Show this laboratorista", laboratorista %>
+      <%= link_to "Show this laboratorista", laboratoristum %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New laboratorista", new_laboratorista_path %>
+<%= link_to "New laboratorista", new_laboratoristum_path %>

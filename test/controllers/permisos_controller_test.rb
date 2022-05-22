@@ -2,7 +2,7 @@ require "test_helper"
 
 class PermisosControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @permiso = permiso(:one)
+    @permiso = permisos(:one)
   end
 
   test "should get index" do

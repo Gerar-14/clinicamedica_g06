@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class LaboratoristaTest < ApplicationSystemTestCase
   setup do
-    @laboratorista = laboratorista(:one)
+    @laboratoristum = laboratorista(:one)
   end
 
   test "visiting the index" do
@@ -14,9 +14,9 @@ class LaboratoristaTest < ApplicationSystemTestCase
     visit laboratorista_url
     click_on "New laboratorista"
 
-    fill_in "Empleado", with: @laboratorista.empleado_id
-    fill_in "Laboratorio", with: @laboratorista.laboratorio_id
-    fill_in "Num junta vigilancia", with: @laboratorista.num_junta_vigilancia
+    fill_in "Empleado", with: @laboratoristum.empleado_id
+    fill_in "Laboratorio", with: @laboratoristum.laboratorio_id
+    fill_in "Num junta vigilancia", with: @laboratoristum.num_junta_vigilancia
     click_on "Create Laboratorista"
 
     assert_text "Laboratorista was successfully created"
@@ -24,12 +24,12 @@ class LaboratoristaTest < ApplicationSystemTestCase
   end
 
   test "should update Laboratorista" do
-    visit laboratorista_url(@laboratorista)
+    visit laboratoristum_url(@laboratoristum)
     click_on "Edit this laboratorista", match: :first
 
-    fill_in "Empleado", with: @laboratorista.empleado_id
-    fill_in "Laboratorio", with: @laboratorista.laboratorio_id
-    fill_in "Num junta vigilancia", with: @laboratorista.num_junta_vigilancia
+    fill_in "Empleado", with: @laboratoristum.empleado_id
+    fill_in "Laboratorio", with: @laboratoristum.laboratorio_id
+    fill_in "Num junta vigilancia", with: @laboratoristum.num_junta_vigilancia
     click_on "Update Laboratorista"
 
     assert_text "Laboratorista was successfully updated"
@@ -37,7 +37,7 @@ class LaboratoristaTest < ApplicationSystemTestCase
   end
 
   test "should destroy Laboratorista" do
-    visit laboratorista_url(@laboratorista)
+    visit laboratoristum_url(@laboratoristum)
     click_on "Destroy this laboratorista", match: :first
 
     assert_text "Laboratorista was successfully destroyed"

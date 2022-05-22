@@ -2,8 +2,8 @@
 
 one:
   nombre_departamento: MyString
-  pais: one
+  country: one
 
 two:
   nombre_departamento: MyString
-  pais: two
+  country: two

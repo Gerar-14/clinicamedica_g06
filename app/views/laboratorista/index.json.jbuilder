@@ -1,1 +1,1 @@
-json.array! @laboratorista, partial: "laboratorista/laboratorista", as: :laboratorista
+json.array! @laboratorista, partial: "laboratorista/laboratoristum", as: :laboratoristum

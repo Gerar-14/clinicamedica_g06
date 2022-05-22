@@ -65,7 +65,6 @@ class MuestrasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def muestra_params
-      #params.require(:muestra).permit(:tipo_muestra, :fecha_entrega_muestra, :empleado_id, :orden_tipo_examen_id)
-      params.require(:muestra).permit(:tipo_muestra, :fecha_entrega_muestra, :empleado_id, :orden_id)
+      params.require(:muestra).permit(:tipo_muestra, :fecha_entrega_muestra, :empleado_id, :orden_tipo_examen_id)
     end
 end

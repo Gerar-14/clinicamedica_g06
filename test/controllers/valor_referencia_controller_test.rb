@@ -2,7 +2,7 @@ require "test_helper"
 
 class ValorReferenciaControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @valor_referencia = valor_referencia(:one)
+    @valor_referencium = valor_referencia(:one)
   end
 
   test "should get index" do
@@ -11,36 +11,36 @@ class ValorReferenciaControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
-    get new_valor_referencia_url
+    get new_valor_referencium_url
     assert_response :success
   end
 
-  test "should create valor_referencia" do
+  test "should create valor_referencium" do
     assert_difference("ValorReferencia.count") do
-      post valor_referencia_index_url, params: { valor_referencia: { parametro_id: @valor_referencia.parametro_id, valor_referencia: @valor_referencia.valor_referencia } }
+      post valor_referencia_index_url, params: { valor_referencium: { parametro_id: @valor_referencium.parametro_id, valor_referencia: @valor_referencium.valor_referencia } }
     end
 
-    assert_redirected_to valor_referencia_url(ValorReferencia.last)
+    assert_redirected_to valor_referencium_url(ValorReferencia.last)
   end
 
-  test "should show valor_referencia" do
-    get valor_referencia_url(@valor_referencia)
+  test "should show valor_referencium" do
+    get valor_referencium_url(@valor_referencium)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_valor_referencia_url(@valor_referencia)
+    get edit_valor_referencium_url(@valor_referencium)
     assert_response :success
   end
 
-  test "should update valor_referencia" do
-    patch valor_referencia_url(@valor_referencia), params: { valor_referencia: { parametro_id: @valor_referencia.parametro_id, valor_referencia: @valor_referencia.valor_referencia } }
-    assert_redirected_to valor_referencia_url(@valor_referencia)
+  test "should update valor_referencium" do
+    patch valor_referencium_url(@valor_referencium), params: { valor_referencium: { parametro_id: @valor_referencium.parametro_id, valor_referencia: @valor_referencium.valor_referencia } }
+    assert_redirected_to valor_referencium_url(@valor_referencium)
   end
 
-  test "should destroy valor_referencia" do
+  test "should destroy valor_referencium" do
     assert_difference("ValorReferencia.count", -1) do
-      delete valor_referencia_url(@valor_referencia)
+      delete valor_referencium_url(@valor_referencium)
     end
 
     assert_redirected_to valor_referencia_index_url

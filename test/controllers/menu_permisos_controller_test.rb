@@ -2,7 +2,7 @@ require "test_helper"
 
 class MenuPermisosControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @menu_permiso = menu_permiso(:one)
+    @menu_permiso = menu_permisos(:one)
   end
 
   test "should get index" do

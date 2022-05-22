@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class ValorReferenciaTest < ApplicationSystemTestCase
   setup do
-    @valor_referencia = valor_referencia(:one)
+    @valor_referencium = valor_referencia(:one)
   end
 
   test "visiting the index" do
@@ -14,8 +14,8 @@ class ValorReferenciaTest < ApplicationSystemTestCase
     visit valor_referencia_url
     click_on "New valor referencia"
 
-    fill_in "Parametro", with: @valor_referencia.parametro_id
-    fill_in "Valor referencia", with: @valor_referencia.valor_referencia
+    fill_in "Parametro", with: @valor_referencium.parametro_id
+    fill_in "Valor referencia", with: @valor_referencium.valor_referencia
     click_on "Create Valor referencia"
 
     assert_text "Valor referencia was successfully created"
@@ -23,11 +23,11 @@ class ValorReferenciaTest < ApplicationSystemTestCase
   end
 
   test "should update Valor referencia" do
-    visit valor_referencia_url(@valor_referencia)
+    visit valor_referencium_url(@valor_referencium)
     click_on "Edit this valor referencia", match: :first
 
-    fill_in "Parametro", with: @valor_referencia.parametro_id
-    fill_in "Valor referencia", with: @valor_referencia.valor_referencia
+    fill_in "Parametro", with: @valor_referencium.parametro_id
+    fill_in "Valor referencia", with: @valor_referencium.valor_referencia
     click_on "Update Valor referencia"
 
     assert_text "Valor referencia was successfully updated"
@@ -35,7 +35,7 @@ class ValorReferenciaTest < ApplicationSystemTestCase
   end
 
   test "should destroy Valor referencia" do
-    visit valor_referencia_url(@valor_referencia)
+    visit valor_referencium_url(@valor_referencium)
     click_on "Destroy this valor referencia", match: :first
 
     assert_text "Valor referencia was successfully destroyed"

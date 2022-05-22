@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class MenusTest < ApplicationSystemTestCase
   setup do
-    @menu = menu(:one)
+    @menu = menus(:one)
   end
 
   test "visiting the index" do

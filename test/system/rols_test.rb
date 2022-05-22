@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class RolsTest < ApplicationSystemTestCase
   setup do
-    @rol = rol(:one)
+    @rol = rols(:one)
   end
 
   test "visiting the index" do

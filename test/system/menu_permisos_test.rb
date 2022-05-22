@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class MenuPermisosTest < ApplicationSystemTestCase
   setup do
-    @menu_permiso = menu_permiso(:one)
+    @menu_permiso = menu_permisos(:one)
   end
 
   test "visiting the index" do

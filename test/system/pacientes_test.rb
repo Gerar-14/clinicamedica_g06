@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class PacientesTest < ApplicationSystemTestCase
   setup do
-    @paciente = paciente(:one)
+    @paciente = pacientes(:one)
   end
 
   test "visiting the index" do

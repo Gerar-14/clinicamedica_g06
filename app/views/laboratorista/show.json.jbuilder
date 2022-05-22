@@ -1,1 +1,1 @@
-json.partial! "laboratorista/laboratorista", laboratorista: @laboratorista
+json.partial! "laboratorista/laboratoristum", laboratoristum: @laboratoristum

@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class TipoExamenParametrosTest < ApplicationSystemTestCase
   setup do
-    @tipo_examen_parametro = tipo_examen_parametro(:one)
+    @tipo_examen_parametro = tipo_examen_parametros(:one)
   end
 
   test "visiting the index" do

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre_parametro: MyString
+  tipo_parametro: 1
+  unidad_medida: one
+  parametro: one
+
+two:
+  nombre_parametro: MyString
+  tipo_parametro: 1
+  unidad_medida: two
+  parametro: two

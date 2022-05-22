@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class AreasTest < ApplicationSystemTestCase
   setup do
-    @area = area(:one)
+    @area = areas(:one)
   end
 
   test "visiting the index" do

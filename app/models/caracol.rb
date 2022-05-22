@@ -1,0 +1,2 @@
+class Caracol < ApplicationRecord
+end

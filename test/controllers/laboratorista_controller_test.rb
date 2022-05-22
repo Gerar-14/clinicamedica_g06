@@ -2,7 +2,7 @@ require "test_helper"
 
 class LaboratoristaControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @laboratorista = laboratorista(:one)
+    @laboratoristum = laboratorista(:one)
   end
 
   test "should get index" do
@@ -11,36 +11,36 @@ class LaboratoristaControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
-    get new_laboratorista_url
+    get new_laboratoristum_url
     assert_response :success
   end
 
-  test "should create laboratorista" do
+  test "should create laboratoristum" do
     assert_difference("Laboratorista.count") do
-      post laboratorista_index_url, params: { laboratorista: { empleado_id: @laboratorista.empleado_id, laboratorio_id: @laboratorista.laboratorio_id, num_junta_vigilancia: @laboratorista.num_junta_vigilancia } }
+      post laboratorista_index_url, params: { laboratoristum: { empleado_id: @laboratoristum.empleado_id, laboratorio_id: @laboratoristum.laboratorio_id, num_junta_vigilancia: @laboratoristum.num_junta_vigilancia } }
     end
 
-    assert_redirected_to laboratorista_url(Laboratorista.last)
+    assert_redirected_to laboratoristum_url(Laboratorista.last)
   end
 
-  test "should show laboratorista" do
-    get laboratorista_url(@laboratorista)
+  test "should show laboratoristum" do
+    get laboratoristum_url(@laboratoristum)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_laboratorista_url(@laboratorista)
+    get edit_laboratoristum_url(@laboratoristum)
     assert_response :success
   end
 
-  test "should update laboratorista" do
-    patch laboratorista_url(@laboratorista), params: { laboratorista: { empleado_id: @laboratorista.empleado_id, laboratorio_id: @laboratorista.laboratorio_id, num_junta_vigilancia: @laboratorista.num_junta_vigilancia } }
-    assert_redirected_to laboratorista_url(@laboratorista)
+  test "should update laboratoristum" do
+    patch laboratoristum_url(@laboratoristum), params: { laboratoristum: { empleado_id: @laboratoristum.empleado_id, laboratorio_id: @laboratoristum.laboratorio_id, num_junta_vigilancia: @laboratoristum.num_junta_vigilancia } }
+    assert_redirected_to laboratoristum_url(@laboratoristum)
   end
 
-  test "should destroy laboratorista" do
+  test "should destroy laboratoristum" do
     assert_difference("Laboratorista.count", -1) do
-      delete laboratorista_url(@laboratorista)
+      delete laboratoristum_url(@laboratoristum)
     end
 
     assert_redirected_to laboratorista_index_url

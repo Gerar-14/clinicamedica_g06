@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class MenuRolsTest < ApplicationSystemTestCase
   setup do
-    @menu_rol = menu_rol(:one)
+    @menu_rol = menu_rols(:one)
   end
 
   test "visiting the index" do

@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class TipoSangresTest < ApplicationSystemTestCase
   setup do
-    @tipo_sangre = tipo_sangre(:one)
+    @tipo_sangre = tipo_sangres(:one)
   end
 
   test "visiting the index" do

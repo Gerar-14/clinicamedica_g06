@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class ParametrosTest < ApplicationSystemTestCase
   setup do
-    @parametro = parametro(:one)
+    @parametro = parametros(:one)
   end
 
   test "visiting the index" do
