@@ -4,11 +4,9 @@ class MenusController < ApplicationController
   # GET /menus or /menus.json
   def index
     @menus = Menu.all
+    #@accesos = verificarAcceso()
 
-    
-
-    @accesos = prueba()
-    
+    @accesos = Acceso.all
   end
 
   # GET /menus/1 or /menus/1.json
@@ -17,8 +15,22 @@ class MenusController < ApplicationController
 
   # GET /menus/new
   def new
-    @menu = Menu.new
+    
+    @accesoss = verificarAcceso()
+
+    @ruta_local = "/menus/new"
+    
+    @accesoss.each do |a|
+      if a.ruta == @ruta_local
+        @menu = Menu.new
+      else 
+        redirect_to(home_path)
+      end
+    end
+
+    
   end
+
 
   # GET /menus/1/edit
   def edit
@@ -28,7 +40,7 @@ class MenusController < ApplicationController
   # POST /menus or /menus.json
   def create
     @menu = Menu.new(menu_params)
-
+    
     respond_to do |format|
       if @menu.save
         format.html { redirect_to menu_url(@menu), notice: "Menu was successfully created." }
@@ -38,6 +50,7 @@ class MenusController < ApplicationController
         format.json { render json: @menu.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /menus/1 or /menus/1.json
@@ -74,48 +87,75 @@ class MenusController < ApplicationController
       params.require(:menu).permit(:nombre, :menu_id)
     end
 
-    def prueba()
+    def verificarAcceso()
       @accesos = Acceso.all
+
       @usuario = current_user.id
+      
       #obtenemos el empleado a partir del id usuario de la sesion activa, este es un objeto empleado
       @empleado = obteniendo_empleado(@usuario)
+      
       #aqui tenemos los id roles del empleado que tiene la sesion activa, obtenemos un array de enteros
       @id_rol = rol_empleado(@empleado.id)
+      
       #obtenemos un array de enteros con los id permisos del usuario activo
       #select id_permiso from acceso where id_rol = 
       @id_permiso = obtener_id_permiso(@id_rol)
-
+      
       #obtendremos un array de enteros de los id menus del usuario activo de la tabla menu rol
       #select id_menu from menu_rol where id_rol = 
       @id_menu = obtener_id_menu_de_rol_menu(@id_rol)
+      
+      # SELECT DISTINCT padres.menu_id from menus padres where padres.menu_id 
+      # in 
+      # (SELECT DISTINCT menu_rols.menu_id FROM menus inner join menu_rols on menus.id = menu_rols.menu_id)
+      #aqui vamos a comparar los id menus con los id submenus de la tabla menu
+      @id_menu_principal = obtener_menu_principal(@id_menu)
+      
+      #puts "este es el menu principal"
+      #puts @id_menu_principal
+      #aqui obtenemos todos los sub menus
+      @id_sub_menu = obtener_menu_sub(@id_menu_principal)
 
-      @id_menu_rol = obtener_menu_principal(@id_menu)
+      #select id_permiso from menu_permiso where id_menu in (id_sub_menu_rol)
+      @id_permiso_menu_permiso = obtener_id_permiso_de_menu_permiso(@id_sub_menu)
 
-      @id_sub_menu_rol = obtener_menu_sub(@id_menu_rol)
+      #aqui vamos a obtener los permisos /rutas a los que tiene acceso este rol
+      @menus_para_usuarios = validar_permisos_de_usuario(@id_permiso,@id_permiso_menu_permiso)
 
-      puts "estos son los id menus subs"
-      puts @id_sub_menu_rol
+      @tabla_permisos = obtener_tabla_permiso(@menus_para_usuarios)
 
-      arreglo = []
-      @accesos.each do |acceso|
-        if acceso.rol_id == 1
-          arreglo << acceso
+      @tabla_permisos
+      #select 
+
+      #puts "estos son las ruta y sus nombres"
+
+      #@tabla_permisos.each do |tp|
+       # puts tp.nombre_permiso
+       # puts tp.ruta
+      #end
+      #puts @tabla_permisos
+
+      #arreglo = []
+      #@accesos.each do |acceso|
+        #if acceso.rol_id == 1
+         # arreglo << acceso
 
           #puts "estoy en el if"
           #puts acceso.rol_id
-        end
+        #end
         #puts "esto es un acceso"
         #puts acceso.rol_id
-      end
-      arreglo
+      #end
+      #arreglo
     end
 
     def obteniendo_empleado(usuario)
       @empleado = Empleado.all
       @id_empleado = ''
 
-      puts "este es el usuario"
-      puts @usuario
+      #puts "este es el usuario"
+      #puts @usuario
 
       @empleado.each do |emp|
         if emp.user_id == usuario
@@ -182,36 +222,40 @@ class MenusController < ApplicationController
     end
 
     def obtener_menu_principal(idMenu)
-
+      #idMenu devuelve 4,3
+      #esperamos que nos devuelva 4
       @menu_p = Menu.all
 
       @menu_a = []
 
       @menu_p.each do |m|
         idMenu.each do |me|
-          if m.id == me
-            @menu_a << m.menu_id
+          #puts m.menu_id.to_s + " vs " + me.to_s
+          if m.menu_id == me && m.menu_id != nil
+            @menu_a << m.menu_id  
+            #puts "entre al if esto tiene m.id"
+            #puts m.id
           end
         end
       end
-
       #para eliminar repetidos con uniq
       @menu_a.uniq
 
     end
 
     def obtener_menu_sub(idMenuPrinc)
-
+      #idMenuPrinc es 3
       @menu_s = Menu.all
 
       @menu_sa = []
       
       idMenuPrinc.each do |p|
         @menu_s.each do |s|
+          #puts s.menu_id.to_s + " vs " + p.to_s
           if s.menu_id == p && s.menu_id != nil
-            puts "estpy en el if esto es p"
-            puts p
-            puts s.id
+            #puts "estpy en el if esto es p"
+            #puts p
+            #puts s.id
             @menu_sa << s.id
           end
         end
@@ -219,9 +263,61 @@ class MenusController < ApplicationController
 
       @menu_sa.uniq
 
+    end
+
+
+    def obtener_id_permiso_de_menu_permiso(idSubMenu)
+
+      @menu_permiso = MenuPermiso.all
+
+      @menu_permiso_a = []
+
+      @menu_permiso.each do |mp|
+        idSubMenu.each do |sm|
+          if sm == mp.menu_id
+
+            @menu_permiso_a << mp.permiso_id
+
+          end
+        end
+      end
+
+      @menu_permiso_a
 
     end
 
+    def validar_permisos_de_usuario(idPermisoUsuario, idSubMenu)
+      #idPermisoUsuario son los permisos que el rol tiene en la tabla acceso
+      #idSubMenu con todos los sub menus disponibles
+      @permisos_de_rol = []
+
+      idSubMenu.each do |sm|
+        idPermisoUsuario.each do |pu|
+          #puts pu.to_s + " vs " + sm.to_s
+          if sm == pu
+            @permisos_de_rol << sm
+          end 
+        end
+      end
+
+      @permisos_de_rol
+
+    end
+
+    def obtener_tabla_permiso(idMenuUsuario)
+
+      @tabla_permiso_list = []
+
+      idMenuUsuario.each do |mu|
+        @tabla_permiso = Permiso.find(mu)
+        #puts "esta es la tabla permiso"
+        #puts @tabla_permiso.nombre_permiso
+        #puts @tabla_permiso.ruta
+        @tabla_permiso_list << @tabla_permiso
+      end
+
+      @tabla_permiso_list
+    end
 
 
 end
