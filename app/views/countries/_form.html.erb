@@ -11,12 +11,13 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :nombre_country, style: "display: block" %>
-    <%= form.text_field :nombre_country %>
+  <div class="form-group">
+    <%= form.label :"Pais:", style: "display: block"  %>
+    <%= form.text_field :nombre_country, class:"form-control" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Guardar", class:"btn btn-outline-success"%>
+    <%= link_to "Cancelar", countries_path, :class => "btn btn-outline-danger"%>
   </div>
 <% end %>

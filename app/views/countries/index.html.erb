@@ -1,14 +1,36 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Countries</h1>
+  <h1>Pais</h1>
 
-<div id="countries">
-  <% @countries.each do |country| %>
-    <%= render country %>
-    <p>
-      <%= link_to "Show this country", country %>
-    </p>
-  <% end %>
-</div>
+  <%= link_to "Agregar Pais", new_country_path, :class => "btn btn-outline-success" %>
 
-<%= link_to "New country", new_country_path %>
+  <div id="countries">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Pais:</th>
+        <th scope="col">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <% @countries.each do |country| %>
+        <tr>
+          <th scope="row">1</th>
+          <td><%= country.nombre_country %></td>
+          <td><%= link_to "Ver", country, :class => "btn btn-outline-primary" %></td>
+        </tr>
+        <%#= render country %>
+<!--              <p><%#= link_to "Ver", country, :class=>"btn btn-outline-primary" %></p>-->
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%#= link_to "Agregar Pais", new_country_path %>
+
+
+<% end %>
+<%= render template: "layouts/base" %>

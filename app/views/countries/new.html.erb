@@ -1,9 +1,12 @@
-<h1>New country</h1>
+<% content_for :content do %>
+<h1>Agregar país</h1>
 
 <%= render "form", country: @country %>
 
 <br>
 
 <div>
-  <%= link_to "Back to countries", countries_path %>
+  <%#= link_to "Cancelar", countries_path, :class => "btn btn-outline-danger"%>
 </div>
+<% end %>
+<%= render template: "layouts/base" %>
