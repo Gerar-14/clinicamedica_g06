@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_22_232338) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_22_230748) do
   create_table "accesos", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "rol_id", null: false
     t.bigint "permiso_id", null: false
@@ -31,12 +31,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_232338) do
 
   create_table "areas", charset: "utf8mb4", force: :cascade do |t|
     t.string "nombre_area"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "caracols", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -188,12 +182,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_232338) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "ruta"
-  end
-
-  create_table "pruebas", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "resultados", charset: "utf8mb4", force: :cascade do |t|
