@@ -16,21 +16,14 @@ class MenusController < ApplicationController
   # GET /menus/new
   def new
     
-    @accesoss = verificarAcceso()
-
+    @menu = Menu.new
     @ruta_local = "/menus/new"
     
-    @accesoss.each do |a|
-      if a.ruta == @ruta_local
-        @menu = Menu.new
-      else 
-        redirect_to(home_path)
-      end
-    end
+    @direccion = direccionador(@ruta_local,@menu)   
 
+    @direccion
     
   end
-
 
   # GET /menus/1/edit
   def edit
@@ -265,7 +258,6 @@ class MenusController < ApplicationController
 
     end
 
-
     def obtener_id_permiso_de_menu_permiso(idSubMenu)
 
       @menu_permiso = MenuPermiso.all
@@ -319,5 +311,18 @@ class MenusController < ApplicationController
       @tabla_permiso_list
     end
 
+    def direccionador(ruta,direccion)
+
+      @accesoss = verificarAcceso()
+
+      @accesoss.each do |a|
+        if a.ruta == ruta
+          @retorno = direccion
+        else 
+          redirect_to(home_path)
+        end
+      end
+
+    end
 
 end
