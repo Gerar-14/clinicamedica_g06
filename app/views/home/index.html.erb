@@ -114,7 +114,9 @@
         <%= yield %>
         <h1 class="mt-4">Bienvenido <%= current_user.email %></h1>
 
-
+        <br>
+        <%= I18n.l(Date.today, format: '%A, %d de %B de %Y') %>
+        <%= Time.now.strftime("%I:%M %p") %>
 
 
         <div class="row">

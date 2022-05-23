@@ -1,0 +1,2 @@
+class AccesoDenegadoController < ApplicationController
+end
