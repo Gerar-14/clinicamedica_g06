@@ -5,7 +5,13 @@ class MenusController < ApplicationController
   def index
     @menus = Menu.all
     #@accesos = verificarAcceso()
-    @accesos = Acceso.all
+
+    @menu_show = Menu.all
+    @ruta_local = "/menus"
+    
+    @direccion = direccionador(@ruta_local,@menu_show)   
+
+    @direccion
   end
 
   # GET /menus/1 or /menus/1.json
@@ -67,12 +73,11 @@ class MenusController < ApplicationController
 
   # DELETE /menus/1 or /menus/1.json
   def destroy
-    @menu.destroy
-
-    respond_to do |format|
-      format.html { redirect_to menus_url, notice: "Menu was successfully destroyed." }
-      format.json { head :no_content }
-    end
+   #definimos la ruta para eliminar
+   @ruta_local = "/menus/:id"
+   #metodo para determinar si tiene permisos de eliminar 
+   direccionador_destroy(@ruta_local)
+   
   end
 
   private
@@ -338,6 +343,34 @@ class MenusController < ApplicationController
         return redirect_to(home_path)
       end
 
+    end
+
+    def direccionador_destroy(ruta)
+      @accesoss = verificarAcceso()
+      @control = false
+      
+      @accesoss.each do |a|
+        puts a.ruta + " vs " + ruta
+        if a.ruta == ruta
+          @control = true
+          break
+        else 
+          @control = false
+        end
+      end
+
+      if @control == true
+        puts "entre al if del controller"
+        @menu.destroy
+        respond_to do |format|
+          format.html { redirect_to menus_url, notice: "Menu was successfully destroyed." }
+          format.json { head :no_content }
+        end
+        #return direccion
+      else
+        puts "entre al else del controller"
+        redirect_to(home_path)
+      end
     end
 
 end
