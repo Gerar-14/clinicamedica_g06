@@ -16,6 +16,14 @@ class MenusController < ApplicationController
 
   # GET /menus/1 or /menus/1.json
   def show
+    
+    @menu_detalle = @menu
+    @ruta_local = "/menus/:id"
+    
+    @direccion = direccionador(@ruta_local,@menu_detalle)   
+
+    @direccion
+
   end
 
   # GET /menus/new
