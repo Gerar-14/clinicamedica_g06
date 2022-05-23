@@ -5,7 +5,6 @@ class MenusController < ApplicationController
   def index
     @menus = Menu.all
     #@accesos = verificarAcceso()
-
     @accesos = Acceso.all
   end
 
@@ -27,6 +26,13 @@ class MenusController < ApplicationController
 
   # GET /menus/1/edit
   def edit
+
+    @menu_edit = edit_menu_path
+    @ruta_local = "/menus/:id/edit"
+    
+    @direccion = direccionador(@ruta_local,@menu_edit)   
+
+    @direccion
 
   end
 
@@ -314,13 +320,22 @@ class MenusController < ApplicationController
     def direccionador(ruta,direccion)
 
       @accesoss = verificarAcceso()
-
+      @control = false
+      
       @accesoss.each do |a|
+        
         if a.ruta == ruta
-          @retorno = direccion
+          @control = true
+          break
         else 
-          redirect_to(home_path)
+          @control = false
         end
+      end
+
+      if @control == true
+        return direccion
+      else
+        return redirect_to(home_path)
       end
 
     end
