@@ -65,6 +65,6 @@ class EmpleadosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def empleado_params
-      params.require(:empleado).permit(:nombre_empleado, :apellido_empleado, :profesion, :dui_empleado, :municipio_id, :users_id)
+      params.require(:empleado).permit(:nombre_empleado, :apellido_empleado, :profesion, :dui_empleado, :municipio_id, :user_id)
     end
 end

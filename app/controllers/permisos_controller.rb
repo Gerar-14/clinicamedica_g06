@@ -65,6 +65,6 @@ class PermisosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def permiso_params
-      params.require(:permiso).permit(:nombre_permiso)
+      params.require(:permiso).permit(:nombre_permiso, :ruta)
     end
 end

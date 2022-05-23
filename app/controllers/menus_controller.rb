@@ -17,6 +17,7 @@ class MenusController < ApplicationController
 
   # GET /menus/1/edit
   def edit
+    
   end
 
   # POST /menus or /menus.json

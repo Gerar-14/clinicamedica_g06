@@ -55,11 +55,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_230748) do
     t.string "profesion"
     t.string "dui_empleado"
     t.bigint "municipio_id", null: false
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["municipio_id"], name: "index_empleados_on_municipio_id"
-    t.index ["users_id"], name: "index_empleados_on_users_id"
+    t.index ["user_id"], name: "index_empleados_on_user_id"
   end
 
   create_table "laboratorios", charset: "utf8mb4", force: :cascade do |t|
@@ -266,7 +266,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_230748) do
   add_foreign_key "area_tipo_examen", "tipo_examen", column: "tipo_examen_id"
   add_foreign_key "departamentos", "countries"
   add_foreign_key "empleados", "municipios"
-  add_foreign_key "empleados", "users", column: "users_id"
+  add_foreign_key "empleados", "users"
   add_foreign_key "laboratorios", "municipios"
   add_foreign_key "laboratorista", "empleados"
   add_foreign_key "laboratorista", "laboratorios"
