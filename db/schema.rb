@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_22_230748) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_24_051438) do
   create_table "accesos", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "rol_id", null: false
     t.bigint "permiso_id", null: false
@@ -205,6 +205,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_230748) do
 
   create_table "rols", charset: "utf8mb4", force: :cascade do |t|
     t.string "nombre_rol"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "seguridads", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

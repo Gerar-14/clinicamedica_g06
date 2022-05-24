@@ -38,5 +38,5 @@ Rails.application.routes.draw do
   get 'home', to: "home#index", as: :home
   get 'acceso_denegado', to: "acceso_denegado#acceso_denegado", as: :denegado
   root to: "home#index"
-  
+    
 end
