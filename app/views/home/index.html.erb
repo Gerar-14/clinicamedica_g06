@@ -4,13 +4,14 @@
 <%= @menu_rol.each do |key, value|%>
     <h2><%= key %></h2>
     <%= value.each do |submenu|%>
+        <%= nombre = submenu["nombre"] %>
         <%= submenu.each do |keys, values|%>
             <h2> <%= keys %> + <%= values %></h2>
             <a href=<%= values %>>
                 <% if keys == "nombre" %>
                 
                 <% else %>
-                    <%= keys %>  
+                    <%= nombre %>  
                 <% end %>
             </a>
         <% end %>    
