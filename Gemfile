@@ -29,6 +29,8 @@ gem "devise"
 
 gem "devise-encryptable"
 
+gem "select2-rails"
+
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 

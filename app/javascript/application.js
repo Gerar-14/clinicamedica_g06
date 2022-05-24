@@ -7,3 +7,6 @@ import "bootstrap"
 import "scripts"
 import "datatables-simple-demo"
 import "datatables-demo"
+
+//= require select2
+//= require select2-full
