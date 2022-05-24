@@ -8,8 +8,8 @@ class MenusController < ApplicationController
 
     @menu_show = Menu.all
     @ruta_local = "/menus"
-    @usuario_user_id = current_user.id
-    @direccion = SeguridadsController.direccionador(@ruta_local,@menu_show,@usuario_user_id)   
+    
+    @direccion = direccionador(@ruta_local,@menu_show)   
 
     @direccion
   end

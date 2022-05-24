@@ -254,7 +254,7 @@ class SeguridadsController < ApplicationController
     if @control == true
         return direccion
     else
-        return '/home'
+        return redirect_to(home_path)
     end
 
     end
@@ -274,7 +274,7 @@ class SeguridadsController < ApplicationController
     end
 
     if @control == true
-        #puts "entre al if del controller"
+        puts "entre al if del controller"
         @menu.destroy
         respond_to do |format|
         format.html { redirect_to menus_url, notice: "Menu was successfully destroyed." }
@@ -282,8 +282,8 @@ class SeguridadsController < ApplicationController
         end
         #return direccion
     else
-        #puts "entre al else del controller"
-        return '/home'
+        puts "entre al else del controller"
+        redirect_to(home_path)
     end
     end
 
