@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_24_051438) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_22_193417) do
   create_table "accesos", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "rol_id", null: false
     t.bigint "permiso_id", null: false
@@ -30,19 +30,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_051438) do
   end
 
   create_table "areas", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre_area"
+    t.string "nombre_area", limit: 50, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "countries", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre_country"
+    t.string "nombre_country", limit: 50, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "departamentos", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre_departamento"
+    t.string "nombre_departamento", limit: 50, null: false
     t.bigint "country_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,10 +50,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_051438) do
   end
 
   create_table "empleados", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre_empleado"
-    t.string "apellido_empleado"
-    t.string "profesion"
-    t.string "dui_empleado"
+    t.string "nombre_empleado", limit: 50, null: false
+    t.string "apellido_empleado", limit: 50, null: false
+    t.string "profesion", limit: 50, null: false
+    t.string "dui_empleado", limit: 10, null: false
     t.bigint "municipio_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -63,7 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_051438) do
   end
 
   create_table "laboratorios", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre_laboratorio"
+    t.string "nombre_laboratorio", limit: 50, null: false
     t.bigint "municipio_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -71,7 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_051438) do
   end
 
   create_table "laboratorista", charset: "utf8mb4", force: :cascade do |t|
-    t.string "num_junta_vigilancia"
+    t.string "num_junta_vigilancia", limit: 50, null: false
     t.bigint "laboratorio_id", null: false
     t.bigint "empleado_id", null: false
     t.datetime "created_at", null: false
@@ -99,7 +99,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_051438) do
   end
 
   create_table "menus", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre"
+    t.string "nombre", limit: 100, null: false
     t.bigint "menu_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -107,8 +107,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_051438) do
   end
 
   create_table "muestras", charset: "utf8mb4", force: :cascade do |t|
-    t.string "tipo_muestra"
-    t.datetime "fecha_entrega_muestra"
+    t.string "tipo_muestra", limit: 50, null: false
+    t.datetime "fecha_entrega_muestra", null: false
     t.bigint "empleado_id", null: false
     t.bigint "orden_tipo_examen_id", null: false
     t.datetime "created_at", null: false
@@ -118,7 +118,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_051438) do
   end
 
   create_table "municipios", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre_municipio"
+    t.string "nombre_municipio", limit: 50, null: false
     t.bigint "departamento_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -135,7 +135,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_051438) do
   end
 
   create_table "ordens", charset: "utf8mb4", force: :cascade do |t|
-    t.datetime "fecha_examen"
+    t.datetime "fecha_examen", null: false
     t.bigint "paciente_id", null: false
     t.bigint "laboratorista_id", null: false
     t.datetime "created_at", null: false
@@ -145,19 +145,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_051438) do
   end
 
   create_table "pacientes", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre_paciente"
-    t.string "apellido_paciente"
-    t.string "genero_paciente"
-    t.date "fecha_nacimiento"
-    t.string "direccion"
-    t.string "telefono"
-    t.string "telefono_celular"
-    t.string "telefono_contacto"
-    t.string "correo_electronico"
-    t.string "apellido_casado"
-    t.string "estado_civil"
-    t.string "dui_paciente"
-    t.string "pasaporte"
+    t.string "nombre_paciente", limit: 50, null: false
+    t.string "apellido_paciente", limit: 50, null: false
+    t.string "genero_paciente", limit: 1, null: false
+    t.date "fecha_nacimiento", null: false
+    t.string "direccion", limit: 200, null: false
+    t.string "telefono", limit: 20
+    t.string "telefono_celular", limit: 20, null: false
+    t.string "telefono_contacto", limit: 20, null: false
+    t.string "correo_electronico", limit: 50
+    t.string "apellido_casado", limit: 50
+    t.string "estado_civil", limit: 1, null: false
+    t.string "dui_paciente", limit: 10
+    t.string "pasaporte", limit: 20
     t.bigint "municipio_id", null: false
     t.bigint "tipo_sangre_id", null: false
     t.datetime "created_at", null: false
@@ -167,10 +167,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_051438) do
   end
 
   create_table "parametros", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre_parametro"
-    t.integer "tipo_parametro"
+    t.string "nombre_parametro", limit: 50, null: false
+    t.integer "tipo_parametro", null: false
     t.bigint "unidad_medida_id", null: false
-    t.bigint "parametro_id", null: false
+    t.bigint "parametro_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["parametro_id"], name: "index_parametros_on_parametro_id"
@@ -178,14 +178,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_051438) do
   end
 
   create_table "permisos", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre_permiso"
+    t.string "nombre_permiso", limit: 50, null: false
+    t.string "ruta", limit: 200, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "ruta"
   end
 
   create_table "resultados", charset: "utf8mb4", force: :cascade do |t|
-    t.string "descripcion"
+    t.string "descripcion", limit: 100, null: false
     t.bigint "parametro_id", null: false
     t.bigint "orden_id", null: false
     t.datetime "created_at", null: false
@@ -204,18 +204,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_051438) do
   end
 
   create_table "rols", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre_rol"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "seguridads", charset: "utf8mb4", force: :cascade do |t|
+    t.string "nombre_rol", limit: 50, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "tipo_examen", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre_tipo_examen"
+    t.string "nombre_tipo_examen", limit: 50, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -230,16 +225,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_051438) do
   end
 
   create_table "tipo_sangres", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre_tipo_sangre"
+    t.string "nombre_tipo_sangre", limit: 50, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "unidad_medidas", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre_unidad_medida"
-    t.string "siglas"
-    t.string "sistema_medida"
-    t.string "descripcion_unidad_medida"
+    t.string "nombre_unidad_medida", limit: 50, null: false
+    t.string "siglas", limit: 15, null: false
+    t.string "sistema_medida", limit: 30, null: false
+    t.string "descripcion_unidad_medida", limit: 100, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -258,7 +253,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_051438) do
   end
 
   create_table "valor_referencia", charset: "utf8mb4", force: :cascade do |t|
-    t.string "valor_referencia"
+    t.string "valor_referencia", limit: 30, null: false
     t.bigint "parametro_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
