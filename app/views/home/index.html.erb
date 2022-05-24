@@ -1,12 +1,12 @@
 <% content_for :content do %>
 
-<%= @menu_rol %>
-<%= @menu_rol.each do |key, value|%>
+
+<% @menu_rol.each do |key, value|%>
     <h2><%= key %></h2>
-    <%= value.each do |submenu|%>
-        <%= nombre = submenu["nombre"] %>
-        <%= submenu.each do |keys, values|%>
-            <h2> <%= keys %> + <%= values %></h2>
+    <% value.each do |submenu|%>
+        <% nombre = submenu["nombre"] %>
+        <% submenu.each do |keys, values|%>
+            <h2> </h2>
             <a href=<%= values %>>
                 <% if keys == "nombre" %>
                 

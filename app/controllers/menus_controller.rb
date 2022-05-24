@@ -348,7 +348,7 @@ class MenusController < ApplicationController
       if @control == true
         return direccion
       else
-        return redirect_to(home_path)
+        return redirect_to('/acceso_denegado')
       end
 
     end
@@ -377,7 +377,7 @@ class MenusController < ApplicationController
         #return direccion
       else
         puts "entre al else del controller"
-        redirect_to(home_path)
+        redirect_to('/acceso_denegado')
       end
     end
 
