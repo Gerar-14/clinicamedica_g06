@@ -5,26 +5,28 @@
   <%= link_to "Agregar rol empleado", new_rol_empleado_path, :class => "btn btn-outline-success" %>
 
   <div id="rol_empleados">
-    <table id="menusDataTable" class="table">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Rol</th>
-        <th scope="col">Empleado</th>
-        <th scope="col">Acciones</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @rol_empleados.each do |rol_empleado| %>
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
         <tr>
-          <th scope="row">1</th>
-          <td><%= rol_empleado.rol_id %></td>
-          <td><%= rol_empleado.empleado_id %></td>
-          <th><%= link_to "Ver", rol_empleado, :class => "btn btn-outline-primary" %></th>
-      <% end %>
-      </tr>
-      </tbody>
-    </table>
+          <th scope="col">#</th>
+          <th scope="col">Rol</th>
+          <th scope="col">Empleado</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @rol_empleados.each do |rol_empleado| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= rol_empleado.rol_id %></td>
+            <td><%= rol_empleado.empleado_id %></td>
+            <th><%= link_to "Ver", rol_empleado, :class => "btn btn-outline-primary" %></th>
+        <% end %>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
 <% end %>

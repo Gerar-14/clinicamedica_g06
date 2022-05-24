@@ -6,24 +6,26 @@
   <%= link_to "Agregar Departamento", new_departamento_path, :class => "btn btn-outline-success" %>
 
   <div id="departamentos">
-    <table class="table">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Departamento:</th>
-        <th scope="col">Acciones</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @departamentos.each do |departamento| %>
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
         <tr>
-          <th scope="row">1</th>
-          <td><%= departamento.nombre_departamento %></td>
-          <td><%= link_to "Ver", departamento, :class => "btn btn-outline-primary" %></td>
+          <th scope="col">#</th>
+          <th scope="col">Departamento:</th>
+          <th scope="col">Acciones</th>
         </tr>
-      <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+        <% @departamentos.each do |departamento| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= departamento.nombre_departamento %></td>
+            <td><%= link_to "Ver", departamento, :class => "btn btn-outline-primary" %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 
 

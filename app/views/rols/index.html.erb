@@ -4,24 +4,26 @@
   <h1>Roles</h1>
   <%= link_to "Nuevo Rol", new_rol_path, :class => "btn btn-outline-success" %>
   <div id="rols">
-    <table class="table">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Rol:</th>
-        <th scope="col">Acciones</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @rols.each do |rol| %>
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
         <tr>
-          <th scope="row">1</th>
-          <th><%= rol.nombre_rol %></th>
-          <th><%= link_to "Ver", rol, :class => "btn btn-outline-primary" %></th>
+          <th scope="col">#</th>
+          <th scope="col">Rol:</th>
+          <th scope="col">Acciones</th>
         </tr>
-      <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+        <% @rols.each do |rol| %>
+          <tr>
+            <th scope="row">1</th>
+            <th><%= rol.nombre_rol %></th>
+            <th><%= link_to "Ver", rol, :class => "btn btn-outline-primary" %></th>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 
 <% end %>

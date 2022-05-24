@@ -5,25 +5,27 @@
   <%= link_to "Agregar menú permiso", new_menu_permiso_path, :class => "btn btn-outline-success" %>
 
   <div id="menu_permisos">
-    <table id="menusDataTable" class="table">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Menu:</th>
-        <th scope="col">Permiso:</th>
-        <th scope="col">Acciones</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @menu_permisos.each do |menu_permiso| %>
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
         <tr>
-          <th scope="row">1</th>
-          <td><%= menu_permiso.menu_id %></td>
-          <td><%= menu_permiso.permiso_id %></td>
-        <th><%= link_to "Ver", menu_permiso, :class => "btn btn-outline-primary" %></th>
-      <% end %>
-      </tbody>
-    </table>
+          <th scope="col">#</th>
+          <th scope="col">Menu:</th>
+          <th scope="col">Permiso:</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @menu_permisos.each do |menu_permiso| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= menu_permiso.menu_id %></td>
+            <td><%= menu_permiso.permiso_id %></td>
+            <th><%= link_to "Ver", menu_permiso, :class => "btn btn-outline-primary" %></th>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 
 <% end %>

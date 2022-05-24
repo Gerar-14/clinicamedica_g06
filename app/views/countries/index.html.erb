@@ -6,27 +6,29 @@
   <%= link_to "Agregar Pais", new_country_path, :class => "btn btn-outline-success" %>
 
   <div id="countries">
-    <table class="table">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Pais:</th>
-        <th scope="col">Acciones</th>
-      </tr>
-      </thead>
-      <tbody>
-
-      <% @countries.each do |country| %>
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
         <tr>
-          <th scope="row">1</th>
-          <td><%= country.nombre_country %></td>
-          <td><%= link_to "Ver", country, :class => "btn btn-outline-primary" %></td>
+          <th scope="col">#</th>
+          <th scope="col">Pais:</th>
+          <th scope="col">Acciones</th>
         </tr>
-        <%#= render country %>
-<!--              <p><%#= link_to "Ver", country, :class=>"btn btn-outline-primary" %></p>-->
-      <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+
+        <% @countries.each do |country| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= country.nombre_country %></td>
+            <td><%= link_to "Ver", country, :class => "btn btn-outline-primary" %></td>
+          </tr>
+          <%#= render country %>
+          <!--              <p><%#= link_to "Ver", country, :class=>"btn btn-outline-primary" %></p>-->
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <%#= link_to "Agregar Pais", new_country_path %>

@@ -5,24 +5,28 @@
   <%= link_to "Agregar menú rol", new_menu_rol_path, :class => "btn btn-outline-success" %>
 
   <div id="menu_rols">
-    <table id="menusDataTable" class="table">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Menu Rol:</th>
-        <th scope="col">Acciones</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @menu_rols.each do |menu_rol| %>
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
         <tr>
-          <th scope="row">1</th>
-          <th><%= render menu_rol %></th>
-          <th><%= link_to "Ver", menu_rol, :class => "btn btn-outline-primary" %></th>
+          <th scope="col">#</th>
+          <th scope="col">Menu</th>
+          <th scope="col">Rol</th>
+          <th scope="col">Acciones</th>
         </tr>
-      <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+        <% @menu_rols.each do |menu_rol| %>
+          <tr>
+            <th scope="row">1</th>
+            <th><%= menu_rol.menu_id %></th>
+            <th><%= menu_rol.rol_id %></th>
+            <th><%= link_to "Ver", menu_rol, :class => "btn btn-outline-primary" %></th>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 
 
