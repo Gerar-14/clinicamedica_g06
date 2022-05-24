@@ -1,9 +1,12 @@
-<h1>New menu rol</h1>
+<% content_for :content do %>
+  <h1>Nuevo menú rol</h1>
 
-<%= render "form", menu_rol: @menu_rol %>
+  <%= render "form", menu_rol: @menu_rol %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Back to menu rols", menu_rols_path %>
-</div>
+  <div>
+    <%#= link_to "Back to menu rols", menu_rols_path %>
+  </div>
+<% end %>
+<%= render template: "layouts/base" %>

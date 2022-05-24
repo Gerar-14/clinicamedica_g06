@@ -1,14 +1,31 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Departamentos</h1>
+  <h1>Departamentos</h1>
 
-<div id="departamentos">
-  <% @departamentos.each do |departamento| %>
-    <%= render departamento %>
-    <p>
-      <%= link_to "Show this departamento", departamento %>
-    </p>
-  <% end %>
-</div>
+  <%= link_to "Agregar Departamento", new_departamento_path, :class => "btn btn-outline-success" %>
 
-<%= link_to "New departamento", new_departamento_path %>
+  <div id="departamentos">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Departamento:</th>
+        <th scope="col">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @departamentos.each do |departamento| %>
+        <tr>
+          <th scope="row">1</th>
+          <td><%= departamento.nombre_departamento %></td>
+          <td><%= link_to "Ver", departamento, :class => "btn btn-outline-primary" %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+
+<% end %>
+<%= render template: "layouts/base" %>

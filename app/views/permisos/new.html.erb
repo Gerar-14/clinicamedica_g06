@@ -1,9 +1,12 @@
-<h1>New permiso</h1>
+<% content_for :content do %>
+  <h1>Nuevo permiso</h1>
 
-<%= render "form", permiso: @permiso %>
+  <%= render "form", permiso: @permiso %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Back to permisos", permisos_path %>
-</div>
+  <div>
+    <%#= link_to "Back to permisos", permisos_path %>
+  </div>
+<% end %>
+<%= render template: "layouts/base" %>

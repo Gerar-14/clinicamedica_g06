@@ -3,11 +3,11 @@
 
   <%= render @country %>
 
-  <div>
-    <%= link_to "Editar país", edit_country_path(@country), :class => "btn btn-outline-warning" %> |
-    <%= link_to "Regresar", countries_path, :class => "btn btn-outline-dark" %>
-
+  <div class="btn-group">
+    <%= link_to "Editar país", edit_country_path(@country), :class => "btn btn-outline-warning" %> &nbsp;
+    <%= link_to "Regresar", countries_path, :class => "btn btn-outline-dark" %> &nbsp;
     <%= button_to "Eliminar", @country, method: :delete, :class => "btn btn-outline-danger" %>
   </div>
+
 <% end %>
 <%= render template: "layouts/base" %>

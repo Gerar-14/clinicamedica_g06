@@ -1,14 +1,31 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Menu rols</h1>
+  <h1>Menú roles</h1>
+  <%= link_to "Agregar menú rol", new_menu_rol_path, :class => "btn btn-outline-success" %>
 
-<div id="menu_rols">
-  <% @menu_rols.each do |menu_rol| %>
-    <%= render menu_rol %>
-    <p>
-      <%= link_to "Show this menu rol", menu_rol %>
-    </p>
-  <% end %>
-</div>
+  <div id="menu_rols">
+    <table id="menusDataTable" class="table">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Menu Rol:</th>
+        <th scope="col">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @menu_rols.each do |menu_rol| %>
+        <tr>
+          <th scope="row">1</th>
+          <th><%= render menu_rol %></th>
+          <th><%= link_to "Ver", menu_rol, :class => "btn btn-outline-primary" %></th>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<%= link_to "New menu rol", new_menu_rol_path %>
+
+
+<% end %>
+<%= render template: "layouts/base" %>

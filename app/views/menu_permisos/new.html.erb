@@ -1,9 +1,12 @@
-<h1>New menu permiso</h1>
+<% content_for :content do %>
+  <h1>New menú permiso</h1>
 
-<%= render "form", menu_permiso: @menu_permiso %>
+  <%= render "form", menu_permiso: @menu_permiso %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Back to menu permisos", menu_permisos_path %>
-</div>
+  <div>
+    <%#= link_to "Cancelar", menu_permisos_path, :class => "btn btn-outline-danger" %>
+  </div>
+<% end %>
+<%= render template: "layouts/base" %>

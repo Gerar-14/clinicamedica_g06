@@ -1,10 +1,14 @@
+<% content_for :content do %>
 <p style="color: green"><%= notice %></p>
 
 <%= render @menu_rol %>
 
-<div>
-  <%= link_to "Edit this menu rol", edit_menu_rol_path(@menu_rol) %> |
-  <%= link_to "Back to menu rols", menu_rols_path %>
+  <div class="btn-group">
+  <%= link_to "Editar", edit_menu_rol_path(@menu_rol), :class => "btn btn-outline-warning" %> &nbsp;
+  <%= link_to "Regresar", menu_rols_path, :class => "btn btn-outline-dark" %>&nbsp;
 
-  <%= button_to "Destroy this menu rol", @menu_rol, method: :delete %>
+  <%= button_to "Eliminar", @menu_rol, method: :delete, :class => "btn btn-outline-danger" %>&nbsp;
 </div>
+
+<% end %>
+<%= render template: "layouts/base" %>

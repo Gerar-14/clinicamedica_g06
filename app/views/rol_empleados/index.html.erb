@@ -1,14 +1,31 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Rol empleados</h1>
+  <h1>Rol empleados</h1>
+  <%= link_to "Agregar rol empleado", new_rol_empleado_path, :class => "btn btn-outline-success" %>
 
-<div id="rol_empleados">
-  <% @rol_empleados.each do |rol_empleado| %>
-    <%= render rol_empleado %>
-    <p>
-      <%= link_to "Show this rol empleado", rol_empleado %>
-    </p>
-  <% end %>
-</div>
+  <div id="rol_empleados">
+    <table id="menusDataTable" class="table">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Rol</th>
+        <th scope="col">Empleado</th>
+        <th scope="col">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @rol_empleados.each do |rol_empleado| %>
+        <tr>
+          <th scope="row">1</th>
+          <td><%= rol_empleado.rol_id %></td>
+          <td><%= rol_empleado.empleado_id %></td>
+          <th><%= link_to "Ver", rol_empleado, :class => "btn btn-outline-primary" %></th>
+      <% end %>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 
-<%= link_to "New rol empleado", new_rol_empleado_path %>
+<% end %>
+<%= render template: "layouts/base" %>

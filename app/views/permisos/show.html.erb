@@ -1,10 +1,14 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<%= render @permiso %>
+  <%= render @permiso %>
 
-<div>
-  <%= link_to "Edit this permiso", edit_permiso_path(@permiso) %> |
-  <%= link_to "Back to permisos", permisos_path %>
+  <div class="btn-group">
+    <%= link_to "Editar", edit_permiso_path(@permiso), :class => "btn btn-outline-warning" %> &nbsp;
+    <%= link_to "Regresar", permisos_path, :class => "btn btn-outline-dark" %> &nbsp;
 
-  <%= button_to "Destroy this permiso", @permiso, method: :delete %>
-</div>
+    <%= button_to "Eliminar", @permiso, method: :delete, :class => "btn btn-outline-danger" %>
+  </div>
+
+<% end %>
+<%= render template: "layouts/base" %>

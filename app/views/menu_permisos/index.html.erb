@@ -1,14 +1,30 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Menu permisos</h1>
+  <h1>Menú permisos</h1>
+  <%= link_to "Agregar menú permiso", new_menu_permiso_path, :class => "btn btn-outline-success" %>
 
-<div id="menu_permisos">
-  <% @menu_permisos.each do |menu_permiso| %>
-    <%= render menu_permiso %>
-    <p>
-      <%= link_to "Show this menu permiso", menu_permiso %>
-    </p>
-  <% end %>
-</div>
+  <div id="menu_permisos">
+    <table id="menusDataTable" class="table">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Menu:</th>
+        <th scope="col">Permiso:</th>
+        <th scope="col">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @menu_permisos.each do |menu_permiso| %>
+        <tr>
+          <th scope="row">1</th>
+          <td><%= menu_permiso.menu_id %></td>
+          <td><%= menu_permiso.permiso_id %></td>
+        <th><%= link_to "Ver", menu_permiso, :class => "btn btn-outline-primary" %></th>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<%= link_to "New menu permiso", new_menu_permiso_path %>
+<% end %>
+<%= render template: "layouts/base" %>

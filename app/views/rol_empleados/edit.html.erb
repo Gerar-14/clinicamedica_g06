@@ -1,10 +1,13 @@
-<h1>Editing rol empleado</h1>
+<% content_for :content do %>
+  <h1>Editar rol empleado</h1>
 
-<%= render "form", rol_empleado: @rol_empleado %>
+  <%= render "form", rol_empleado: @rol_empleado %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Show this rol empleado", @rol_empleado %> |
-  <%= link_to "Back to rol empleados", rol_empleados_path %>
-</div>
+  <div>
+    <!--    <%#= link_to "Show this rol empleado", @rol_empleado %> |-->
+    <%#= link_to "Back to rol empleados", rol_empleados_path %>
+  </div>
+<% end %>
+<%= render template: "layouts/base" %>

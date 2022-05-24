@@ -1,15 +1,30 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Permisos</h1>
-<h1>que ondas </h1>
+  <h1>Permisos</h1>
+  <%= link_to "Agregar permiso", new_permiso_path, :class => "btn btn-outline-success" %>
+  <div id="permisos">
+    <table id="menusDataTable" class="table">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Permiso:</th>
+        <th scope="col">Ruta:</th>
+        <th scope="col">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @permisos.each do |permiso| %>
+        <tr>
+          <th scope="row">1</th>
+          <td><%= permiso.nombre_permiso %></td>
+          <td><%= permiso.ruta %></td>
+          <th><%= link_to "Ver", permiso, :class => "btn btn-outline-primary" %></th>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<div id="permisos">
-  <% @permisos.each do |permiso| %>
-    <%= render permiso %>
-    <p>
-      <%= link_to "Show this permiso", permiso %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New permiso", new_permiso_path %>
+<% end %>
+<%= render template: "layouts/base" %>
