@@ -1,6 +1,26 @@
 <% content_for :content do %>
 
+<%= @menu_rol %>
+<%= @menu_rol.each do |key, value|%>
+    <h2><%= key %></h2>
+    <%= value.each do |submenu|%>
+        <%= submenu.each do |keys, values|%>
+            <h2> <%= keys %> + <%= values %></h2>
+            <a href=<%= values %>>
+                <%= keys %>
+            </a>
+        <% end %>    
+    <% end %>
+<% end %>
+<%# menu.each do |key, value|
+	puts "Menu: " + key
 
+	value.each do |submenu|
+		submenu.each do |keys, values|
+			puts "	" + keys + ": " + values
+		end
+	end
+end %>
 <% end %>
 
 <%= render template: "layouts/base" %>
