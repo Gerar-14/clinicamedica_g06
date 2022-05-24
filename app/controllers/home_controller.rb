@@ -365,7 +365,11 @@ class HomeController < ApplicationController
               if men_sec == men_sec_user
                 @permiso_second_menu = get_permiso_by_id_menu(men_sec)
                 #puts "Este es el menu principal " + men_main.to_s + " Este es un submenu de usuario " + men_sec_user.to_s + " y su id_permiso es: " + @permiso_second_menu.id.to_s + " y su ruta es " + @permiso_second_menu.ruta
-                menus_secundarios_list << {"nombre"=> @permiso_second_menu.nombre_permiso, "ruta" => @permiso_second_menu.ruta}
+                if  @permiso_second_menu.nombre_permiso.downcase["mostrar"] || @permiso_second_menu.nombre_permiso.downcase["crear"]
+                  menus_secundarios_list << {"nombre"=> @permiso_second_menu.nombre_permiso, "ruta" => @permiso_second_menu.ruta}
+                  puts "esto es lo que estas guardando"
+                  puts @permiso_second_menu.nombre_permiso + " " + @permiso_second_menu.ruta
+                end
               end
             end
           end
