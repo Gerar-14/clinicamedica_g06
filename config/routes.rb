@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   resources :pacientes
   resources :tipo_sangres
   resources :municipios
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations"}
   # devise_for :users do
     # get '/users/sign_out' => 'devise/sessions#destroy'
   # end
