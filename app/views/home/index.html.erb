@@ -7,7 +7,11 @@
         <%= submenu.each do |keys, values|%>
             <h2> <%= keys %> + <%= values %></h2>
             <a href=<%= values %>>
-                <%= keys %>
+                <% if keys == "nombre" %>
+                
+                <% else %>
+                    <%= keys %>  
+                <% end %>
             </a>
         <% end %>    
     <% end %>

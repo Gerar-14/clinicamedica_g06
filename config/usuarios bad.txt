@@ -1,0 +1,21 @@
+Cuentas
+
+administrador@gmail.com
+Admin123#
+
+laboratorista@gmail.com
+Laboratorista123#
+
+jefelaboratorista@gmail.com
+Jefelabo123#
+
+recepcionista@gmail.com
+Recepcionista123#
+
+Departamentos
+
+14 departamentos
+
+
+
+
