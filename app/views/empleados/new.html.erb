@@ -1,9 +1,13 @@
-<h1>New empleado</h1>
+<% content_for :content do %>
+  <h1>Agregar empleado</h1>
 
-<%= render "form", empleado: @empleado %>
+  <%= render "form", empleado: @empleado %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Back to empleados", empleados_path %>
-</div>
+  <div>
+    <%#= link_to "Back to empleados", empleados_path %>
+  </div>
+
+<% end %>
+<%= render template: "layouts/base" %>

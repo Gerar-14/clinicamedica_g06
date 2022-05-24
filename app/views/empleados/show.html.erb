@@ -1,10 +1,14 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<%= render @empleado %>
+  <%= render @empleado %>
 
-<div>
-  <%= link_to "Edit this empleado", edit_empleado_path(@empleado) %> |
-  <%= link_to "Back to empleados", empleados_path %>
+  <div class="btn-group">
+    <%= link_to "Editar", edit_empleado_path(@empleado), :class => "btn btn-outline-warning" %> &nbsp;
+    <%= link_to "Regresar", empleados_path, :class => "btn btn-outline-dark" %> &nbsp;
 
-  <%= button_to "Destroy this empleado", @empleado, method: :delete %>
-</div>
+    <%= button_to "Eliminar", @empleado, method: :delete, :class => "btn btn-outline-danger" %>
+  </div>
+
+<% end %>
+<%= render template: "layouts/base" %>

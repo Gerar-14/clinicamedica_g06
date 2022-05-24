@@ -1,14 +1,41 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Empleados</h1>
+  <h1>Empleados</h1>
 
-<div id="empleados">
-  <% @empleados.each do |empleado| %>
-    <%= render empleado %>
-    <p>
-      <%= link_to "Show this empleado", empleado %>
-    </p>
-  <% end %>
-</div>
+  <%= link_to "Agregar empleado", new_empleado_path, :class => "btn btn-outline-success" %>
 
-<%= link_to "New empleado", new_empleado_path %>
+  <div id="empleados">
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre empleado</th>
+          <th scope="col">Apellido empleado</th>
+          <th scope="col">Profesion</th>
+          <th scope="col">Dui empleado</th>
+          <th scope="col">Municipio</th>
+          <th scope="col">Users</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @empleados.each do |empleado| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= empleado.nombre_empleado %></td>
+            <td><%= empleado.apellido_empleado %></td>
+            <td><%= empleado.profesion %></td>
+            <td><%= empleado.dui_empleado %></td>
+            <td><%= empleado.municipio_id %></td>
+            <td><%= empleado.user_id %></td>
+            <th><%= link_to "Ver", empleado, :class => "btn btn-outline-primary" %></th>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<% end %>
+<%= render template: "layouts/base" %>
