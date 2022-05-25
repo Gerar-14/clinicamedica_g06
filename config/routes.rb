@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :value_references
+  resources :ordens
+  resources :laboratory_workers
+  resources :muestras
+  resources :orden_type_exams
+  resources :area_type_exams
+  resources :type_exam_parametros
+  resources :type_exams
   resources :departamentos
   resources :countries
   resources :menu_permisos
@@ -9,18 +17,10 @@ Rails.application.routes.draw do
   resources :rols
   resources :menus
   resources :resultados
-  resources :muestras
-  resources :orden_tipo_examen
-  resources :ordens
-  resources :laboratorista
   resources :laboratorios
   resources :empleados
-  resources :tipo_examen_parametros
-  resources :valor_referencia
   resources :parametros
   resources :unidad_medidas
-  resources :area_tipo_examen
-  resources :tipo_examen
   resources :areas
   resources :pacientes
   resources :tipo_sangres

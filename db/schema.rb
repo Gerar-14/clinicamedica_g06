@@ -20,13 +20,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_193417) do
     t.index ["rol_id"], name: "index_accesos_on_rol_id"
   end
 
-  create_table "area_tipo_examen", charset: "utf8mb4", force: :cascade do |t|
+  create_table "area_type_exams", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "area_id", null: false
-    t.bigint "tipo_examen_id", null: false
+    t.bigint "type_exam_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["area_id"], name: "index_area_tipo_examen_on_area_id"
-    t.index ["tipo_examen_id"], name: "index_area_tipo_examen_on_tipo_examen_id"
+    t.index ["area_id"], name: "index_area_type_exams_on_area_id"
+    t.index ["type_exam_id"], name: "index_area_type_exams_on_type_exam_id"
   end
 
   create_table "areas", charset: "utf8mb4", force: :cascade do |t|
@@ -70,14 +70,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_193417) do
     t.index ["municipio_id"], name: "index_laboratorios_on_municipio_id"
   end
 
-  create_table "laboratorista", charset: "utf8mb4", force: :cascade do |t|
+  create_table "laboratory_workers", charset: "utf8mb4", force: :cascade do |t|
     t.string "num_junta_vigilancia", limit: 50, null: false
     t.bigint "laboratorio_id", null: false
     t.bigint "empleado_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["empleado_id"], name: "index_laboratorista_on_empleado_id"
-    t.index ["laboratorio_id"], name: "index_laboratorista_on_laboratorio_id"
+    t.index ["empleado_id"], name: "index_laboratory_workers_on_empleado_id"
+    t.index ["laboratorio_id"], name: "index_laboratory_workers_on_laboratorio_id"
   end
 
   create_table "menu_permisos", charset: "utf8mb4", force: :cascade do |t|
@@ -110,11 +110,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_193417) do
     t.string "tipo_muestra", limit: 50, null: false
     t.datetime "fecha_entrega_muestra", null: false
     t.bigint "empleado_id", null: false
-    t.bigint "orden_tipo_examen_id", null: false
+    t.bigint "orden_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["empleado_id"], name: "index_muestras_on_empleado_id"
-    t.index ["orden_tipo_examen_id"], name: "index_muestras_on_orden_tipo_examen_id"
+    t.index ["orden_id"], name: "index_muestras_on_orden_id"
   end
 
   create_table "municipios", charset: "utf8mb4", force: :cascade do |t|
@@ -125,22 +125,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_193417) do
     t.index ["departamento_id"], name: "index_municipios_on_departamento_id"
   end
 
-  create_table "orden_tipo_examen", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "tipo_examen_id", null: false
+  create_table "orden_type_exams", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "type_exam_id", null: false
     t.bigint "orden_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["orden_id"], name: "index_orden_tipo_examen_on_orden_id"
-    t.index ["tipo_examen_id"], name: "index_orden_tipo_examen_on_tipo_examen_id"
+    t.index ["orden_id"], name: "index_orden_type_exams_on_orden_id"
+    t.index ["type_exam_id"], name: "index_orden_type_exams_on_type_exam_id"
   end
 
   create_table "ordens", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "fecha_examen", null: false
     t.bigint "paciente_id", null: false
-    t.bigint "laboratorista_id", null: false
+    t.bigint "laboratory_worker_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["laboratorista_id"], name: "index_ordens_on_laboratorista_id"
+    t.index ["laboratory_worker_id"], name: "index_ordens_on_laboratory_worker_id"
     t.index ["paciente_id"], name: "index_ordens_on_paciente_id"
   end
 
@@ -209,23 +209,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_193417) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tipo_examen", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre_tipo_examen", limit: 50, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tipo_examen_parametros", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "parametro_id", null: false
-    t.bigint "tipo_examen_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["parametro_id"], name: "index_tipo_examen_parametros_on_parametro_id"
-    t.index ["tipo_examen_id"], name: "index_tipo_examen_parametros_on_tipo_examen_id"
-  end
-
   create_table "tipo_sangres", charset: "utf8mb4", force: :cascade do |t|
     t.string "nombre_tipo_sangre", limit: 50, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "type_exam_parametros", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "parametro_id", null: false
+    t.bigint "type_exam_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parametro_id"], name: "index_type_exam_parametros_on_parametro_id"
+    t.index ["type_exam_id"], name: "index_type_exam_parametros_on_type_exam_id"
+  end
+
+  create_table "type_exams", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name_type_examn", limit: 50, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -252,35 +252,35 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_193417) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "valor_referencia", charset: "utf8mb4", force: :cascade do |t|
-    t.string "valor_referencia", limit: 30, null: false
+  create_table "value_references", charset: "utf8mb4", force: :cascade do |t|
+    t.string "value_reference", limit: 30, null: false
     t.bigint "parametro_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["parametro_id"], name: "index_valor_referencia_on_parametro_id"
+    t.index ["parametro_id"], name: "index_value_references_on_parametro_id"
   end
 
   add_foreign_key "accesos", "permisos"
   add_foreign_key "accesos", "rols"
-  add_foreign_key "area_tipo_examen", "areas"
-  add_foreign_key "area_tipo_examen", "tipo_examen", column: "tipo_examen_id"
+  add_foreign_key "area_type_exams", "areas"
+  add_foreign_key "area_type_exams", "type_exams"
   add_foreign_key "departamentos", "countries"
   add_foreign_key "empleados", "municipios"
   add_foreign_key "empleados", "users"
   add_foreign_key "laboratorios", "municipios"
-  add_foreign_key "laboratorista", "empleados"
-  add_foreign_key "laboratorista", "laboratorios"
+  add_foreign_key "laboratory_workers", "empleados"
+  add_foreign_key "laboratory_workers", "laboratorios"
   add_foreign_key "menu_permisos", "menus"
   add_foreign_key "menu_permisos", "permisos"
   add_foreign_key "menu_rols", "menus"
   add_foreign_key "menu_rols", "rols"
   add_foreign_key "menus", "menus"
   add_foreign_key "muestras", "empleados"
-  add_foreign_key "muestras", "orden_tipo_examen", column: "orden_tipo_examen_id"
+  add_foreign_key "muestras", "ordens"
   add_foreign_key "municipios", "departamentos"
-  add_foreign_key "orden_tipo_examen", "ordens"
-  add_foreign_key "orden_tipo_examen", "tipo_examen", column: "tipo_examen_id"
-  add_foreign_key "ordens", "laboratorista", column: "laboratorista_id"
+  add_foreign_key "orden_type_exams", "ordens"
+  add_foreign_key "orden_type_exams", "type_exams"
+  add_foreign_key "ordens", "laboratory_workers"
   add_foreign_key "ordens", "pacientes"
   add_foreign_key "pacientes", "municipios"
   add_foreign_key "pacientes", "tipo_sangres"
@@ -290,7 +290,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_193417) do
   add_foreign_key "resultados", "parametros"
   add_foreign_key "rol_empleados", "empleados"
   add_foreign_key "rol_empleados", "rols"
-  add_foreign_key "tipo_examen_parametros", "parametros"
-  add_foreign_key "tipo_examen_parametros", "tipo_examen", column: "tipo_examen_id"
-  add_foreign_key "valor_referencia", "parametros"
+  add_foreign_key "type_exam_parametros", "parametros"
+  add_foreign_key "type_exam_parametros", "type_exams"
+  add_foreign_key "value_references", "parametros"
 end

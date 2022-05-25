@@ -1,4 +1,4 @@
 class Orden < ApplicationRecord
   belongs_to :paciente
-  belongs_to :laboratorista
+  belongs_to :laboratory_worker
 end

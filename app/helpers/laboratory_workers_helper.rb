@@ -1,0 +1,2 @@
+module LaboratoryWorkersHelper
+end

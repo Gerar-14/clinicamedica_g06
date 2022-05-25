@@ -65,6 +65,6 @@ class OrdensController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def orden_params
-      params.require(:orden).permit(:fecha_examen, :paciente_id, :laboratorista_id)
+      params.require(:orden).permit(:fecha_examen, :paciente_id, :laboratory_worker_id)
     end
 end

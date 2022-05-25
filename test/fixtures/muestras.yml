@@ -2,12 +2,12 @@
 
 one:
   tipo_muestra: MyString
-  fecha_entrega_muestra: 2022-05-22 13:22:17
+  fecha_entrega_muestra: 2022-05-24 16:16:57
   empleado: one
-  orden_tipo_examen: one
+  orden: one
 
 two:
   tipo_muestra: MyString
-  fecha_entrega_muestra: 2022-05-22 13:22:17
+  fecha_entrega_muestra: 2022-05-24 16:16:57
   empleado: two
-  orden_tipo_examen: two
+  orden: two

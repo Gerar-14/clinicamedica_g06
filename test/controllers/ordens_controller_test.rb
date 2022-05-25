@@ -17,7 +17,7 @@ class OrdensControllerTest < ActionDispatch::IntegrationTest
 
   test "should create orden" do
     assert_difference("Orden.count") do
-      post ordens_url, params: { orden: { fecha_examen: @orden.fecha_examen, laboratorista_id: @orden.laboratorista_id, paciente_id: @orden.paciente_id } }
+      post ordens_url, params: { orden: { fecha_examen: @orden.fecha_examen, laboratory_worker_id: @orden.laboratory_worker_id, paciente_id: @orden.paciente_id } }
     end
 
     assert_redirected_to orden_url(Orden.last)
@@ -34,7 +34,7 @@ class OrdensControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update orden" do
-    patch orden_url(@orden), params: { orden: { fecha_examen: @orden.fecha_examen, laboratorista_id: @orden.laboratorista_id, paciente_id: @orden.paciente_id } }
+    patch orden_url(@orden), params: { orden: { fecha_examen: @orden.fecha_examen, laboratory_worker_id: @orden.laboratory_worker_id, paciente_id: @orden.paciente_id } }
     assert_redirected_to orden_url(@orden)
   end
 

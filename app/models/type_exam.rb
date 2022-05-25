@@ -1,0 +1,2 @@
+class TypeExam < ApplicationRecord
+end

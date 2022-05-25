@@ -1,2 +1,0 @@
-module TipoExamenParametrosHelper
-end

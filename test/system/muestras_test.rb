@@ -16,7 +16,7 @@ class MuestrasTest < ApplicationSystemTestCase
 
     fill_in "Empleado", with: @muestra.empleado_id
     fill_in "Fecha entrega muestra", with: @muestra.fecha_entrega_muestra
-    fill_in "Orden tipo examen", with: @muestra.orden_tipo_examen_id
+    fill_in "Orden", with: @muestra.orden_id
     fill_in "Tipo muestra", with: @muestra.tipo_muestra
     click_on "Create Muestra"
 
@@ -30,7 +30,7 @@ class MuestrasTest < ApplicationSystemTestCase
 
     fill_in "Empleado", with: @muestra.empleado_id
     fill_in "Fecha entrega muestra", with: @muestra.fecha_entrega_muestra
-    fill_in "Orden tipo examen", with: @muestra.orden_tipo_examen_id
+    fill_in "Orden", with: @muestra.orden_id
     fill_in "Tipo muestra", with: @muestra.tipo_muestra
     click_on "Update Muestra"
 

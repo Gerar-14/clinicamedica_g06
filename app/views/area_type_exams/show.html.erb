@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @area_type_exam %>
+
+<div>
+  <%= link_to "Edit this area type exam", edit_area_type_exam_path(@area_type_exam) %> |
+  <%= link_to "Back to area type exams", area_type_exams_path %>
+
+  <%= button_to "Destroy this area type exam", @area_type_exam, method: :delete %>
+</div>

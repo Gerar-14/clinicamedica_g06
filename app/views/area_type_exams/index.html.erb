@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Area type exams</h1>
+
+<div id="area_type_exams">
+  <% @area_type_exams.each do |area_type_exam| %>
+    <%= render area_type_exam %>
+    <p>
+      <%= link_to "Show this area type exam", area_type_exam %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New area type exam", new_area_type_exam_path %>
