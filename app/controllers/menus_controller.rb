@@ -99,8 +99,10 @@ class MenusController < HomeController
   def destroy
    #definimos la ruta para eliminar
    @ruta_local = "/menus/:id"
+   @url_delete = @menu
+   @url_path = menus_url
    #metodo para determinar si tiene permisos de eliminar 
-   direccionador_destroy(@ruta_local)
+   direccionador_destroy(@ruta_local, @url_delete, @url_path)
    
   end
 

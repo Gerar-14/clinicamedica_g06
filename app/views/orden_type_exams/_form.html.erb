@@ -18,12 +18,14 @@
 
   <div class="form-group col-md-6">
     <%= form.label :orden_id, style: "display: block" %>
-    <%= form.text_field :orden_id %>
+    <%= form.collection_select :orden_id, Orden.last(1),:id, :id %>
+    <%# <%= form.text_field :orden_id %>
   </div>
 
   <br>
   <div>
-    <%= form.submit "Guardar", class:"btn btn-outline-success"%>
+    <%= form.submit "Siguiente Examen", class:"btn btn-outline-success"%>
+    <%= form.submit "Guardar", redirect_to_path => new_muestra_path, :class => "btn btn-outline-danger"%>
     <%= link_to "Cancelar", orden_type_exams_path, :class => "btn btn-outline-danger"%>
   </div>
 <% end %>

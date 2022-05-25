@@ -25,7 +25,8 @@ class OrdenTypeExamsController < ApplicationController
 
     respond_to do |format|
       if @orden_type_exam.save
-        format.html { redirect_to orden_type_exam_url(@orden_type_exam), notice: "Orden type exam was successfully created." }
+        #format.html { redirect_to orden_type_exam_url(@orden_type_exam), notice: "Orden type exam was successfully created." }
+        format.html { redirect_to new_orden_type_exam_path, notice: "Orden type exam was successfully created." }
         format.json { render :show, status: :created, location: @orden_type_exam }
       else
         format.html { render :new, status: :unprocessable_entity }

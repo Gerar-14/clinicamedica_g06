@@ -26,7 +26,7 @@ class OrdensController < ApplicationController
 
     respond_to do |format|
       if @orden.save
-        format.html { redirect_to orden_url(@orden), notice: "Orden was successfully created." }
+        format.html { redirect_to new_orden_type_exam_path, notice: "Orden was successfully created." }
         format.json { render :show, status: :created, location: @orden }
       else
         format.html { render :new, status: :unprocessable_entity }
