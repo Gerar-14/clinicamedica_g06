@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Value references</h1>
+
+<div id="value_references">
+  <% @value_references.each do |value_reference| %>
+    <%= render value_reference %>
+    <p>
+      <%= link_to "Show this value reference", value_reference %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New value reference", new_value_reference_path %>

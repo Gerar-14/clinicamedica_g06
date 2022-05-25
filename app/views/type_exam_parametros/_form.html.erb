@@ -1,0 +1,27 @@
+<%= form_with(model: type_exam_parametro) do |form| %>
+  <% if type_exam_parametro.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(type_exam_parametro.errors.count, "error") %> prohibited this type_exam_parametro from being saved:</h2>
+
+      <ul>
+        <% type_exam_parametro.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :parametro_id, style: "display: block" %>
+    <%= form.text_field :parametro_id %>
+  </div>
+
+  <div>
+    <%= form.label :type_exam_id, style: "display: block" %>
+    <%= form.text_field :type_exam_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

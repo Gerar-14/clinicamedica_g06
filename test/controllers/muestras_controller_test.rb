@@ -17,7 +17,7 @@ class MuestrasControllerTest < ActionDispatch::IntegrationTest
 
   test "should create muestra" do
     assert_difference("Muestra.count") do
-      post muestras_url, params: { muestra: { empleado_id: @muestra.empleado_id, fecha_entrega_muestra: @muestra.fecha_entrega_muestra, orden_tipo_examen_id: @muestra.orden_tipo_examen_id, tipo_muestra: @muestra.tipo_muestra } }
+      post muestras_url, params: { muestra: { empleado_id: @muestra.empleado_id, fecha_entrega_muestra: @muestra.fecha_entrega_muestra, orden_id: @muestra.orden_id, tipo_muestra: @muestra.tipo_muestra } }
     end
 
     assert_redirected_to muestra_url(Muestra.last)
@@ -34,7 +34,7 @@ class MuestrasControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update muestra" do
-    patch muestra_url(@muestra), params: { muestra: { empleado_id: @muestra.empleado_id, fecha_entrega_muestra: @muestra.fecha_entrega_muestra, orden_tipo_examen_id: @muestra.orden_tipo_examen_id, tipo_muestra: @muestra.tipo_muestra } }
+    patch muestra_url(@muestra), params: { muestra: { empleado_id: @muestra.empleado_id, fecha_entrega_muestra: @muestra.fecha_entrega_muestra, orden_id: @muestra.orden_id, tipo_muestra: @muestra.tipo_muestra } }
     assert_redirected_to muestra_url(@muestra)
   end
 

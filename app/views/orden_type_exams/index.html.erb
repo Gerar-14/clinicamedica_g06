@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Orden type exams</h1>
+
+<div id="orden_type_exams">
+  <% @orden_type_exams.each do |orden_type_exam| %>
+    <%= render orden_type_exam %>
+    <p>
+      <%= link_to "Show this orden type exam", orden_type_exam %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New orden type exam", new_orden_type_exam_path %>

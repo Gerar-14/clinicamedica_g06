@@ -15,7 +15,7 @@ class OrdensTest < ApplicationSystemTestCase
     click_on "New orden"
 
     fill_in "Fecha examen", with: @orden.fecha_examen
-    fill_in "Laboratorista", with: @orden.laboratorista_id
+    fill_in "Laboratory worker", with: @orden.laboratory_worker_id
     fill_in "Paciente", with: @orden.paciente_id
     click_on "Create Orden"
 
@@ -28,7 +28,7 @@ class OrdensTest < ApplicationSystemTestCase
     click_on "Edit this orden", match: :first
 
     fill_in "Fecha examen", with: @orden.fecha_examen
-    fill_in "Laboratorista", with: @orden.laboratorista_id
+    fill_in "Laboratory worker", with: @orden.laboratory_worker_id
     fill_in "Paciente", with: @orden.paciente_id
     click_on "Update Orden"
 

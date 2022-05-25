@@ -1,0 +1,27 @@
+<%= form_with(model: value_reference) do |form| %>
+  <% if value_reference.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(value_reference.errors.count, "error") %> prohibited this value_reference from being saved:</h2>
+
+      <ul>
+        <% value_reference.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :value_reference, style: "display: block" %>
+    <%= form.text_field :value_reference %>
+  </div>
+
+  <div>
+    <%= form.label :parametro_id, style: "display: block" %>
+    <%= form.text_field :parametro_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

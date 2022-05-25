@@ -1,0 +1,27 @@
+<%= form_with(model: orden_type_exam) do |form| %>
+  <% if orden_type_exam.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(orden_type_exam.errors.count, "error") %> prohibited this orden_type_exam from being saved:</h2>
+
+      <ul>
+        <% orden_type_exam.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :type_exam_id, style: "display: block" %>
+    <%= form.text_field :type_exam_id %>
+  </div>
+
+  <div>
+    <%= form.label :orden_id, style: "display: block" %>
+    <%= form.text_field :orden_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

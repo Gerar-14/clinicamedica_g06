@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  fecha_examen: 2022-05-22 13:20:35
+  fecha_examen: 2022-05-24 20:26:09
   paciente: one
-  laboratorista: one
+  laboratory_worker: one
 
 two:
-  fecha_examen: 2022-05-22 13:20:35
+  fecha_examen: 2022-05-24 20:26:09
   paciente: two
-  laboratorista: two
+  laboratory_worker: two
