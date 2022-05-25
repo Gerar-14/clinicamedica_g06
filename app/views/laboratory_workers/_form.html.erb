@@ -11,22 +11,24 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :num_junta_vigilancia, style: "display: block" %>
-    <%= form.text_field :num_junta_vigilancia %>
+  <div class="form-group col-md-6">
+    <%= form.label :"Numero de junta de vigilancia", style: "display: block" %>
+    <%= form.text_field :num_junta_vigilancia, class:"form-control"  %>
   </div>
 
-  <div>
-    <%= form.label :laboratorio_id, style: "display: block" %>
-    <%= form.text_field :laboratorio_id %>
+  <div class="form-group col-md-6">
+    <%= form.label :"Laboratorio", style: "display: block" %>
+    <%= form.collection_select :laboratorio_id, Laboratorio.all,:id, :nombre_laboratorio %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :empleado_id, style: "display: block" %>
-    <%= form.text_field :empleado_id %>
+    <%= form.collection_select :empleado_id, Empleado.all,:id, :nombre_empleado %>
   </div>
 
+  <br>
   <div>
-    <%= form.submit %>
+    <%= form.submit "Guardar", class:"btn btn-outline-success"%>
+    <%= link_to "Cancelar", laboratory_workers_path, :class => "btn btn-outline-danger"%>
   </div>
 <% end %>

@@ -1,14 +1,39 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Laboratory workers</h1>
+  <h1>Laboratoristas</h1>
 
-<div id="laboratory_workers">
-  <% @laboratory_workers.each do |laboratory_worker| %>
-    <%= render laboratory_worker %>
-    <p>
-      <%= link_to "Show this laboratory worker", laboratory_worker %>
-    </p>
-  <% end %>
-</div>
+  <%= link_to "Agregar laboratorista", new_laboratory_worker_path, :class => "btn btn-outline-success" %>
 
-<%= link_to "New laboratory worker", new_laboratory_worker_path %>
+  <div id="laboratorista">
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre </th>
+          <th scope="col">Apellido </th>
+          <th scope="col">Numero de junta de vigilancia</th>
+          <th scope="col">Dui laboratorista</th>
+          <th scope="col">Laboratorio</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @laboratory_workers.each do |laboratory_worker| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= laboratory_worker.empleado.nombre_empleado %></td>
+            <td><%= laboratory_worker.empleado.apellido_empleado %></td>
+            <td><%= laboratory_worker.num_junta_vigilancia %></td>
+            <td><%= laboratory_worker.empleado.dui_empleado %></td>
+            <td><%= laboratory_worker.laboratorio.nombre_laboratorio %></td>
+            <th><%= link_to "Ver", laboratory_worker, :class => "btn btn-outline-primary" %></th>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<% end %>
+<%= render template: "layouts/base" %>
