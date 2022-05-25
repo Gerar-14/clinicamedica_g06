@@ -4,10 +4,15 @@
   <%= render @menu %>
 
   <div class="btn-group">
-    <%= link_to "Editar", edit_menu_path(@menu), :class => "btn btn-outline-warning" %> &nbsp;
-    <%= link_to "Regresar", menus_path, :class => "btn btn-outline-dark" %> &nbsp;
-
+  <% @permisos_crud.each do |submenu|%>
+    <% if submenu == 2 %>
     <%= button_to "Eliminar", @menu, method: :delete, :class => "btn btn-outline-danger" %>
+    <% elsif submenu == 1 %>
+    <%= link_to "Editar", edit_menu_path(@menu), :class => "btn btn-outline-warning" %> &nbsp;
+    <% end %>
+    <% end %>
+    <%= link_to "Regresar", menus_path, :class => "btn btn-outline-dark" %> &nbsp;
+    
   </div>
 
 <% end %>
