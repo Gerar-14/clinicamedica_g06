@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   # root to: "home#index"
   get 'home', to: "home#index", as: :home
+  get 'nav', to: "home#nav", as: :nav
   get 'acceso_denegado', to: "acceso_denegado#acceso_denegado", as: :denegado
   root to: "home#index"
     
