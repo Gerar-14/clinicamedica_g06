@@ -12,13 +12,13 @@
   <% end %>
 
   <div class="form-group col-md-6">
-    <%= form.label :menu_id, style: "display: block" %>
-    <%= form.text_field :menu_id, class:"form-control" %>
+    <%= form.label :"Menú", style: "display: block" %>
+    <%= form.collection_select :menu_id, Menu.all,:id, :nombre %>
   </div>
 
   <div class="form-group col-md-6">
     <%= form.label :permiso_id, style: "display: block" %>
-    <%= form.text_field :permiso_id, class:"form-control" %>
+    <%= form.collection_select :permiso_id, Permiso.all,:id, :nombre_permiso %>
   </div>
 
   <br>

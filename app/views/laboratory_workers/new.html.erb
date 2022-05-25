@@ -1,9 +1,12 @@
-<h1>New laboratory worker</h1>
+<% content_for :content do %>
+  <h1>Agregar laboratorista</h1>
 
 <%= render "form", laboratory_worker: @laboratory_worker %>
 
 <br>
 
 <div>
-  <%= link_to "Back to laboratory workers", laboratory_workers_path %>
+  <%#= link_to "Cancelar", laboratory_workers_path, :class => "btn btn-outline-danger"%>
 </div>
+<% end %>
+<%= render template: "layouts/base" %>

@@ -5,8 +5,13 @@
   </p>
 
   <p>
-    <strong>Menu:</strong>
-    <%= menu.menu_id %>
+    <strong>Menú:</strong>
+    <%if menu.menu_id == nil %>
+      <%= menu.menu_id %>
+    <%else%>
+      <%= menu.menu.nombre %>
+    <%end%>
+    
   </p>
 
 </div>

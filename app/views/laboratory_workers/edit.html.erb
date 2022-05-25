@@ -1,10 +1,13 @@
-<h1>Editing laboratory worker</h1>
+<% content_for :content do %>
+  <h1>Editar laboratorista</h1>
 
 <%= render "form", laboratory_worker: @laboratory_worker %>
 
 <br>
 
-<div>
-  <%= link_to "Show this laboratory worker", @laboratory_worker %> |
-  <%= link_to "Back to laboratory workers", laboratory_workers_path %>
-</div>
+<!--<div>-->
+<!--  <%#= link_to "Ver", @laboratorio %> |-->
+  <%#= link_to "Regresar", laboratorios_path %>
+<!--</div>-->
+<% end %>
+<%= render template: "layouts/base" %>

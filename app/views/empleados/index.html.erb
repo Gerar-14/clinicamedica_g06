@@ -28,7 +28,7 @@
             <td><%= empleado.apellido_empleado %></td>
             <td><%= empleado.profesion %></td>
             <td><%= empleado.dui_empleado %></td>
-            <td><%= empleado.municipio_id %></td>
+            <td><%= empleado.municipio.nombre_municipio %></td>
             <td><%= empleado.user_id %></td>
             <th><%= link_to "Ver", empleado, :class => "btn btn-outline-primary" %></th>
         <% end %>

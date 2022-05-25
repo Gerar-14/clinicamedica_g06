@@ -1,17 +1,17 @@
 <div id="<%= dom_id laboratory_worker %>">
   <p>
-    <strong>Num junta vigilancia:</strong>
+    <strong>Numero de junta vigilancia:</strong>
     <%= laboratory_worker.num_junta_vigilancia %>
   </p>
 
   <p>
     <strong>Laboratorio:</strong>
-    <%= laboratory_worker.laboratorio_id %>
+    <%= laboratory_worker.laboratorio.nombre_laboratorio %>
   </p>
 
   <p>
     <strong>Empleado:</strong>
-    <%= laboratory_worker.empleado_id %>
+    <%= laboratory_worker.empleado.nombre_empleado + " " + laboratory_worker.empleado.apellido_empleado%>
   </p>
 
 </div>

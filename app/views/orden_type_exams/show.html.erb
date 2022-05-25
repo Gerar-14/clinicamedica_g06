@@ -1,10 +1,13 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
 <%= render @orden_type_exam %>
 
-<div>
-  <%= link_to "Edit this orden type exam", edit_orden_type_exam_path(@orden_type_exam) %> |
-  <%= link_to "Back to orden type exams", orden_type_exams_path %>
+ <div class="btn-group">
+    <%= link_to "Editar", edit_orden_type_exam_path(@orden_type_exam), :class => "btn btn-outline-warning" %> &nbsp;
+    <%= link_to "Regresar", orden_type_exams_path, :class => "btn btn-outline-dark" %>&nbsp;
 
-  <%= button_to "Destroy this orden type exam", @orden_type_exam, method: :delete %>
-</div>
+    <%= button_to "Eliminar", @orden_type_exam, method: :delete, :class => "btn btn-outline-danger" %>
+  </div>
+<% end %>
+<%= render template: "layouts/base" %>
