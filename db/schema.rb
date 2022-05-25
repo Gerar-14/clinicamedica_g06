@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_22_193417) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_25_170031) do
   create_table "accesos", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "rol_id", null: false
     t.bigint "permiso_id", null: false
@@ -182,6 +182,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_193417) do
     t.string "ruta", limit: 200, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "crud"
   end
 
   create_table "resultados", charset: "utf8mb4", force: :cascade do |t|
