@@ -1,9 +1,12 @@
-<h1>New municipio</h1>
+<% content_for :content do %>
+  <h1>Agregar municipio</h1>
 
 <%= render "form", municipio: @municipio %>
 
 <br>
 
 <div>
-  <%= link_to "Back to municipios", municipios_path %>
+  <%#= link_to "Cancelar", municipios_path, :class => "btn btn-outline-danger"%>
 </div>
+<% end %>
+<%= render template: "layouts/base" %>

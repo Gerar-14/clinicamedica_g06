@@ -1,10 +1,13 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
 <%= render @area %>
 
-<div>
-  <%= link_to "Edit this area", edit_area_path(@area) %> |
-  <%= link_to "Back to areas", areas_path %>
+<div class="btn-group">
+    <%= link_to "Editar área", edit_area_path(@area), :class => "btn btn-outline-warning" %> &nbsp;
+    <%= link_to "Regresar", areas_path, :class => "btn btn-outline-dark" %> &nbsp;
+    <%= button_to "Eliminar", @area, method: :delete, :class => "btn btn-outline-danger" %>
+  </div>
 
-  <%= button_to "Destroy this area", @area, method: :delete %>
-</div>
+<% end %>
+<%= render template: "layouts/base" %>

@@ -1,10 +1,13 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<%= render @municipio %>
+  <%= render @municipio %>
 
-<div>
-  <%= link_to "Edit this municipio", edit_municipio_path(@municipio) %> |
-  <%= link_to "Back to municipios", municipios_path %>
+  <div class="btn-group">
+    <%= link_to "Editar municipio", edit_municipio_path(@municipio), :class => "btn btn-outline-warning" %> &nbsp;
+    <%= link_to "Regresar", municipios_path, :class => "btn btn-outline-dark" %> &nbsp;
+    <%= button_to "Eliminar", @municipios, method: :delete, :class => "btn btn-outline-danger" %>
+  </div>
 
-  <%= button_to "Destroy this municipio", @municipio, method: :delete %>
-</div>
+<% end %>
+<%= render template: "layouts/base" %>

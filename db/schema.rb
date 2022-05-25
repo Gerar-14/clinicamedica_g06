@@ -169,7 +169,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_193417) do
   create_table "parametros", charset: "utf8mb4", force: :cascade do |t|
     t.string "nombre_parametro", limit: 50, null: false
     t.integer "tipo_parametro", null: false
-    t.bigint "unidad_medida_id", null: false
+    t.bigint "unidad_medida_id"
     t.bigint "parametro_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,14 +1,37 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Municipios</h1>
+  <h1>Municipios</h1>
 
-<div id="municipios">
-  <% @municipios.each do |municipio| %>
-    <%= render municipio %>
-    <p>
-      <%= link_to "Show this municipio", municipio %>
-    </p>
-  <% end %>
+  <%= link_to "Agregar Municipio", new_municipio_path, :class => "btn btn-outline-success" %>
+
+  <div id="municipios">
+    <div class="card-body">
+    <table id="datatablesSimple" class="table">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Pais:</th>
+        <th scope="col">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <% @municipios.each do |municipio| %>
+        <tr>
+          <th scope="row">1</th>
+          <td><%= municipio.nombre_municipio %></td>
+          <td><%= link_to "Ver", municipio, :class => "btn btn-outline-primary" %></td>
+        </tr>
+        <%#= render country %>
+        <!--              <p><%#= link_to "Ver", municipio, :class=>"btn btn-outline-primary" %></p>-->
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
 
-<%= link_to "New municipio", new_municipio_path %>
+<%#= link_to "Agregar Municipio", new_municipio_path %>
+
+<% end %>
+<%= render template: "layouts/base" %>

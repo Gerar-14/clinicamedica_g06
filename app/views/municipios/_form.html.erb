@@ -1,7 +1,7 @@
 <%= form_with(model: municipio) do |form| %>
   <% if municipio.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(municipio.errors.count, "error") %> prohibited this municipio from being saved:</h2>
+      <h2><%= pluralize(municipio.errors.count, "error") %> prohibited this departamento from being saved:</h2>
 
       <ul>
         <% municipio.errors.each do |error| %>
@@ -11,17 +11,21 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :nombre_municipio, style: "display: block" %>
-    <%= form.text_field :nombre_municipio %>
+  <div class="form-group col-md-6">
+    <%= form.label :"Municipio:", style: "display: block"  %>
+    <%= form.text_field :nombre_municipio, class:"form-control" %>
   </div>
 
-  <div>
-    <%= form.label :departamento_id, style: "display: block" %>
-    <%= form.text_field :departamento_id %>
+  <div class="form-group col-md-6">
+    <%= form.label :"Departamento:", style: "display: block" %>
+    <%= form.collection_select :departamento_id, Departamento.all,:id, :nombre_departamento %>
   </div>
 
+  <br>
+
   <div>
-    <%= form.submit %>
+    <%= form.submit "Guardar", class:"btn btn-outline-success"%>
+    <%= link_to "Cancelar", municipios_path, :class => "btn btn-outline-danger"%>
   </div>
+
 <% end %>

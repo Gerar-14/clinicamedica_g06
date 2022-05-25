@@ -1,14 +1,33 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Areas</h1>
+  <h1>Áreas</h1>
 
-<div id="areas">
-  <% @areas.each do |area| %>
-    <%= render area %>
-    <p>
-      <%= link_to "Show this area", area %>
-    </p>
-  <% end %>
-</div>
+  <%= link_to "Agregar área", new_area_path, :class => "btn btn-outline-success" %>
 
-<%= link_to "New area", new_area_path %>
+  <div id="areas">
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Área:</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @areas.each do |area| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= area.nombre_area %></td>
+            <td><%= link_to "Ver", area, :class => "btn btn-outline-primary" %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+<% end %>
+<%= render template: "layouts/base" %>

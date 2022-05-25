@@ -1,10 +1,13 @@
-<h1>Editing municipio</h1>
+<% content_for :content do %>
+  <h1>Editar municipio</h1>
 
 <%= render "form", municipio: @municipio %>
 
 <br>
 
-<div>
-  <%= link_to "Show this municipio", @municipio %> |
-  <%= link_to "Back to municipios", municipios_path %>
-</div>
+<!--<div>-->
+<!--  <%#= link_to "Ver", @municipio %> |-->
+  <%#= link_to "Regresar", municipios_path %>
+<!--</div>-->
+<% end %>
+<%= render template: "layouts/base" %>

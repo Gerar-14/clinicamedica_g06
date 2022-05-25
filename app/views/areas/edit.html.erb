@@ -1,10 +1,13 @@
-<h1>Editing area</h1>
+<% content_for :content do %>
+  <h1>Editar área</h1>
 
 <%= render "form", area: @area %>
 
 <br>
 
-<div>
-  <%= link_to "Show this area", @area %> |
-  <%= link_to "Back to areas", areas_path %>
-</div>
+<!--<div>-->
+<!--  <%#= link_to "Ver", @area %> |-->
+  <%#= link_to "Regresar", areas_path %>
+<!--</div>-->
+<% end %>
+<%= render template: "layouts/base" %>
