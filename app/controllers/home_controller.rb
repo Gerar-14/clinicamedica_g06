@@ -304,7 +304,6 @@ class HomeController < ApplicationController
               if peticion == 1
                 if  @permiso_second_menu.nombre_permiso.downcase["mostrar"] || @permiso_second_menu.nombre_permiso.downcase["crear"]
                   menus_secundarios_list << {"nombre"=> @permiso_second_menu.nombre_permiso, "ruta" => @permiso_second_menu.ruta}
-                  puts "esto es lo que estas guardando"
                   puts @permiso_second_menu.nombre_permiso + " " + @permiso_second_menu.ruta
                 end
               else
@@ -338,27 +337,51 @@ class HomeController < ApplicationController
       return @permiso
     end
 
+    def get_permiso_of_empleado_by_id_empleado(id_empleado)
+      @permisos_empleado = Permiso.find_by_sql(["SELECT * from permisos where id in (SELECT permiso_id from accesos where rol_id in (SELECT rol_id from rol_empleados where empleado_id = ?))", id_empleado])
+      
+      puts "Estos son los permisos de este usuario"
+      @permisos_empleado.each do |permiso|
+        puts permiso.ruta
+      end
+
+      return @permisos_empleado
+    end
+
+    def get_menu_of_empleado_by_id_permisos(id_permisos_list)
+      #Este metodo recibe como parametro el listado de id permisos y devuelve los menus relacionados a ese listado
+      @menu_empleado = Menu.find_by_sql(["select * from menus where id in (SELECT menu_id from menu_permisos where permiso_id in (?))", id_permisos_list])     
+      return @menu_empleado
+    end
     
-    def get_crud_permisos(ruta)
+
+    
+    def get_crud_permisos(menu_principal)
+      #EL parametro debe ser el nombre del menu padre, NO submeno, en resumen una palabra en comun que compartan todas las rutas del crud que se este viendo
+
+      #1-Mostrar
+      #2-Detalle
+      #3-Crear
+      #4-Editar
+      #5-Eliminar
       @usuario = current_user.id
       @empleado = obteniendo_empleado(@usuario)
-      @id_rol = rol_empleado(@empleado.id)
-      @id_permiso = obtener_id_permiso(@id_rol)
 
-      @id_permiso.each do |perm|
-        @permisinho = Permiso.find_by_sql(["SELECT * from permisos where id = ? and ruta = ?", perm, ruta])
+      @permisos_empleado = get_permiso_of_empleado_by_id_empleado(@empleado.id)
+
+      @permisos_de_ruta = []
+
+      @permisos_empleado.each do |permiso|
+        if permiso.ruta[menu_principal]
+          if permiso.crud == 4 || permiso.crud == 5
+            @permisos_de_ruta << permiso.id
+          end
+        end
       end
-      #.find_by_sql(["", ])
 
-      puts "Aqui estoy imprimiendo mis pruebas"
-      @permisinho.each do |per|
-        puts per.permiso_id
-      end
+      sub_menu_list = get_menu_of_empleado_by_id_permisos(@permisos_de_ruta)
 
-      @id_menu = obtener_id_menu_de_rol_menu(@id_rol)
 
-      sub_menu_list = Menu.find(@id_menu)
-      
       #1 editar y 2 eliminar
       permisos_crud = []
       sub_menu_list.each do |sub_menu|

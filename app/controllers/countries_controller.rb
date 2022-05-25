@@ -1,22 +1,63 @@
-class CountriesController < ApplicationController
+class CountriesController < HomeController
   before_action :set_country, only: %i[ show edit update destroy ]
 
   # GET /countries or /countries.json
   def index
     @countries = Country.all
+
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Inicia seguridad
+    @menu_show = Country.all
+    @ruta_local = "/countries"
+    @direccion = direccionador(@ruta_local,@menu_show)   
+    @direccion
+    #Finaliza seguridad
   end
 
   # GET /countries/1 or /countries/1.json
   def show
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Inicia mostrar o no boton editar y eliminar
+    @menu_principal = "countries"
+    @permisos_crud = get_crud_permisos(@menu_principal)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia Seguridad 
+    @menu_detalle = @country
+    @ruta_local = "/countries/:id"
+    @direccion = direccionador(@ruta_local,@menu_detalle)   
+    @direccion
+    #Termina Seguridad
   end
 
   # GET /countries/new
   def new
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+    
+    #Iniciar Seguridad
     @country = Country.new
+    @ruta_local = "/countries/new"
+    @direccion = direccionador(@ruta_local,@menu)   
+    @direccion
+    #Finaliza Seguridad
   end
 
   # GET /countries/1/edit
   def edit
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu_edit = edit_country_path	
+    @ruta_local = "/countries/:id/edit"
+    @direccion = direccionador(@ruta_local,@menu_edit)   
+    @direccion
+    #Finaliza Seguridad
   end
 
   # POST /countries or /countries.json

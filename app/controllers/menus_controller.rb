@@ -6,56 +6,64 @@ class MenusController < HomeController
     @menus = Menu.all
     #@accesos = verificarAcceso()
 
+    #ASIDE
     @menu_rol = menus_y_submenus_usuario(1)
+    # Pegar en la vista <%= render template: "home/nav" %>
+
+    #Inicia seguridad
     @menu_show = Menu.all
     @ruta_local = "/menus"
-    
     @direccion = direccionador(@ruta_local,@menu_show)   
-
     @direccion
+    #Finaliza seguridad
   end
 
   # GET /menus/1 or /menus/1.json
   def show
+
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
     
+    #Inicia mostrar o no boton editar y eliminar
+    @menu_principal = "menus"
+    @permisos_crud = get_crud_permisos(@menu_principal)
+    #finaliza mostrar o no boton editar y eliminar
     
-    @menu_detalle = @menu
+    #Inicia Seguridad 
+    @menu_detalle = @menu #@menu es como el modelo pero en singular
     @ruta_local = "/menus/:id"
-    @ruta_eliminar = ""
-
-
-    @permisos_crud = get_crud_permisos(@ruta_local)
-    puts @permisos_crud
-    
     @direccion = direccionador(@ruta_local,@menu_detalle)   
-
     @direccion
+    #Termina Seguridad
 
   end
 
   # GET /menus/new
   def new
-    
+    #ASIDE
     @menu_rol = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
     @menu = Menu.new
     @ruta_local = "/menus/new"
-    
     @direccion = direccionador(@ruta_local,@menu)   
-
     @direccion
+    #Finaliza Seguridad
     
   end
 
   # GET /menus/1/edit
   def edit
 
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
     @menu_edit = edit_menu_path
     @ruta_local = "/menus/:id/edit"
-    
     @direccion = direccionador(@ruta_local,@menu_edit)   
-
     @direccion
-
+    #Finaliza Seguridad
   end
 
   # POST /menus or /menus.json
@@ -106,7 +114,4 @@ class MenusController < HomeController
     def menu_params
       params.require(:menu).permit(:nombre, :menu_id)
     end
-
-    
-
 end
