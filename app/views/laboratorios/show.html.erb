@@ -1,10 +1,14 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
 <%= render @laboratorio %>
 
-<div>
-  <%= link_to "Edit this laboratorio", edit_laboratorio_path(@laboratorio) %> |
-  <%= link_to "Back to laboratorios", laboratorios_path %>
+<div class="btn-group">
+    <%= link_to "Editar laboratorio", edit_laboratorio_path(@laboratorio), :class => "btn btn-outline-warning" %> &nbsp;
+    <%= link_to "Regresar", laboratorios_path, :class => "btn btn-outline-dark" %> &nbsp;
+    <%= button_to "Eliminar", @laboratorio, method: :delete, :class => "btn btn-outline-danger" %>
+  </div>
 
-  <%= button_to "Destroy this laboratorio", @laboratorio, method: :delete %>
-</div>
+<% end %>
+<%= render template: "layouts/base" %>
+

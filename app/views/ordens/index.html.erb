@@ -1,14 +1,43 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Ordens</h1>
+  <h1>Ordenes de exámenes</h1>
 
-<div id="ordens">
-  <% @ordens.each do |orden| %>
-    <%= render orden %>
-    <p>
-      <%= link_to "Show this orden", orden %>
-    </p>
-  <% end %>
-</div>
+  <%= link_to "Agregar orden de examen", new_orden_path, :class => "btn btn-outline-success" %>
 
-<%= link_to "New orden", new_orden_path %>
+  <div id="ordenes">
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Fecha de examen:</th>
+          <th scope="col">Paciente:</th>
+          <th scope="col">Laboratorista:</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% @ordens.each do |orden| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= orden.fecha_examen %></td>
+            <td><%= orden.paciente_id %></td>
+            <td><%= orden.laboratory_worker_id %></td>
+            <td><%= link_to "Ver", orden, :class => "btn btn-outline-primary" %></td>
+          </tr>
+          <%#= render country %>
+          <!--              <p><%#= link_to "Ver", orden, :class=>"btn btn-outline-primary" %></p>-->
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%#= link_to "Agregar Pais", new_country_path %>
+
+
+<% end %>
+<%= render template: "layouts/base" %>
+

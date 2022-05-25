@@ -1,14 +1,44 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Unidad medidas</h1>
+  <h1>Unidades de medida</h1>
 
-<div id="unidad_medidas">
-  <% @unidad_medidas.each do |unidad_medida| %>
-    <%= render unidad_medida %>
-    <p>
-      <%= link_to "Show this unidad medida", unidad_medida %>
-    </p>
-  <% end %>
-</div>
+  <%= link_to "Agregar unidad de medida", new_unidad_medida_path, :class => "btn btn-outline-success" %>
 
-<%= link_to "New unidad medida", new_unidad_medida_path %>
+  <div id="unidadmedidas">
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Unidad de medida:</th>
+          <th scope="col">Siglas:</th>
+          <th scope="col">Sistema de medida:</th>
+          <th scope="col">Descripción:</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% @unidad_medidas.each do |unidad_medida| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= unidad_medida.nombre_unidad_medida %></td>
+            <td><%= unidad_medida.siglas %></td>
+            <td><%= unidad_medida.sistema_medida %></td>
+            <td><%= unidad_medida.descripcion_unidad_medida %></td>
+            <td><%= link_to "Ver", unidad_medida, :class => "btn btn-outline-primary" %></td>
+          </tr>
+          <%#= render country %>
+          <!--              <p><%#= link_to "Ver", muestra, :class=>"btn btn-outline-primary" %></p>-->
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%#= link_to "Agregar Pais", new_country_path %>
+
+
+<% end %>
+<%= render template: "layouts/base" %>

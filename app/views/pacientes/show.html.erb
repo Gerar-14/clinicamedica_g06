@@ -1,10 +1,13 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
 <%= render @paciente %>
 
-<div>
-  <%= link_to "Edit this paciente", edit_paciente_path(@paciente) %> |
-  <%= link_to "Back to pacientes", pacientes_path %>
+<div class="btn-group">
+    <%= link_to "Editar paciente", edit_paciente_path(@paciente), :class => "btn btn-outline-warning" %> &nbsp;
+    <%= link_to "Regresar", pacientes_path, :class => "btn btn-outline-dark" %> &nbsp;
+    <%= button_to "Eliminar", @paciente, method: :delete, :class => "btn btn-outline-danger" %>
+  </div>
 
-  <%= button_to "Destroy this paciente", @paciente, method: :delete %>
-</div>
+<% end %>
+<%= render template: "layouts/base" %>

@@ -1,10 +1,14 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
 <%= render @tipo_sangre %>
 
-<div>
-  <%= link_to "Edit this tipo sangre", edit_tipo_sangre_path(@tipo_sangre) %> |
-  <%= link_to "Back to tipo sangres", tipo_sangres_path %>
-
-  <%= button_to "Destroy this tipo sangre", @tipo_sangre, method: :delete %>
+<div class="btn-group">
+  <%= link_to "Editar tipo de sangre", edit_tipo_sangre_path(@tipo_sangre), :class => "btn btn-outline-warning" %> &nbsp;
+  <%= link_to "Regresar", tipo_sangres_path, :class => "btn btn-outline-dark" %> &nbsp;
+  <%= button_to "Eliminar", @tipo_sangre, method: :delete, :class => "btn btn-outline-danger" %>
 </div>
+
+<% end %>
+<%= render template: "layouts/base" %>
+

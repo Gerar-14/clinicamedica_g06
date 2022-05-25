@@ -1,14 +1,38 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Type exams</h1>
+  <h1>Tipo Examen</h1>
 
-<div id="type_exams">
-  <% @type_exams.each do |type_exam| %>
-    <%= render type_exam %>
-    <p>
-      <%= link_to "Show this type exam", type_exam %>
-    </p>
-  <% end %>
-</div>
+  <%= link_to "Agregar tipo de examen", new_type_exam_path, :class => "btn btn-outline-success" %>
 
-<%= link_to "New type exam", new_type_exam_path %>
+  <div id="tipoexamen">
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Tipo Examen:</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% @type_exams.each do |type_exam| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= type_exam.name_type_examn %></td>
+            <td><%= link_to "Ver", type_exam, :class => "btn btn-outline-primary" %></td>
+          </tr>
+          <%#= render country %>
+          <!--              <p><%#= link_to "Ver", muestra, :class=>"btn btn-outline-primary" %></p>-->
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%#= link_to "Agregar Pais", new_country_path %>
+
+
+<% end %>
+<%= render template: "layouts/base" %>

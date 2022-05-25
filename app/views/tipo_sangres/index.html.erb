@@ -1,14 +1,38 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Tipo sangres</h1>
+  <h1>Tipos de sangre</h1>
 
-<div id="tipo_sangres">
-  <% @tipo_sangres.each do |tipo_sangre| %>
-    <%= render tipo_sangre %>
-    <p>
-      <%= link_to "Show this tipo sangre", tipo_sangre %>
-    </p>
-  <% end %>
-</div>
+  <%= link_to "Agregar tipo de sangre", new_tipo_sangre_path, :class => "btn btn-outline-success" %>
 
-<%= link_to "New tipo sangre", new_tipo_sangre_path %>
+  <div id="tipo">
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Tipo de sangre:</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% @tipo_sangres.each do |tipo_sangre| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= tipo_sangre.nombre_tipo_sangre %></td>
+            <td><%= link_to "Ver", tipo_sangre, :class => "btn btn-outline-primary" %></td>
+          </tr>
+          <%#= render country %>
+          <!--              <p><%#= link_to "Ver", muestra, :class=>"btn btn-outline-primary" %></p>-->
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%#= link_to "Agregar Pais", new_country_path %>
+
+
+<% end %>
+<%= render template: "layouts/base" %>

@@ -11,17 +11,19 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :value_reference, style: "display: block" %>
-    <%= form.text_field :value_reference %>
+  <div class="form-group col-md-6">
+    <%= form.label :"Valor de referencia", style: "display: block" %>
+    <%= form.text_field :value_reference, class:"form-control"  %>
   </div>
 
-  <div>
-    <%= form.label :parametro_id, style: "display: block" %>
-    <%= form.text_field :parametro_id %>
+  <div class="form-group col-md-6">
+    <%= form.label :"Parametro", style: "display: block" %>
+    <%= form.text_field :parametro_id, class:"form-control"  %>
   </div>
 
+  <br>
   <div>
-    <%= form.submit %>
+    <%= form.submit "Guardar", class:"btn btn-outline-success"%>
+    <%= link_to "Cancelar", value_references_path, :class => "btn btn-outline-danger"%>
   </div>
 <% end %>

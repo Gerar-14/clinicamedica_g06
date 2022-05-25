@@ -1,10 +1,13 @@
-<h1>Editing parametro</h1>
+<% content_for :content do %>
+  <h1>Editar parametro</h1>
 
 <%= render "form", parametro: @parametro %>
 
 <br>
 
-<div>
-  <%= link_to "Show this parametro", @parametro %> |
-  <%= link_to "Back to parametros", parametros_path %>
-</div>
+<!--<div>-->
+<!--  <%#= link_to "Ver", @paciente %> |-->
+  <%#= link_to "Regresar", ordens_path %>
+<!--</div>-->
+<% end %>
+<%= render template: "layouts/base" %>

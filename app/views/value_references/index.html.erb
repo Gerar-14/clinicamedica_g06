@@ -1,14 +1,40 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Value references</h1>
+  <h1>Valores de referencia</h1>
 
-<div id="value_references">
-  <% @value_references.each do |value_reference| %>
-    <%= render value_reference %>
-    <p>
-      <%= link_to "Show this value reference", value_reference %>
-    </p>
-  <% end %>
-</div>
+  <%= link_to "Agregar valor de referencia", new_value_reference_path, :class => "btn btn-outline-success" %>
 
-<%= link_to "New value reference", new_value_reference_path %>
+  <div id="valuereference">
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Parametro:</th>
+          <th scope="col">Valor de referencia:</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% @value_references.each do |value_reference| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= value_reference.parametro.nombre_parametro %></td>
+            <td><%= value_reference.value_reference %></td>
+            <td><%= link_to "Ver", value_reference, :class => "btn btn-outline-primary" %></td>
+          </tr>
+          <%#= render country %>
+          <!--              <p><%#= link_to "Ver", muestra, :class=>"btn btn-outline-primary" %></p>-->
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%#= link_to "Agregar Pais", new_country_path %>
+
+
+<% end %>
+<%= render template: "layouts/base" %>

@@ -1,14 +1,44 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Pacientes</h1>
+  <h1>Pacientes</h1>
 
-<div id="pacientes">
-  <% @pacientes.each do |paciente| %>
-    <%= render paciente %>
-    <p>
-      <%= link_to "Show this paciente", paciente %>
-    </p>
-  <% end %>
-</div>
+  <%= link_to "Agregar paciente", new_paciente_path, :class => "btn btn-outline-success" %>
 
-<%= link_to "New paciente", new_paciente_path %>
+  <div id="pacientes">
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Paciente:</th>
+          <th scope="col">Telefono celular:</th>
+          <th scope="col">Tipo de sangre:</th>
+          <th scope="col">Municipio:</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% @pacientes.each do |paciente| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= paciente.nombre_paciente + " " + paciente.apellido_paciente %></td>
+            <td><%= paciente.telefono_celular %></td>
+            <td><%= paciente.tipo_sangre_id %></td>
+            <td><%= paciente.municipio_id %></td>
+            <td><%= link_to "Ver", paciente, :class => "btn btn-outline-primary" %></td>
+          </tr>
+          <%#= render country %>
+          <!--              <p><%#= link_to "Ver", muestra, :class=>"btn btn-outline-primary" %></p>-->
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%#= link_to "Agregar Pais", new_country_path %>
+
+
+<% end %>
+<%= render template: "layouts/base" %>

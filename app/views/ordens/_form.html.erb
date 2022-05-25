@@ -11,22 +11,24 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :fecha_examen, style: "display: block" %>
-    <%= form.datetime_field :fecha_examen %>
+    <%= form.datetime_field :fecha_examen, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :paciente_id, style: "display: block" %>
-    <%= form.text_field :paciente_id %>
+    <%= form.text_field :paciente_id, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :laboratory_worker_id, style: "display: block" %>
-    <%= form.text_field :laboratory_worker_id %>
+    <%= form.text_field :laboratory_worker_id, class:"form-control" %>
   </div>
 
+  <br>
   <div>
-    <%= form.submit %>
+    <%= form.submit "Guardar", class:"btn btn-outline-success"%>
+    <%= link_to "Cancelar", ordens_path, :class => "btn btn-outline-danger"%>
   </div>
 <% end %>

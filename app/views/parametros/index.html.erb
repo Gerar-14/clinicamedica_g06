@@ -1,14 +1,38 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Parametros</h1>
+  <h1>Parametros</h1>
 
-<div id="parametros">
-  <% @parametros.each do |parametro| %>
-    <%= render parametro %>
-    <p>
-      <%= link_to "Show this parametro", parametro %>
-    </p>
-  <% end %>
-</div>
+  <%= link_to "Agregar parametro", new_parametro_path, :class => "btn btn-outline-success" %>
 
-<%= link_to "New parametro", new_parametro_path %>
+  <div id="parametros">
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Parametro:</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% @parametros.each do |parametro| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= parametro.nombre_parametro %></td>
+            <td><%= link_to "Ver", parametro, :class => "btn btn-outline-primary" %></td>
+          </tr>
+          <%#= render country %>
+          <!--              <p><%#= link_to "Ver", muestra, :class=>"btn btn-outline-primary" %></p>-->
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%#= link_to "Agregar Pais", new_country_path %>
+
+
+<% end %>
+<%= render template: "layouts/base" %>

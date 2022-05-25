@@ -11,12 +11,17 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name_type_examn, style: "display: block" %>
-    <%= form.text_field :name_type_examn %>
+  <div class="form-group col-md-6">
+    <%= form.label :"Tipo de examen", style: "display: block" %>
+    <%= form.text_field :name_type_examn, class:"form-control" %>
   </div>
 
+  <br>
   <div>
-    <%= form.submit %>
+    <%= form.submit "Guardar", class:"btn btn-outline-success"%>
+    <%= link_to "Cancelar", type_exams_path, :class => "btn btn-outline-danger"%>
   </div>
 <% end %>
+
+
+

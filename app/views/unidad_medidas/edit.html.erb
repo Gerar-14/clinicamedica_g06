@@ -1,10 +1,13 @@
-<h1>Editing unidad medida</h1>
+<% content_for :content do %>
+  <h1>Editar unidad de medida</h1>
 
 <%= render "form", unidad_medida: @unidad_medida %>
 
 <br>
 
-<div>
-  <%= link_to "Show this unidad medida", @unidad_medida %> |
-  <%= link_to "Back to unidad medidas", unidad_medidas_path %>
-</div>
+<!--<div>-->
+<!--  <%#= link_to "Ver", @paciente %> |-->
+  <%#= link_to "Regresar", ordens_path %>
+<!--</div>-->
+<% end %>
+<%= render template: "layouts/base" %>

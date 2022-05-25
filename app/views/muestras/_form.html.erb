@@ -11,27 +11,29 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :tipo_muestra, style: "display: block" %>
-    <%= form.text_field :tipo_muestra %>
+    <%= form.text_field :tipo_muestra, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :fecha_entrega_muestra, style: "display: block" %>
-    <%= form.datetime_field :fecha_entrega_muestra %>
+    <%= form.datetime_field :fecha_entrega_muestra, class:"form-control" %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :empleado_id, style: "display: block" %>
-    <%= form.text_field :empleado_id %>
+    <%= form.text_field :empleado_id, class:"form-control" %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :orden_id, style: "display: block" %>
-    <%= form.text_field :orden_id %>
+    <%= form.text_field :orden_id, class:"form-control" %>
   </div>
 
+  <br>
   <div>
-    <%= form.submit %>
+    <%= form.submit "Guardar", class:"btn btn-outline-success"%>
+    <%= link_to "Cancelar", muestras_path, :class => "btn btn-outline-danger"%>
   </div>
 <% end %>

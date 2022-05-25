@@ -1,14 +1,42 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Resultados</h1>
+  <h1>Resultados</h1>
 
-<div id="resultados">
-  <% @resultados.each do |resultado| %>
-    <%= render resultado %>
-    <p>
-      <%= link_to "Show this resultado", resultado %>
-    </p>
-  <% end %>
-</div>
+  <%= link_to "Agregar resultado", new_resultado_path, :class => "btn btn-outline-success" %>
 
-<%= link_to "New resultado", new_resultado_path %>
+  <div id="resultados">
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Orden:</th>
+          <th scope="col">Parametro:</th>
+          <th scope="col">Descripción:</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% @resultados.each do |resultado| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= resultado.orden_id %></td>
+            <td><%= resultado.parametro.nombre_parametro %></td>
+            <td><%= resultado.descripcion %></td>
+            <td><%= link_to "Ver", resultado, :class => "btn btn-outline-primary" %></td>
+          </tr>
+          <%#= render country %>
+          <!--              <p><%#= link_to "Ver", muestra, :class=>"btn btn-outline-primary" %></p>-->
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%#= link_to "Agregar Pais", new_country_path %>
+
+
+<% end %>
+<%= render template: "layouts/base" %>

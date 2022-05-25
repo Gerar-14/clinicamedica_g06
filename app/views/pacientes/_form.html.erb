@@ -11,82 +11,85 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :nombre_paciente, style: "display: block" %>
-    <%= form.text_field :nombre_paciente %>
+    <%= form.text_field :nombre_paciente, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :apellido_paciente, style: "display: block" %>
-    <%= form.text_field :apellido_paciente %>
+    <%= form.text_field :apellido_paciente, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :genero_paciente, style: "display: block" %>
-    <%= form.text_field :genero_paciente %>
+    <%= form.text_field :genero_paciente, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :fecha_nacimiento, style: "display: block" %>
-    <%= form.date_field :fecha_nacimiento %>
+    <%= form.date_field :fecha_nacimiento, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :direccion, style: "display: block" %>
-    <%= form.text_field :direccion %>
+    <%= form.text_field :direccion, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :telefono, style: "display: block" %>
-    <%= form.text_field :telefono %>
+    <%= form.text_field :telefono, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :telefono_celular, style: "display: block" %>
-    <%= form.text_field :telefono_celular %>
+    <%= form.text_field :telefono_celular, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :telefono_contacto, style: "display: block" %>
-    <%= form.text_field :telefono_contacto %>
+    <%= form.text_field :telefono_contacto, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :correo_electronico, style: "display: block" %>
-    <%= form.text_field :correo_electronico %>
+    <%= form.text_field :correo_electronico, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :apellido_casado, style: "display: block" %>
-    <%= form.text_field :apellido_casado %>
+    <%= form.text_field :apellido_casado, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :estado_civil, style: "display: block" %>
-    <%= form.text_field :estado_civil %>
+    <%= form.text_field :estado_civil, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :dui_paciente, style: "display: block" %>
-    <%= form.text_field :dui_paciente %>
+    <%= form.text_field :dui_paciente, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :pasaporte, style: "display: block" %>
-    <%= form.text_field :pasaporte %>
+    <%= form.text_field :pasaporte, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :municipio_id, style: "display: block" %>
-    <%= form.text_field :municipio_id %>
+    <%= form.text_field :municipio_id, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :tipo_sangre_id, style: "display: block" %>
-    <%= form.text_field :tipo_sangre_id %>
+    <%= form.text_field :tipo_sangre_id, class:"form-control"  %>
   </div>
 
+  <br>
   <div>
-    <%= form.submit %>
+    <%= form.submit "Guardar", class:"btn btn-outline-success"%>
+    <%= link_to "Cancelar", pacientes_path, :class => "btn btn-outline-danger"%>
   </div>
 <% end %>
+

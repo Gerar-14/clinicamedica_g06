@@ -1,9 +1,12 @@
-<h1>New resultado</h1>
+<% content_for :content do %>
+  <h1>Agregar resultado</h1>
 
 <%= render "form", resultado: @resultado %>
 
 <br>
 
 <div>
-  <%= link_to "Back to resultados", resultados_path %>
+  <%#= link_to "Cancelar", resultados_path, :class => "btn btn-outline-danger"%>
 </div>
+<% end %>
+<%= render template: "layouts/base" %>

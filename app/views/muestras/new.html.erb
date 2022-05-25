@@ -1,9 +1,12 @@
-<h1>New muestra</h1>
+<% content_for :content do %>
+  <h1>Agregar muestra</h1>
 
 <%= render "form", muestra: @muestra %>
 
 <br>
 
 <div>
-  <%= link_to "Back to muestras", muestras_path %>
+  <%#= link_to "Cancelar", muestras_path, :class => "btn btn-outline-danger"%>
 </div>
+<% end %>
+<%= render template: "layouts/base" %>

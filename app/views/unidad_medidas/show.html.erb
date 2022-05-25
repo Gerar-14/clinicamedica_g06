@@ -1,10 +1,13 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
 <%= render @unidad_medida %>
 
-<div>
-  <%= link_to "Edit this unidad medida", edit_unidad_medida_path(@unidad_medida) %> |
-  <%= link_to "Back to unidad medidas", unidad_medidas_path %>
+<div class="btn-group">
+    <%= link_to "Editar unidad de medida", edit_unidad_medida_path(@unidad_medida), :class => "btn btn-outline-warning" %> &nbsp;
+    <%= link_to "Regresar", unidad_medidas_path, :class => "btn btn-outline-dark" %> &nbsp;
+    <%= button_to "Eliminar", @unidad_medida, method: :delete, :class => "btn btn-outline-danger" %>
+  </div>
 
-  <%= button_to "Destroy this unidad medida", @unidad_medida, method: :delete %>
-</div>
+<% end %>
+<%= render template: "layouts/base" %>

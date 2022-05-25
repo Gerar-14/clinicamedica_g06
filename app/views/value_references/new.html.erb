@@ -1,9 +1,12 @@
-<h1>New value reference</h1>
+<% content_for :content do %>
+  <h1>Agregar valor de referencia</h1>
 
 <%= render "form", value_reference: @value_reference %>
 
 <br>
 
 <div>
-  <%= link_to "Back to value references", value_references_path %>
+  <%#= link_to "Cancelar", resultados_path, :class => "btn btn-outline-danger"%>
 </div>
+<% end %>
+<%= render template: "layouts/base" %>

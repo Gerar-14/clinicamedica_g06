@@ -1,10 +1,13 @@
-<h1>Editing value reference</h1>
+<% content_for :content do %>
+  <h1>Editar valor de referencia</h1>
 
 <%= render "form", value_reference: @value_reference %>
 
 <br>
 
-<div>
-  <%= link_to "Show this value reference", @value_reference %> |
-  <%= link_to "Back to value references", value_references_path %>
-</div>
+<!--<div>-->
+<!--  <%#= link_to "Ver", @paciente %> |-->
+  <%#= link_to "Regresar", ordens_path %>
+<!--</div>-->
+<% end %>
+<%= render template: "layouts/base" %>

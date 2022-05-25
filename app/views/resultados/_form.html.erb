@@ -11,22 +11,25 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :descripcion, style: "display: block" %>
-    <%= form.text_field :descripcion %>
+    <%= form.text_field :descripcion, class:"form-control" %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :parametro_id, style: "display: block" %>
-    <%= form.text_field :parametro_id %>
+    <%= form.text_field :parametro_id, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :orden_id, style: "display: block" %>
-    <%= form.text_field :orden_id %>
+    <%= form.text_field :orden_id, class:"form-control"  %>
   </div>
 
+  <br>
   <div>
-    <%= form.submit %>
+    <%= form.submit "Guardar", class:"btn btn-outline-success"%>
+    <%= link_to "Cancelar", resultados_path, :class => "btn btn-outline-danger"%>
   </div>
 <% end %>
+

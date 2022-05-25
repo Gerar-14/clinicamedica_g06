@@ -1,10 +1,13 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
 <%= render @muestra %>
 
-<div>
-  <%= link_to "Edit this muestra", edit_muestra_path(@muestra) %> |
-  <%= link_to "Back to muestras", muestras_path %>
+<div class="btn-group">
+    <%= link_to "Editar muestra", edit_muestra_path(@muestra), :class => "btn btn-outline-warning" %> &nbsp;
+    <%= link_to "Regresar", muestras_path, :class => "btn btn-outline-dark" %> &nbsp;
+    <%= button_to "Eliminar", @muestra, method: :delete, :class => "btn btn-outline-danger" %>
+  </div>
 
-  <%= button_to "Destroy this muestra", @muestra, method: :delete %>
-</div>
+<% end %>
+<%= render template: "layouts/base" %>

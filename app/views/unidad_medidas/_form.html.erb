@@ -11,27 +11,30 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :nombre_unidad_medida, style: "display: block" %>
-    <%= form.text_field :nombre_unidad_medida %>
+    <%= form.text_field :nombre_unidad_medida, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :siglas, style: "display: block" %>
-    <%= form.text_field :siglas %>
+    <%= form.text_field :siglas, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :sistema_medida, style: "display: block" %>
-    <%= form.text_field :sistema_medida %>
+    <%= form.text_field :sistema_medida, class:"form-control"  %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :descripcion_unidad_medida, style: "display: block" %>
-    <%= form.text_field :descripcion_unidad_medida %>
+    <%= form.text_field :descripcion_unidad_medida, class:"form-control"  %>
   </div>
 
+  <br>
   <div>
-    <%= form.submit %>
+    <%= form.submit "Guardar", class:"btn btn-outline-success"%>
+    <%= link_to "Cancelar", unidad_medidas_path, :class => "btn btn-outline-danger"%>
   </div>
 <% end %>
+

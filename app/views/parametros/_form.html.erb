@@ -11,27 +11,30 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :nombre_parametro, style: "display: block" %>
-    <%= form.text_field :nombre_parametro %>
+    <%= form.text_field :nombre_parametro, class:"form-control" %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :tipo_parametro, style: "display: block" %>
-    <%= form.number_field :tipo_parametro %>
+    <%= form.number_field :tipo_parametro, class:"form-control" %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :unidad_medida_id, style: "display: block" %>
-    <%= form.text_field :unidad_medida_id %>
+    <%= form.text_field :unidad_medida_id, class:"form-control" %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :parametro_id, style: "display: block" %>
-    <%= form.text_field :parametro_id %>
+    <%= form.text_field :parametro_id, class:"form-control" %>
   </div>
 
+  <br>
   <div>
-    <%= form.submit %>
+    <%= form.submit "Guardar", class:"btn btn-outline-success"%>
+    <%= link_to "Cancelar", parametros_path, :class => "btn btn-outline-danger"%>
   </div>
 <% end %>
+
