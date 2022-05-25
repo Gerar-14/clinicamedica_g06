@@ -10,6 +10,7 @@
         <th scope="col">#</th>
         <th scope="col">Permiso:</th>
         <th scope="col">Ruta:</th>
+        <th scope="col">Crud:</th>
         <th scope="col">Acciones</th>
       </tr>
       </thead>
@@ -19,6 +20,7 @@
           <th scope="row">1</th>
           <td><%= permiso.nombre_permiso %></td>
           <td><%= permiso.ruta %></td>
+          <td><%= permiso.crud %></td>
           <th><%= link_to "Ver", permiso, :class => "btn btn-outline-primary" %></th>
         </tr>
       <% end %>

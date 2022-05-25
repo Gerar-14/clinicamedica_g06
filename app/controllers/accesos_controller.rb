@@ -65,6 +65,6 @@ class AccesosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def acceso_params
-      params.require(:acceso).permit(:rol_id, :permiso_id, :crud)
+      params.require(:acceso).permit(:rol_id, :permiso_id)
     end
 end

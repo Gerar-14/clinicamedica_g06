@@ -16,7 +16,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_25_170031) do
     t.bigint "permiso_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "crud"
     t.index ["permiso_id"], name: "index_accesos_on_permiso_id"
     t.index ["rol_id"], name: "index_accesos_on_rol_id"
   end
@@ -183,6 +182,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_25_170031) do
     t.string "ruta", limit: 200, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "crud"
   end
 
   create_table "resultados", charset: "utf8mb4", force: :cascade do |t|
