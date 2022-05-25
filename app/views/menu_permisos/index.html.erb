@@ -19,8 +19,8 @@
         <% @menu_permisos.each do |menu_permiso| %>
           <tr>
             <th scope="row">1</th>
-            <td><%= menu_permiso.menu_id %></td>
-            <td><%= menu_permiso.permiso_id %></td>
+            <td><%= menu_permiso.menu.nombre %></td>
+            <td><%= menu_permiso.permiso.nombre_permiso %></td>
             <th><%= link_to "Ver", menu_permiso, :class => "btn btn-outline-primary" %></th>
         <% end %>
         </tbody>
