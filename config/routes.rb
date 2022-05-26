@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   resources :laboratory_workers
   resources :muestras
   resources :orden_type_exams
+  # resources :orden_type_exams do
+  #   collection do
+  #     get :probando
+  #   end
+  # end
   resources :area_type_exams
   resources :type_exam_parametros
   resources :type_exams
@@ -37,6 +42,7 @@ Rails.application.routes.draw do
   # root to: "home#index"
   get 'home', to: "home#index", as: :home
   get 'nav', to: "home#nav", as: :nav
+  #delete '/orden_type_exams/:id' => "orden_type_exams#destroy", as: :orden_type_exam_delete
   get 'acceso_denegado', to: "acceso_denegado#acceso_denegado", as: :denegado
   root to: "home#index"
   Rails.application.routes.draw do

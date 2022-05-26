@@ -200,7 +200,7 @@ class HomeController < ApplicationController
 
   end
 
-  def direccionador_destroy(ruta, url_delete, url_path)
+  def direccionador_destroy(ruta, url_delete, url_path, menu_name)
     @accesoss = verificarAcceso()
     @control = false
     
@@ -217,7 +217,7 @@ class HomeController < ApplicationController
     if @control == true
       url_delete.destroy
       respond_to do |format|
-        format.html { redirect_to url_path, notice: "Menu was successfully destroyed." }
+        format.html { redirect_to url_path, notice: menu_name + " fue eliminado exitosamente." }
         format.json { head :no_content }
       end
     else
@@ -303,22 +303,35 @@ class HomeController < ApplicationController
             @permiso_second_menu = get_permiso_by_id_menu(men_sec)
             if peticion == 1
               if  @permiso_second_menu.nombre_permiso.downcase["mostrar"] || @permiso_second_menu.nombre_permiso.downcase["crear"]
-                menus_secundarios_list << {"nombre"=> @permiso_second_menu.nombre_permiso, "ruta" => @permiso_second_menu.ruta}
+                #Obtener el nombre del menu a partir de el id del permiso
+                nombre_menu = get_menu_name_by_id_permiso(@permiso_second_menu.id)
+                menus_secundarios_list << {"nombre"=> nombre_menu, "ruta" => @permiso_second_menu.ruta}
                 puts @permiso_second_menu.nombre_permiso + " " + @permiso_second_menu.ruta
               end
             else
-              menus_secundarios_list << {"nombre"=> @permiso_second_menu.nombre_permiso, "ruta" => @permiso_second_menu.ruta}
+              nombre_menu = get_menu_name_by_id_permiso(@permiso_second_menu.id)
+              menus_secundarios_list << {"nombre"=> nombre_menu, "ruta" => @permiso_second_menu.ruta}
             end
           end
         end
       end
 
       menu_hash[nombre_menu_main] = menus_secundarios_list
-
     end
-
     return menu_hash
 
+  end
+
+  def get_menu_name_by_id_permiso(id_permiso)
+    #Recibimos el id_permiso y le devovlemos el nombre del menu
+    @menus = Menu.find_by_sql(["select * from menus where id = (SELECT menu_id from menu_permisos where permiso_id  = ? )", id_permiso])
+
+    @name_menu = ''
+    @menus.each do |menu|
+      @name_menu = menu.nombre
+    end
+    
+    return @name_menu
   end
 
   def get_permiso_by_id_menu(id_menu)
@@ -356,8 +369,9 @@ class HomeController < ApplicationController
   
 
   
-  def get_crud_permisos(menu_principal)
+  def get_crud_permisos(menu_principal, opcion)
     #EL parametro debe ser el nombre del menu padre, NO submeno, en resumen una palabra en comun que compartan todas las rutas del crud que se este viendo
+    #Opcion es un entero, si es 1 devolvera un array, si es 2 devolvera un numero para saber si es el crear
 
     #1-Mostrar
     #2-Detalle
@@ -373,7 +387,7 @@ class HomeController < ApplicationController
 
     @permisos_empleado.each do |permiso|
       if permiso.ruta[menu_principal]
-        if permiso.crud == 4 || permiso.crud == 5
+        if permiso.crud == 4 || permiso.crud == 5 || permiso.crud == 3
           @permisos_de_ruta << permiso.id
         end
       end
@@ -381,18 +395,54 @@ class HomeController < ApplicationController
 
     sub_menu_list = get_menu_of_empleado_by_id_permisos(@permisos_de_ruta)
 
+    #1-Mostrar
+    #2-Detalle
+    #3-Crear
+    #4-Editar
+    #5-Eliminar
 
-    #1 editar y 2 eliminar
+
+
+    #1 editar, 2 elimina y 3 crear
     permisos_crud = []
+    permiso_crear = false
+
     sub_menu_list.each do |sub_menu|
-      if sub_menu.nombre.downcase["editar"]
+      @submen_crud = get_crud_permiso_by_id_menu(sub_menu.id)
+      puts "Estos son los permisos"
+      puts @submen_crud
+
+      if  @submen_crud ==  4
         permisos_crud << 1
 
-      elsif sub_menu.nombre.downcase["eliminar"]
+      elsif @submen_crud ==  5
         permisos_crud << 2
+
+      elsif @submen_crud ==  3
+        permiso_crear = true
       end
     end
 
-    return permisos_crud
+    if opcion == 1
+      return permisos_crud
+    elsif opcion == 2
+      return permiso_crear
+    else
+      return "Opcion no valida"
+    end
+    
+  end
+
+  def get_crud_permiso_by_id_menu(id_menu)
+    
+    @permiso = Permiso.find_by_sql(["select crud from permisos where id = (SELECT permiso_id from menu_permisos where menu_id = ?)", id_menu])     
+
+    crud_permiso = 0
+
+    @permiso.each do |per|
+      crud_permiso = per.crud
+    end
+    return crud_permiso
+
   end
 end

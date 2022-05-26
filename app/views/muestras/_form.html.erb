@@ -33,8 +33,9 @@
 
   <br>
   <div>
-    <%= form.submit "Siguiente muestra", class:"btn btn-outline-success", name: "add_muestra"%>
-    <%= form.submit "Guardar", class:"btn btn-outline-success", name: "finish_muestra" %>
-    <%= link_to "Cancelar", muestras_path, :class => "btn btn-outline-danger"%>
+    <%= form.submit "Guardar", class:"btn btn-outline-success", name: "add_muestra"%>
+    <%= form.submit "Finalizar", class:"btn btn-outline-success", name: "finish_muestra" %>
+    <%# <%= link_to "Cancelar", muestras_path, :class => "btn btn-outline-danger"%>
+    <%= form.submit "Cancelar", :class => "btn btn-outline-danger" , name: "delete_muestra"%>
   </div>
 <% end %>
