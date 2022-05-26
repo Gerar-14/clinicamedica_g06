@@ -1,5 +1,5 @@
 class OrdenTypeExamsController < ApplicationController
-  before_action :set_orden_type_exam, only: %i[ show edit update destroy ]
+  before_action :set_orden_type_exam, only: %i[ show edit update destroy]
 
   # GET /orden_type_exams or /orden_type_exams.json
   def index
@@ -19,6 +19,14 @@ class OrdenTypeExamsController < ApplicationController
   def edit
   end
 
+  def eliminar_ordenes_y_examenes_de_ordenes(idOrdenTipoExamen)
+    @orden_examen = OrdenTypeExam.find_by_sql(["delete from orden_type_exams where id in (select id from orden_type_exams where orden_id = ?)", idOrdenTipoExamen])
+  end
+
+  def eliminar_orden(idOrden)
+    @orden = Orden.find_by_sql(["delete from ordens where id = ?", idOrden])
+  end
+
   # POST /orden_type_exams or /orden_type_exams.json
   def create
     @orden_type_exam = OrdenTypeExam.new(orden_type_exam_params)
@@ -32,6 +40,15 @@ class OrdenTypeExamsController < ApplicationController
         #format.html { redirect_to orden_type_exam_url(@orden_type_exam), notice: "Orden type exam was successfully created." }
         format.html { redirect_to new_muestra_path, notice: "Muestra." }
         format.json { render :show, status: :created, location: @orden_type_exam }
+      elsif params[:delete_examen]
+          #@id = OrdenTypeExam.find_by_sql(["SELECT orden_id FROM orden_type_exams ORDER BY orden_id DESC LIMIT 1"])
+          @id = OrdenTypeExam.select(:orden_id).last(1).to_s.tr('[#<OrdenTypeExam id: nil, orden_id:]>', '')
+          #puts "impresion " + @id.to_s.tr('[#<OrdenTypeExam id: nil, orden_id:]>', '')
+          eliminar_ordenes_y_examenes_de_ordenes(@id)
+          eliminar_orden(@id)
+
+          format.html { redirect_to new_orden_path, notice: "probando boton " }
+          format.json { head :no_content }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @orden_type_exam.errors, status: :unprocessable_entity }
