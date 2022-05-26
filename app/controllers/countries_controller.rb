@@ -8,6 +8,11 @@ class CountriesController < HomeController
     #ASIDE
     @menu_rol = menus_y_submenus_usuario(1)
 
+    #Inicia mostrar o no boton editar y eliminar, se le pasa como argumento 1 para que devuelva array
+    @menu_principal = "countries"
+    @permisos_crud = get_crud_permisos(@menu_principal, 2)
+    #finaliza mostrar o no boton editar y eliminar
+
     #Inicia seguridad
     @menu_show = Country.all
     @ruta_local = "/countries"
@@ -21,9 +26,9 @@ class CountriesController < HomeController
     #ASIDE
     @menu_rol = menus_y_submenus_usuario(1)
 
-    #Inicia mostrar o no boton editar y eliminar
+    #Inicia mostrar o no boton editar y eliminar, se le pasa como argumento 1 para que devuelva array
     @menu_principal = "countries"
-    @permisos_crud = get_crud_permisos(@menu_principal)
+    @permisos_crud = get_crud_permisos(@menu_principal, 1)
     #finaliza mostrar o no boton editar y eliminar
 
     #Inicia Seguridad 
@@ -66,7 +71,7 @@ class CountriesController < HomeController
 
     respond_to do |format|
       if @country.save
-        format.html { redirect_to country_url(@country), notice: "Country was successfully created." }
+        format.html { redirect_to country_url(@country), notice: "País creado exitosamente." }
         format.json { render :show, status: :created, location: @country }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -79,7 +84,7 @@ class CountriesController < HomeController
   def update
     respond_to do |format|
       if @country.update(country_params)
-        format.html { redirect_to country_url(@country), notice: "Country was successfully updated." }
+        format.html { redirect_to country_url(@country), notice: "País editado exitosamente." }
         format.json { render :show, status: :ok, location: @country }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -90,12 +95,13 @@ class CountriesController < HomeController
 
   # DELETE /countries/1 or /countries/1.json
   def destroy
-    @country.destroy
 
-    respond_to do |format|
-      format.html { redirect_to countries_url, notice: "Country was successfully destroyed." }
-      format.json { head :no_content }
-    end
+   #definimos la ruta para eliminar
+   @ruta_local = "/countries/:id"
+   @url_delete = @country #Singular
+   @url_path = countries_url #Plural
+   #metodo para determinar si tiene permisos de eliminar 
+   direccionador_destroy(@ruta_local, @url_delete, @url_path, "País")
   end
 
   private

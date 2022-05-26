@@ -26,7 +26,7 @@ class MenusController < HomeController
     
     #Inicia mostrar o no boton editar y eliminar
     @menu_principal = "menus"
-    @permisos_crud = get_crud_permisos(@menu_principal)
+    @permisos_crud = get_crud_permisos(@menu_principal, 1)
     #finaliza mostrar o no boton editar y eliminar
     
     #Inicia Seguridad 
@@ -72,7 +72,7 @@ class MenusController < HomeController
     
     respond_to do |format|
       if @menu.save
-        format.html { redirect_to menu_url(@menu), notice: "Menu was successfully created." }
+        format.html { redirect_to menu_url(@menu), notice: "Menú creado exitosamente." }
         format.json { render :show, status: :created, location: @menu }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -86,7 +86,7 @@ class MenusController < HomeController
   def update
     respond_to do |format|
       if @menu.update(menu_params)
-        format.html { redirect_to menu_url(@menu), notice: "Menu was successfully updated." }
+        format.html { redirect_to menu_url(@menu), notice: "Menu editado exitosamente." }
         format.json { render :show, status: :ok, location: @menu }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -99,11 +99,10 @@ class MenusController < HomeController
   def destroy
    #definimos la ruta para eliminar
    @ruta_local = "/menus/:id"
-   @url_delete = @menu
-   @url_path = menus_url
+   @url_delete = @menu #Singular
+   @url_path = menus_url #Plural
    #metodo para determinar si tiene permisos de eliminar 
-   direccionador_destroy(@ruta_local, @url_delete, @url_path)
-   
+   direccionador_destroy(@ruta_local, @url_delete, @url_path, "Menú")
   end
 
   private
