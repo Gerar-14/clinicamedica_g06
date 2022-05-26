@@ -16,9 +16,9 @@
         <tbody>
         <% @rols.each do |rol| %>
           <tr>
-            <th scope="row">1</th>
-            <th><%= rol.nombre_rol %></th>
-            <th><%= link_to "Ver", rol, :class => "btn btn-outline-primary" %></th>
+            <td scope="row">1</td>
+            <td><%= rol.nombre_rol %></td>
+            <td><%= link_to "Ver", rol, :class => "btn btn-outline-primary" %></td>
           </tr>
         <% end %>
         </tbody>

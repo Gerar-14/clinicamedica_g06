@@ -11,8 +11,8 @@
         <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Parametro:</th>
           <th scope="col">Valor de referencia:</th>
+          <th scope="col">Parametro:</th>
           <th scope="col">Acciones</th>
         </tr>
         </thead>
@@ -21,8 +21,8 @@
         <% @value_references.each do |value_reference| %>
           <tr>
             <th scope="row">1</th>
+            <td><%= value_reference.value_reference %></td>      
             <td><%= value_reference.parametro.nombre_parametro %></td>
-            <td><%= value_reference.value_reference %></td>
             <td><%= link_to "Ver", value_reference, :class => "btn btn-outline-primary" %></td>
           </tr>
           <%#= render country %>

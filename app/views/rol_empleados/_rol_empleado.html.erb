@@ -1,12 +1,12 @@
 <div id="<%= dom_id rol_empleado %>">
   <p>
     <strong>Rol:</strong>
-    <%= rol_empleado.rol_id %>
+    <%= rol_empleado.rol.nombre_rol %>
   </p>
 
   <p>
     <strong>Empleado:</strong>
-    <%= rol_empleado.empleado_id %>
+    <%= rol_empleado.empleado.nombre_empleado + " " + rol_empleado.empleado.apellido_empleado%>
   </p>
 
 </div>

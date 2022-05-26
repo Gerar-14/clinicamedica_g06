@@ -13,12 +13,12 @@
 
   <div class="form-group col-md-6">
     <%= form.label :rol_id, style: "display: block" %>
-    <%= form.text_field :rol_id, class:"form-control" %>
+    <%= form.collection_select :rol_id, Rol.all,:id, :nombre_rol %>
   </div>
 
   <div class="form-group col-md-6">
     <%= form.label :empleado_id, style: "display: block" %>
-    <%= form.text_field :empleado_id, class:"form-control" %>
+    <%= form.collection_select :empleado_id, Empleado.all,:id, :nombre_empleado %>
   </div>
 
   <br>

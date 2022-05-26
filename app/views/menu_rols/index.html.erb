@@ -18,10 +18,10 @@
         <tbody>
         <% @menu_rols.each do |menu_rol| %>
           <tr>
-            <th scope="row">1</th>
-            <th><%= menu_rol.menu.nombre %></th>
-            <th><%= menu_rol.rol.nombre_rol %></th>
-            <th><%= link_to "Ver", menu_rol, :class => "btn btn-outline-primary" %></th>
+            <td scope="row">1</td>
+            <td><%= menu_rol.menu.nombre %></td>
+            <td><%= menu_rol.rol.nombre_rol %></td>
+            <td><%= link_to "Ver", menu_rol, :class => "btn btn-outline-primary" %></td>
           </tr>
         <% end %>
         </tbody>

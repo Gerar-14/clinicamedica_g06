@@ -23,7 +23,7 @@
 
   <div class="form-group col-md-6">
     <%= form.label :genero_paciente, style: "display: block" %>
-    <%= form.text_field :genero_paciente, class:"form-control"  %>
+    <%= form.select :genero_paciente, [['Femenino', 'F'],['Masculino', 'M']], {}, class: "form-control" %>
   </div>
 
   <div class="form-group col-md-6">
@@ -63,7 +63,7 @@
 
   <div class="form-group col-md-6">
     <%= form.label :estado_civil, style: "display: block" %>
-    <%= form.text_field :estado_civil, class:"form-control"  %>
+    <%= form.select :estado_civil, [['Soltero', 'S'],['Casado', 'C'],['Viudo', 'V'] ], {}, class: "form-control" %>
   </div>
 
   <div class="form-group col-md-6">
@@ -92,4 +92,8 @@
     <%= link_to "Cancelar", pacientes_path, :class => "btn btn-outline-danger"%>
   </div>
 <% end %>
+
+<script>
+    $(document).ready(function() { $("select").select2(); });
+</script>
 

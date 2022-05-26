@@ -23,8 +23,8 @@
           <tr>
             <th scope="row">1</th>
             <td><%= orden.fecha_examen %></td>
-            <td><%= orden.paciente_id %></td>
-            <td><%= orden.laboratory_worker_id %></td>
+            <td><%= orden.paciente.nombre_paciente %></td>
+            <td><%= orden.laboratory_worker.empleado.nombre_empleado %></td>
             <td><%= link_to "Ver", orden, :class => "btn btn-outline-primary" %></td>
           </tr>
           <%#= render country %>

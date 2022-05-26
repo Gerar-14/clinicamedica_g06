@@ -16,7 +16,6 @@
           <th scope="col">Profesion</th>
           <th scope="col">Dui empleado</th>
           <th scope="col">Municipio</th>
-          <th scope="col">Users</th>
           <th scope="col">Acciones</th>
         </tr>
         </thead>
@@ -29,7 +28,6 @@
             <td><%= empleado.profesion %></td>
             <td><%= empleado.dui_empleado %></td>
             <td><%= empleado.municipio.nombre_municipio %></td>
-            <td><%= empleado.user_id %></td>
             <th><%= link_to "Ver", empleado, :class => "btn btn-outline-primary" %></th>
         <% end %>
         </tbody>
