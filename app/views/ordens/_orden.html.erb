@@ -6,12 +6,12 @@
 
   <p>
     <strong>Paciente:</strong>
-    <%= orden.paciente_id %>
+    <%= orden.paciente.nombre_paciente + " " + orden.paciente.apellido_paciente %>
   </p>
 
   <p>
-    <strong>Laboratory worker:</strong>
-    <%= orden.laboratory_worker_id %>
+    <strong>Laboratorista:</strong>
+    <%= orden.laboratory_worker.empleado.nombre_empleado + " " + orden.laboratory_worker.empleado.apellido_empleado%>
   </p>
 
 </div>

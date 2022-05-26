@@ -20,7 +20,7 @@
         <% @muestras.each do |muestra| %>
           <tr>
             <th scope="row">1</th>
-            <td><%= muestra.nombre_muestra %></td>
+            <td><%= muestra.tipo_muestra %></td>
             <td><%= link_to "Ver", muestra, :class => "btn btn-outline-primary" %></td>
           </tr>
           <%#= render country %>
