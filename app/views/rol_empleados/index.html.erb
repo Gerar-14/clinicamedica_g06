@@ -19,8 +19,8 @@
         <% @rol_empleados.each do |rol_empleado| %>
           <tr>
             <th scope="row">1</th>
-            <td><%= rol_empleado.rol_id %></td>
-            <td><%= rol_empleado.empleado_id %></td>
+            <td><%= rol_empleado.rol.nombre_rol %></td>
+            <td><%= rol_empleado.empleado.nombre_empleado %></td>
             <th><%= link_to "Ver", rol_empleado, :class => "btn btn-outline-primary" %></th>
         <% end %>
         </tr>

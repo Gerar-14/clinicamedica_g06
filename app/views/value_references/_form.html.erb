@@ -18,7 +18,7 @@
 
   <div class="form-group col-md-6">
     <%= form.label :"Parametro", style: "display: block" %>
-    <%= form.text_field :parametro_id, class:"form-control"  %>
+    <%= form.collection_select :parametro_id, Parametro.all,:id, :nombre_parametro %>
   </div>
 
   <br>

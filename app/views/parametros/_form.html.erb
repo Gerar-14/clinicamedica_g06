@@ -23,7 +23,7 @@
 
   <div class="form-group col-md-6">
     <%= form.label :unidad_medida_id, style: "display: block" %>
-    <%= form.text_field :unidad_medida_id, class:"form-control" %>
+    <%= form.collection_select :unidad_medida_id, UnidadMedida.all,:id, :nombre_unidad_medida %>
   </div>
 
   <div class="form-group col-md-6">
