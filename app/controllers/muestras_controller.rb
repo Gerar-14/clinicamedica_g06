@@ -13,6 +13,7 @@ class MuestrasController < ApplicationController
   # GET /muestras/new
   def new
     @muestra = Muestra.new
+    @muestra_fecha_actual = Time.now.strftime("%Y-%m-%dT%k:%M")
   end
 
   # GET /muestras/1/edit
@@ -24,8 +25,11 @@ class MuestrasController < ApplicationController
     @muestra = Muestra.new(muestra_params)
 
     respond_to do |format|
-      if @muestra.save
-        format.html { redirect_to muestra_url(@muestra), notice: "Muestra was successfully created." }
+      if @muestra.save && params[:add_muestra]
+        format.html { redirect_to new_muestra_path, notice: "Muestra was successfully created." }
+        format.json { render :show, status: :created, location: @muestra }
+      elsif @muestra.save && params[:finish_muestra]
+        format.html { redirect_to muestra_url(@muestra), notice: "Muestra con la misma orden finalizada." }
         format.json { render :show, status: :created, location: @muestra }
       else
         format.html { render :new, status: :unprocessable_entity }
