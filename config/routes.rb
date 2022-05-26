@@ -39,5 +39,9 @@ Rails.application.routes.draw do
   get 'nav', to: "home#nav", as: :nav
   get 'acceso_denegado', to: "acceso_denegado#acceso_denegado", as: :denegado
   root to: "home#index"
+  Rails.application.routes.draw do
+    match "/404", to: "errors#not_found", via: :all
+    match "/500", to: "errors#internal_server_error", via: :all
+  end
     
 end
