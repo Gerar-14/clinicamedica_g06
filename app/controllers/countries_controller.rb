@@ -8,7 +8,7 @@ class CountriesController < HomeController
     #ASIDE
     @menu_rol = menus_y_submenus_usuario(1)
 
-    #Inicia mostrar o no boton editar y eliminar, se le pasa como argumento 1 para que devuelva array
+    #Inicia mostrar o no boton editar y eliminar, se le pasa como argumento 2 para que devuelva un bool
     @menu_principal = "countries"
     @permisos_crud = get_crud_permisos(@menu_principal, 2)
     #finaliza mostrar o no boton editar y eliminar

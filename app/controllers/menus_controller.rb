@@ -10,6 +10,11 @@ class MenusController < HomeController
     @menu_rol = menus_y_submenus_usuario(1)
     # Pegar en la vista <%= render template: "home/nav" %>
 
+    #mostrara el boton crar verde, poner como argumento 2
+    @menu_principal = "menus"
+    @permisos_crud = get_crud_permisos(@menu_principal, 2)
+    #finaliza mostrar o no boton editar y eliminar
+
     #Inicia seguridad
     @menu_show = Menu.all
     @ruta_local = "/menus"
