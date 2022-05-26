@@ -3,7 +3,9 @@
 
   <h1>Pais</h1>
 
-  <%= link_to "Agregar Pais", new_country_path, :class => "btn btn-outline-success" %>
+  <% if @permisos_crud%>
+    <%= link_to "Agregar Pais", new_country_path, :class => "btn btn-outline-success" %>
+  <% end %>
 
   <div id="countries">
     <div class="card-body">

@@ -387,7 +387,7 @@ class HomeController < ApplicationController
 
     @permisos_empleado.each do |permiso|
       if permiso.ruta[menu_principal]
-        if permiso.crud == 4 || permiso.crud == 5
+        if permiso.crud == 4 || permiso.crud == 5 || permiso.crud == 3
           @permisos_de_ruta << permiso.id
         end
       end
@@ -409,8 +409,7 @@ class HomeController < ApplicationController
 
     sub_menu_list.each do |sub_menu|
       @submen_crud = get_crud_permiso_by_id_menu(sub_menu.id)
-
-      puts "esto es el permiso"
+      puts "Estos son los permisos"
       puts @submen_crud
 
       if  @submen_crud ==  4
