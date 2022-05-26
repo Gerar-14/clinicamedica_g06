@@ -36,7 +36,7 @@ class OrdenTypeExamsController < ApplicationController
         #format.html { redirect_to orden_type_exam_url(@orden_type_exam), notice: "Orden type exam was successfully created." }
         format.html { redirect_to new_orden_type_exam_path, notice: "Orden type exam was successfully created." }
         format.json { render :show, status: :created, location: @orden_type_exam }
-      elsif @orden_type_exam.save && params[:finish_examen]
+      elsif params[:finish_examen]
         #format.html { redirect_to orden_type_exam_url(@orden_type_exam), notice: "Orden type exam was successfully created." }
         format.html { redirect_to new_muestra_path, notice: "Muestra." }
         format.json { render :show, status: :created, location: @orden_type_exam }
@@ -47,7 +47,7 @@ class OrdenTypeExamsController < ApplicationController
           eliminar_ordenes_y_examenes_de_ordenes(@id)
           eliminar_orden(@id)
 
-          format.html { redirect_to new_orden_path, notice: "probando boton " }
+          format.html { redirect_to new_orden_path, notice: "Proceso eliminado" }
           format.json { head :no_content }
       else
         format.html { render :new, status: :unprocessable_entity }
