@@ -14,6 +14,7 @@ class OrdensController < ApplicationController
   def new
     @orden = Orden.new
     @orden_fecha_actual = Time.now.strftime("%Y-%m-%dT%k:%M")
+    
   end
 
   # GET /ordens/1/edit

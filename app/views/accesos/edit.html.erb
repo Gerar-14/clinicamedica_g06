@@ -1,10 +1,13 @@
-<h1>Editing acceso</h1>
+<% content_for :content do %>
+  <h1>Editar acceso</h1>
 
 <%= render "form", acceso: @acceso %>
 
 <br>
 
-<div>
-  <%= link_to "Show this acceso", @acceso %> |
-  <%= link_to "Back to accesos", accesos_path %>
-</div>
+<!--<div>-->
+<!--  <%#= link_to "Ver", @laboratorio %> |-->
+  <%#= link_to "Regresar", laboratorios_path %>
+<!--</div>-->
+<% end %>
+<%= render template: "layouts/base" %>

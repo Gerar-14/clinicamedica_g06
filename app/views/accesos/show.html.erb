@@ -1,10 +1,13 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
 <%= render @acceso %>
 
-<div>
-  <%= link_to "Edit this acceso", edit_acceso_path(@acceso) %> |
-  <%= link_to "Back to accesos", accesos_path %>
+<div class="btn-group">
+    <%= link_to "Editar acceso", edit_acceso_path(@acceso), :class => "btn btn-outline-warning" %> &nbsp;
+    <%= link_to "Regresar", accesos_path, :class => "btn btn-outline-dark" %> &nbsp;
+    <%= button_to "Eliminar", @acceso, method: :delete, :class => "btn btn-outline-danger" %>
+  </div>
 
-  <%= button_to "Destroy this acceso", @acceso, method: :delete %>
-</div>
+<% end %>
+<%= render template: "layouts/base" %>
