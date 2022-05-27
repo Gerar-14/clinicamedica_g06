@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_25_170031) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_27_004838) do
   create_table "accesos", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "rol_id", null: false
     t.bigint "permiso_id", null: false
@@ -140,6 +140,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_25_170031) do
     t.bigint "laboratory_worker_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "estado", null: false
     t.index ["laboratory_worker_id"], name: "index_ordens_on_laboratory_worker_id"
     t.index ["paciente_id"], name: "index_ordens_on_paciente_id"
   end
