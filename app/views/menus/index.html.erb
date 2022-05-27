@@ -4,7 +4,9 @@
 
   <h1>Menús</h1>
 
+  <% if @permisos_crud%>
   <%= link_to "Agregar menú", new_menu_path, :class => "btn btn-outline-success" %>
+  <% end %>
 
   <div id="menus">
     <div class="card-body">

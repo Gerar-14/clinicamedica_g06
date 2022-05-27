@@ -4,11 +4,17 @@
 <%= render @tipo_sangre %>
 
 <div class="btn-group">
-  <%= link_to "Editar tipo de sangre", edit_tipo_sangre_path(@tipo_sangre), :class => "btn btn-outline-warning" %> &nbsp;
-  <%= link_to "Regresar", tipo_sangres_path, :class => "btn btn-outline-dark" %> &nbsp;
+<% @permisos_crud.each do |submenu|%>
+  <% if submenu == 2 %>
   <%= button_to "Eliminar", @tipo_sangre, method: :delete, :class => "btn btn-outline-danger" %>
+  <% elsif submenu == 1 %>
+  <%= link_to "Editar tipo de sangre", edit_tipo_sangre_path(@tipo_sangre), :class => "btn btn-outline-warning" %> &nbsp;
+  <% end %>
+  <% end %>
+  <%= link_to "Regresar", tipo_sangres_path, :class => "btn btn-outline-dark" %> &nbsp;
 </div>
 
 <% end %>
+<%= render template: "home/nav" %>
 <%= render template: "layouts/base" %>
 

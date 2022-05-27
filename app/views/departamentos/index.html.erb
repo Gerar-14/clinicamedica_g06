@@ -3,7 +3,10 @@
 
   <h1>Departamentos</h1>
 
-  <%= link_to "Agregar Departamento", new_departamento_path, :class => "btn btn-outline-success" %>
+  <% if @permisos_crud%>
+    <%= link_to "Agregar Departamento", new_departamento_path, :class => "btn btn-outline-success" %>	
+  <% end %>
+  
 
   <div id="departamentos">
     <div class="card-body">
@@ -30,4 +33,5 @@
 
 
 <% end %>
+<%= render template: "home/nav" %>
 <%= render template: "layouts/base" %>

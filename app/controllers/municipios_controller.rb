@@ -1,9 +1,24 @@
-class MunicipiosController < ApplicationController
+class MunicipiosController < HomeController
   before_action :set_municipio, only: %i[ show edit update destroy ]
 
   # GET /municipios or /municipios.json
   def index
-    @municipios = Municipio.all
+    @municipios = Municipio.
+    
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Mostar el boton crear verde, se le debe poner como argumento 2
+    @menu_principal = "municipios"
+    @permisos_crud = get_crud_permisos(@menu_principal, 2)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia seguridad
+    @menu_show = municipio.all
+    @ruta_local = "/municipios"
+    @direccion = direccionador(@ruta_local,@menu_show)   
+    @direccion
+    #Finaliza seguridad
   end
 
   # GET /municipios/1 or /municipios/1.json

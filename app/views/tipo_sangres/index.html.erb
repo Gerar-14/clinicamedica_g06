@@ -3,7 +3,9 @@
 
   <h1>Tipos de sangre</h1>
 
-  <%= link_to "Agregar tipo de sangre", new_tipo_sangre_path, :class => "btn btn-outline-success" %>
+  <% if @permisos_crud%>
+	<%= link_to "Agregar tipo de sangre", new_tipo_sangre_path, :class => "btn btn-outline-success" %>
+  <% end %>
 
   <div id="tipo">
     <div class="card-body">
@@ -35,4 +37,5 @@
 
 
 <% end %>
+<%= render template: "home/nav" %>
 <%= render template: "layouts/base" %>
