@@ -1,22 +1,70 @@
-class PermisosController < ApplicationController
+class PermisosController < HomeController
   before_action :set_permiso, only: %i[ show edit update destroy ]
 
   # GET /permisos or /permisos.json
   def index
     @permisos = Permiso.all
+
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Mostar el boton crear verde, se le debe poner como argumento 2
+    @menu_principal = "permisos"
+    @permisos_crud = get_crud_permisos(@menu_principal, 2)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia seguridad
+    @menu_show = Permiso.all
+    @ruta_local = "/permisos"
+    @direccion = direccionador(@ruta_local,@menu_show)   
+    @direccion
+    #Finaliza seguridad        
   end
 
   # GET /permisos/1 or /permisos/1.json
   def show
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Inicia mostrar o no boton editar y eliminar
+    @menu_principal = "permisos" #En realidad es de la ruta por eso va plural
+    @permisos_crud = get_crud_permisos(@menu_principal, 1)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia Seguridad 
+    @menu_detalle = @permiso #Singular
+    @ruta_local = "/permisos/:id" #plural
+    @direccion = direccionador(@ruta_local,@menu_detalle)   
+    @direccion
+    #Termina Seguridad
   end
 
   # GET /permisos/new
   def new
     @permiso = Permiso.new
+    
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu = Permiso.new #Singular y el primero en mayuscula
+    @ruta_local = "/permisos/new" #plural
+    @direccion = direccionador(@ruta_local,@menu)   
+    @direccion
+    #Finaliza Seguridad
   end
 
   # GET /permisos/1/edit
   def edit
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu_edit = edit_permiso_path #singular
+    @ruta_local = "/permisos/:id/edit"
+    @direccion = direccionador(@ruta_local,@menu_edit)   
+    @direccion
+    #Finaliza Seguridad
   end
 
   # POST /permisos or /permisos.json
@@ -49,12 +97,12 @@ class PermisosController < ApplicationController
 
   # DELETE /permisos/1 or /permisos/1.json
   def destroy
-    @permiso.destroy
-
-    respond_to do |format|
-      format.html { redirect_to permisos_url, notice: "Permiso was successfully destroyed." }
-      format.json { head :no_content }
-    end
+   #definimos la ruta para eliminar
+   @ruta_local = "/permisos/:id"
+   @url_delete = @permiso #Singular
+   @url_path = permisos_url #Plural
+   #metodo para determinar si tiene permisos de eliminar 
+   direccionador_destroy(@ruta_local, @url_delete, @url_path, "Permiso ") #ultimo argumento es para mensaje de exito
   end
 
   private

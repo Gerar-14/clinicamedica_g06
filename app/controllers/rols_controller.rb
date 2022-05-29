@@ -1,22 +1,69 @@
-class RolsController < ApplicationController
+class RolsController < HomeController
   before_action :set_rol, only: %i[ show edit update destroy ]
 
   # GET /rols or /rols.json
   def index
     @rols = Rol.all
+  
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Mostar el boton crear verde, se le debe poner como argumento 2
+    @menu_principal = "rols"
+    @permisos_crud = get_crud_permisos(@menu_principal, 2)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia seguridad
+    @menu_show = Rol.all
+    @ruta_local = "/rols"
+    @direccion = direccionador(@ruta_local,@menu_show)   
+    @direccion
+    #Finaliza seguridad
   end
 
   # GET /rols/1 or /rols/1.json
   def show
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Inicia mostrar o no boton editar y eliminar
+    @menu_principal = "rols" #En realidad es de la ruta por eso va plural
+    @permisos_crud = get_crud_permisos(@menu_principal, 1)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia Seguridad 
+    @menu_detalle = @rol #Singular
+    @ruta_local = "/rols/:id" #plural
+    @direccion = direccionador(@ruta_local,@menu_detalle)   
+    @direccion
+    #Termina Seguridad    
   end
 
   # GET /rols/new
   def new
     @rol = Rol.new
+
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu = Rol.new #Singular y el primero en mayuscula
+    @ruta_local = "/rols/new" #plural
+    @direccion = direccionador(@ruta_local,@menu)   
+    @direccion
+    #Finaliza Seguridad    
   end
 
   # GET /rols/1/edit
   def edit
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu_edit = edit_rol_path #singular
+    @ruta_local = "/rols/:id/edit"
+    @direccion = direccionador(@ruta_local,@menu_edit)   
+    @direccion
+    #Finaliza Seguridad    
   end
 
   # POST /rols or /rols.json
@@ -49,12 +96,13 @@ class RolsController < ApplicationController
 
   # DELETE /rols/1 or /rols/1.json
   def destroy
-    @rol.destroy
+   #definimos la ruta para eliminar
+   @ruta_local = "/rols/:id"
+   @url_delete = @rol #Singular
+   @url_path = rols_url #Plural
+   #metodo para determinar si tiene permisos de eliminar 
+   direccionador_destroy(@ruta_local, @url_delete, @url_path, "Rol ") #ultimo argumento es para mensaje de exito
 
-    respond_to do |format|
-      format.html { redirect_to rols_url, notice: "Rol was successfully destroyed." }
-      format.json { head :no_content }
-    end
   end
 
   private

@@ -2,7 +2,10 @@
   <p style="color: green"><%= notice %></p>
 
   <h1>Roles</h1>
+  <% if @permisos_crud%>
   <%= link_to "Nuevo Rol", new_rol_path, :class => "btn btn-outline-success" %>
+  <% end %>
+  
   <div id="rols">
     <div class="card-body">
       <table id="datatablesSimple" class="table">

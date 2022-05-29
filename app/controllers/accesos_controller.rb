@@ -1,18 +1,57 @@
-class AccesosController < ApplicationController
+class AccesosController < HomeController
   before_action :set_acceso, only: %i[ show edit update destroy ]
 
   # GET /accesos or /accesos.json
   def index
     @accesos = Acceso.all
+
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Mostar el boton crear verde, se le debe poner como argumento 2
+    @menu_principal = "accesos"
+    @permisos_crud = get_crud_permisos(@menu_principal, 2)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia seguridad
+    @menu_show = Acceso.all
+    @ruta_local = "/accesos"
+    @direccion = direccionador(@ruta_local,@menu_show)   
+    @direccion
+    #Finaliza seguridad    
   end
 
   # GET /accesos/1 or /accesos/1.json
   def show
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Inicia mostrar o no boton editar y eliminar
+    @menu_principal = "accesos" #En realidad es de la ruta por eso va plural
+    @permisos_crud = get_crud_permisos(@menu_principal, 1)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia Seguridad 
+    @menu_detalle = @acceso #Singular
+    @ruta_local = "/accesos/:id" #plural
+    @direccion = direccionador(@ruta_local,@menu_detalle)   
+    @direccion
+    #Termina Seguridad    
   end
 
   # GET /accesos/new
   def new
     @acceso = Acceso.new
+
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu = Acceso.new #Singular y el primero en mayuscula
+    @ruta_local = "/accesos/new" #plural
+    @direccion = direccionador(@ruta_local,@menu)   
+    @direccion
+    #Finaliza Seguridad
   end
 
   # GET /accesos/1/edit
@@ -49,12 +88,12 @@ class AccesosController < ApplicationController
 
   # DELETE /accesos/1 or /accesos/1.json
   def destroy
-    @acceso.destroy
-
-    respond_to do |format|
-      format.html { redirect_to accesos_url, notice: "Acceso was successfully destroyed." }
-      format.json { head :no_content }
-    end
+   #definimos la ruta para eliminar
+   @ruta_local = "/accesos/:id"
+   @url_delete = @acceso #Singular
+   @url_path = accesos_url #Plural
+   #metodo para determinar si tiene permisos de eliminar 
+   direccionador_destroy(@ruta_local, @url_delete, @url_path, "Acceso ") #ultimo argumento es para mensaje de exito
   end
 
   private

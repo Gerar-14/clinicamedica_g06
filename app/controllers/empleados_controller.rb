@@ -1,22 +1,70 @@
-class EmpleadosController < ApplicationController
+class EmpleadosController < HomeController
   before_action :set_empleado, only: %i[ show edit update destroy ]
 
   # GET /empleados or /empleados.json
   def index
     @empleados = Empleado.all
+
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Mostar el boton crear verde, se le debe poner como argumento 2
+    @menu_principal = "empleados"
+    @permisos_crud = get_crud_permisos(@menu_principal, 2)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia seguridad
+    @menu_show = Empleado.all
+    @ruta_local = "/empleados"
+    @direccion = direccionador(@ruta_local,@menu_show)   
+    @direccion
+    #Finaliza seguridad
   end
 
   # GET /empleados/1 or /empleados/1.json
   def show
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Inicia mostrar o no boton editar y eliminar
+    @menu_principal = "empleados" #En realidad es de la ruta por eso va plural
+    @permisos_crud = get_crud_permisos(@menu_principal, 1)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia Seguridad 
+    @menu_detalle = @empleado #Singular
+    @ruta_local = "/empleados/:id" #plural
+    @direccion = direccionador(@ruta_local,@menu_detalle)   
+    @direccion
+    #Termina Seguridad    
   end
 
   # GET /empleados/new
   def new
     @empleado = Empleado.new
+
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu = Empleado.new #Singular y el primero en mayuscula
+    @ruta_local = "/empleados/new" #plural
+    @direccion = direccionador(@ruta_local,@menu)   
+    @direccion
+    #Finaliza Seguridad    
   end
 
   # GET /empleados/1/edit
   def edit
+    #ASIDE
+    @menu_rol = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu_edit = edit_empleado_path #singular
+    @ruta_local = "/empleados/:id/edit"
+    @direccion = direccionador(@ruta_local,@menu_edit)   
+    @direccion
+    #Finaliza Seguridad    
   end
 
   # POST /empleados or /empleados.json
@@ -49,13 +97,13 @@ class EmpleadosController < ApplicationController
 
   # DELETE /empleados/1 or /empleados/1.json
   def destroy
-    @empleado.destroy
-
-    respond_to do |format|
-      format.html { redirect_to empleados_url, notice: "Empleado was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
+    #definimos la ruta para eliminar
+    @ruta_local = "/empleados/:id"
+    @url_delete = @empleado #Singular
+    @url_path = empleados_url #Plural
+    #metodo para determinar si tiene permisos de eliminar 
+    direccionador_destroy(@ruta_local, @url_delete, @url_path, "Empleado ") #ultimo argumento es para mensaje de exito    
+   end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -3,7 +3,9 @@
 
   <h1>Empleados</h1>
 
+  <% if @permisos_crud%>
   <%= link_to "Agregar empleado", new_empleado_path, :class => "btn btn-outline-success" %>
+  <% end %>
 
   <div id="empleados">
     <div class="card-body">

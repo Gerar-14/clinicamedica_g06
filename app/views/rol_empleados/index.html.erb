@@ -2,7 +2,9 @@
   <p style="color: green"><%= notice %></p>
 
   <h1>Rol empleados</h1>
+  <% if @permisos_crud%>
   <%= link_to "Agregar rol empleado", new_rol_empleado_path, :class => "btn btn-outline-success" %>
+  <% end %>
 
   <div id="rol_empleados">
     <div class="card-body">
