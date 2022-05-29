@@ -24,7 +24,7 @@ class ParametrosController < ApplicationController
 
   def insertar_tipo_examen_parametro1(idParametro, idTipoExamen)
     @fecha_actual = Time.now.strftime("%Y-%m-%dT%k:%M")
-    @area_tipo_examen = TypeExamParametro.find_by_sql(["insert into type_exam_parametros (parametro_id, type_exam_id, created_at, updated_at) values (?, ?, ?, ?) ", idParametro, idTipoExamen, @fecha_actual, @fecha_actual])
+    @area_tipo_examen = TypeExamParametro.find_by_sql(["insert into type_exam_parametros (parametro_id, type_exam_id, created_at, updated_at) values (?, ?, '2022-05-17 17:47:44.000000', '2022-05-17 17:47:44.000000') ", idParametro, idTipoExamen])
   end
 
   def insertar_tipo_examen_parametro(idParametro, idTipoExamen)
