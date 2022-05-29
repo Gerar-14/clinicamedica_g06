@@ -11,17 +11,19 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :rol_id, style: "display: block" %>
-    <%= form.text_field :rol_id %>
+    <%= form.collection_select :rol_id, Rol.all,:id, :nombre_rol %>
   </div>
 
-  <div>
+  <div class="form-group col-md-6">
     <%= form.label :permiso_id, style: "display: block" %>
-    <%= form.text_field :permiso_id %>
+    <%= form.collection_select :permiso_id, Permiso.all,:id, :nombre_permiso %>
   </div>
-
+  
+  <br>
   <div>
-    <%= form.submit %>
+    <%= form.submit "Guardar", class:"btn btn-outline-success"%>
+    <%= link_to "Cancelar", accesos_path, :class => "btn btn-outline-danger"%>
   </div>
 <% end %>

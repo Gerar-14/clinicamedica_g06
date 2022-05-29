@@ -1,14 +1,34 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Accesos</h1>
+  <h1>Accesos</h1>
 
-<div id="accesos">
-  <% @accesos.each do |acceso| %>
-    <%= render acceso %>
-    <p>
-      <%= link_to "Show this acceso", acceso %>
-    </p>
-  <% end %>
-</div>
+  <%= link_to "Agregar acceso", new_acceso_path, :class => "btn btn-outline-success" %>
 
-<%= link_to "New acceso", new_acceso_path %>
+  <div id="acceso">
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Rol </th>
+          <th scope="col">Permiso </th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @accesos.each do |acceso| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= acceso.rol.nombre_rol %></td>
+            <td><%= acceso.permiso.nombre_permiso %></td>
+            <th><%= link_to "Ver", acceso, :class => "btn btn-outline-primary" %></th>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<% end %>
+<%= render template: "layouts/base" %>
+

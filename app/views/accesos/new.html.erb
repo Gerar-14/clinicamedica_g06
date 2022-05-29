@@ -1,9 +1,12 @@
-<h1>New acceso</h1>
+<% content_for :content do %>
+  <h1>Agregar acceso</h1>
 
 <%= render "form", acceso: @acceso %>
 
 <br>
 
 <div>
-  <%= link_to "Back to accesos", accesos_path %>
+  <%#= link_to "Cancelar", laboratory_workers_path, :class => "btn btn-outline-danger"%>
 </div>
+<% end %>
+<%= render template: "layouts/base" %>
