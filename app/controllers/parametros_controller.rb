@@ -24,7 +24,7 @@ class ParametrosController < ApplicationController
 
   def insertar_tipo_examen_parametro1(idParametro, idTipoExamen)
     @fecha_actual = Time.now.strftime("%Y-%m-%dT%k:%M")
-    @area_tipo_examen = TypeExamParametro.find_by_sql(["insert into type_exam_parametros (parametro_id, type_exam_id, created_at, updated_at) values (?, ?, '2022-05-17 17:47:44.000000', '2022-05-17 17:47:44.000000') ", idParametro, idTipoExamen])
+    @area_tipo_examen = TypeExamParametro.find_by_sql(["insert into type_exam_parametros (parametro_id, type_exam_id, created_at, updated_at) values (?, ?, ?, ?) ", idParametro, idTipoExamen, @fecha_actual, @fecha_actual])
   end
 
   def insertar_tipo_examen_parametro(idParametro, idTipoExamen)
@@ -53,9 +53,9 @@ class ParametrosController < ApplicationController
         #format.html { redirect_to parametro_url(@parametro), notice: "Parametro was successfully created." }
         format.html { redirect_to new_parametro_path, notice: "Parametro was successfully created." }
         format.json { render :show, status: :created, location: @parametro }
-        @id_parametro = Parametro.select(:id).last(1).to_s.tr('[#<Parametro id:]>', '')
-        @id_type_exam = TypeExam.select(:id).last(1).to_s.tr('[#<TypeExam id:]>', '')
-        insertar_tipo_examen_parametro(@id_parametro,@id_type_exam)
+        #@id_parametro = Parametro.select(:id).last(1).to_s.tr('[#<Parametro id:]>', '')
+        #@id_type_exam = TypeExam.select(:id).last(1).to_s.tr('[#<TypeExam id:]>', '')
+        #insertar_tipo_examen_parametro(@id_parametro,@id_type_exam)
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @parametro.errors, status: :unprocessable_entity }

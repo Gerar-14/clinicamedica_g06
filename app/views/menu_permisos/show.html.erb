@@ -1,13 +1,14 @@
 <% content_for :content do %>
   <p style="color: green"><%= notice %></p>
 
-  <%= render @menu_permiso %>
+  <%= render @menu_permiso1 %>
 
   <div class="btn-group">
-    <%= link_to "Editar", edit_menu_permiso_path(@menu_permiso), :class => "btn btn-outline-warning" %> &nbsp;
+    <%= link_to "Editar", edit_menu_permiso_path(@menu_permiso1), :class => "btn btn-outline-warning" %> &nbsp;
     <%= link_to "Regresar", menu_permisos_path, :class => "btn btn-outline-dark" %>&nbsp;
 
-    <%= button_to "Eliminar", @menu_permiso, method: :delete, :class => "btn btn-outline-danger" %>
+    <%= button_to "Eliminar", @menu_permiso1, method: :delete, :class => "btn btn-outline-danger" %>
   </div>
 <% end %>
+<%= render template: "home/nav" %>
 <%= render template: "layouts/base" %>
