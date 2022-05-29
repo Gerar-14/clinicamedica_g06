@@ -140,7 +140,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_27_004838) do
     t.bigint "laboratory_worker_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "estado", null: false
+    t.integer "estado", default: 1, null: false
     t.index ["laboratory_worker_id"], name: "index_ordens_on_laboratory_worker_id"
     t.index ["paciente_id"], name: "index_ordens_on_paciente_id"
   end

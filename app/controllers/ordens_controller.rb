@@ -14,7 +14,8 @@ class OrdensController < ApplicationController
   def new
     @orden = Orden.new
     @orden_fecha_actual = Time.now.strftime("%Y-%m-%dT%k:%M")
-    
+    @laboratoristas = Orden.find_by_sql("select laboratory_worker_id,fecha_examen,count(laboratory_worker_id) as conteo from ordens WHERE estado = 1 GROUP by laboratory_worker_id, substring(fecha_examen,1,10)")
+
   end
 
   # GET /ordens/1/edit
