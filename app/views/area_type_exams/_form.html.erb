@@ -13,12 +13,12 @@
 
   <div>
     <%= form.label :area_id, style: "display: block" %>
-    <%= form.text_field :area_id %>
+    <%= form.collection_select :area_id , Area.all,:id, :nombre_area, class: "form-control", style: "display: block"%>
   </div>
 
   <div>
     <%= form.label :type_exam_id, style: "display: block" %>
-    <%= form.text_field :type_exam_id %>
+    <%= form.collection_select :type_exam_id , TypeExam.last(1),:id, :name_type_examn, class: "form-control", style: "display: block"%>
   </div>
 
   <div>

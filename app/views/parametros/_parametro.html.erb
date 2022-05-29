@@ -11,7 +11,11 @@
 
   <p>
     <strong>Unidad medida:</strong>
-    <%= parametro.unidad_medida.nombre_unidad_medida %>
+    <%if parametro.unidad_medida_id == nil %>
+      <%= parametro.unidad_medida %>
+    <%else%>
+      <%= parametro.unidad_medida.nombre_unidad_medida %>
+    <%end%>
   </p>
 
   <p>

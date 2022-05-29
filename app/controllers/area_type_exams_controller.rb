@@ -25,7 +25,8 @@ class AreaTypeExamsController < ApplicationController
 
     respond_to do |format|
       if @area_type_exam.save
-        format.html { redirect_to area_type_exam_url(@area_type_exam), notice: "Area type exam was successfully created." }
+        #format.html { redirect_to area_type_exam_url(@area_type_exam), notice: "Area type exam was successfully created." }
+        format.html { redirect_to new_parametro_path, notice: "Area type exam was successfully created." }
         format.json { render :show, status: :created, location: @area_type_exam }
       else
         format.html { render :new, status: :unprocessable_entity }
