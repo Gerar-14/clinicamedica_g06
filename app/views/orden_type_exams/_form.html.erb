@@ -25,8 +25,9 @@
   <br>
   <div>
     <%= form.submit "Guardar", class:"btn btn-outline-success", name: "add_examen" %>
-    <%= form.submit "Finalizar", :class => "btn btn-outline-success", name: "finish_examen" %>
-    <%# <%= link_to "Cancelar", orden_type_exams_path, :class => "btn btn-outline-danger"%>
-    <%= form.submit "Cancelar", :class => "btn btn-outline-danger" , name: "delete_examen"%>
+    <%# <%= form.submit "Finalizar", :class => "btn btn-outline-success", name: "finish_examen" %>
+    <%= link_to "Finalizar", home_path, :class => "btn btn-outline-success"%>
+    <%= link_to "Cancelar", orden_type_exams_path, :class => "btn btn-outline-danger"%>
+    <%# <%= form.submit "Cancelar", :class => "btn btn-outline-danger" , name: "delete_examen"%>
   </div>
 <% end %>
