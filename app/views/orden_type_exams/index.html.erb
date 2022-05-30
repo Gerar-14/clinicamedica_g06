@@ -5,6 +5,10 @@
 
   <%= link_to "Agregar orden tipo examen", new_orden_type_exam_path, :class => "btn btn-outline-success" %>
 
+  <!-- We will put our React component inside this div. -->
+  <div id="like_button_container"></div>
+
+
   <div id="ordentipoexamen">
     <div class="card-body">
       <table id="datatablesSimple" class="table">
@@ -35,6 +39,15 @@
 
   <%#= link_to "Agregar Pais", new_country_path %>
 
+
+
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+<!--  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>-->
+<!--  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>-->
+
+  <!-- Load our React component. -->
+  <script src="like_button.js"></script>
 
 <% end %>
 <%= render template: "layouts/base" %>

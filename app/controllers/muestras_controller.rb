@@ -14,10 +14,20 @@ class MuestrasController < ApplicationController
   def new
     @muestra = Muestra.new
     @muestra_fecha_actual = Time.now.strftime("%Y-%m-%dT%k:%M")
+  #  Para mostrar la tabla con las muestras para el paciente
+    @id_orden = Orden.select(:id).last(1).to_s.tr('[#<Orden id:]>', '')
+    @muestras_by_orden = muestras_by_orden_id(@id_orden)
   end
 
   # GET /muestras/1/edit
   def edit
+  end
+
+  # Funcion que devuelve las muestras de examenes mediante el id de la orden
+  def muestras_by_orden_id(idOrden)
+    @muestras_by_orden = Muestra.find_by_sql(["select id, tipo_muestra from muestras where orden_id in (select
+        id from ordens where id = ?)", idOrden])
+    # @ordenes_tipo_examen_creadas = OrdenTypeExam.find_by_sql(["select id from orden_type_exams where orden_id = ?", idOrden])
   end
 
   def eliminar_muestra(idOrdenMuestra)
@@ -79,8 +89,14 @@ class MuestrasController < ApplicationController
     @muestra.destroy
 
     respond_to do |format|
-      format.html { redirect_to muestras_url, notice: "Muestra was successfully destroyed." }
-      format.json { head :no_content }
+        if params[:boton_eliminar_new]
+          format.html { redirect_to new_muestra_path, notice: "Muestra fue eliminada correctamente." }
+          format.json { head :no_content }
+        # elsif params[:boton_eliminar_new]
+        else
+          format.html { redirect_to muestras_url, notice: "Muestra fue eliminada correctamente." }
+          format.json { head :no_content }
+        end
     end
   end
 

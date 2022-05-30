@@ -13,6 +13,8 @@ class OrdenTypeExamsController < ApplicationController
   # GET /orden_type_exams/new
   def new
     @orden_type_exam = OrdenTypeExam.new
+    @id_orden = Orden.select(:id).last(1).to_s.tr('[#<Orden id:]>', '')
+    @ordenes_tipo_examen_creadas = ordenes_tipo_examen_by_id(@id_orden)
   end
 
   # GET /orden_type_exams/1/edit
@@ -25,6 +27,11 @@ class OrdenTypeExamsController < ApplicationController
 
   def eliminar_orden(idOrden)
     @orden = Orden.find_by_sql(["delete from ordens where id = ?", idOrden])
+  end
+
+  def ordenes_tipo_examen_by_id(idOrden)
+    @ordenes_tipo_examen_creadas = OrdenTypeExam.find_by_sql(["select name_type_examn from type_exams where id in (select type_exam_id from orden_type_exams where orden_id = ?)", idOrden])
+    # @ordenes_tipo_examen_creadas = OrdenTypeExam.find_by_sql(["select id from orden_type_exams where orden_id = ?", idOrden])
   end
 
   # POST /orden_type_exams or /orden_type_exams.json
@@ -71,6 +78,7 @@ class OrdenTypeExamsController < ApplicationController
 
   # DELETE /orden_type_exams/1 or /orden_type_exams/1.json
   def destroy
+    puts(@orden_type_exam)
     @orden_type_exam.destroy
 
     respond_to do |format|

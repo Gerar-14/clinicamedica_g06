@@ -1,12 +1,44 @@
 <% content_for :content do %>
   <h1>Agregar orden tipo examen</h1>
 
-<%= render "form", orden_type_exam: @orden_type_exam %>
+<%#= render "form", orden_type_exam: @orden_type_exam %>
 
-<br>
+    <div class="row">
+      <div class="col">
+        <!-- Muestra el formulario para crear las ordenes de examenes-->
+        <%= render "form", orden_type_exam: @orden_type_exam %>
+      </div>
+      <div class="col">
+        <!-- Muestra la tabla con las ordenes de los examenes creadas por el id asociado-->
+        <table id="datatablesSimple" class="table">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tipo examen:</th>
+            <th scope="col">Acciones</th>
+          </tr>
+          </thead>
+          <tbody>
 
-<div>
+          <div hidden="true"><%= @number = 1 %></div>
+          <% @ordenes_tipo_examen_creadas.each do |orden| %>
+            <tr>
+              <th scope="row"><%= @number %></th>
+              <td><%= orden.name_type_examn %></td>
+              <td><%= button_to "Eliminar", orden.id, method: :delete, :class => "btn btn-outline-danger" %></td>
+              <td>
+            </tr>
+            <div hidden="true"><%= @number = @number + 1 %></div>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  <br>
+
+  <!--<div>-->
   <%#= link_to "Cancelar", menu_permisos_path, :class => "btn btn-outline-danger" %>
-</div>
+  <!--</div>-->
 <% end %>
 <%= render template: "layouts/base" %>

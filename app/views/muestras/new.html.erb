@@ -1,12 +1,87 @@
 <% content_for :content do %>
   <h1>Agregar muestra</h1>
 
-<%= render "form", muestra: @muestra %>
+  <div class="row">
+    <div class="col">
+      <!-- Muestra el formulario para crear las muestras-->
+      <%= render "form", muestra: @muestra %>
+    </div>
+    <div class="col">
+      <!-- Muestra la tabla con las muestras por el id asociado a la muestra-->
+      <table id="datatablesSimple" class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Muestra:</th>
+          <th scope="col">Muestra:</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
 
-<br>
+        <div hidden="true"><%= @number = 1 %></div>
+        <% @muestras_by_orden.each do |muestra| %>
+          <tr>
+            <th scope="row"><%= @number %></th>
+            <td><%= muestra.id %></td>
+            <td><%= muestra.tipo_muestra %></td>
+            <td>
+              <!-- Button trigger modal -->
+              <!--              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">-->
+              <!--                Launch demo modal-->
+              <!--              </button>-->
+              <!--              <a href="#myModal" class="btn btn-primary">Open modal</a>-->
+<!--              <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal" onclick="openModal()">-->
+<!--                Eliminar-->
+<!--              </button>-->
+              <%= button_to "Eliminar", muestra, method: :delete, :class => "btn btn-outline-danger",
+                            name: "boton_eliminar_new",  form: {data: {turbo_confirm: 'Are you sure?'}} %>
 
-<div>
-  <%#= link_to "Cancelar", muestras_path, :class => "btn btn-outline-danger"%>
-</div>
+
+            </td>
+            <td>
+          </tr>
+          <div hidden="true"><%= @number = @number + 1 %></div>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+
+  <br>
+
+  <!--<div><%#= link_to "Cancelar", muestras_path, :class => "btn btn-outline-danger"%></div>-->
+
+  <%= content_for :js do %>
+    <script>
+        $(document).ready(function () {
+            // $('#exampleModal').modal('toggle');
+            // $('#modal').modal('show');
+            // $('#exampleModal').modal('hide');
+            //Para abrir el modal
+            // $('button[id$="#myModal"]').on( "click", function() {
+            //     $('#showModal').modal('show');
+            // });
+            // Para cerrar el modal
+            // $('button[id$="#closeModal"]').on( "click", function() {
+            //     $('#showModal').modal('hide');
+            // });
+        });
+
+        function openModal() {
+            // $('#showModal').modal({ show: true });
+            $('#showModal').modal('show');
+        }
+
+        function closeModal() {
+            // $('#showModal').modal({ show: false });
+            $('#showModal').modal('hide');
+        }
+    </script>
+  <% end %>
+
 <% end %>
 <%= render template: "layouts/base" %>
