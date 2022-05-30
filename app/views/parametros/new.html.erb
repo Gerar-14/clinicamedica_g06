@@ -1,7 +1,46 @@
 <% content_for :content do %>
   <h1>Agregar parametro</h1>
 
-<%= render "form", parametro: @parametro %>
+
+
+  <div class="row">
+    <div class="col">
+      <!-- Muestra el formulario para crear los parametros-->
+      <%= render "form", parametro: @parametro %>
+    </div>
+    <div class="col">
+      <!-- Muestra la tabla con los parametros por el id asociado al tipo de examen-->
+      <table id="datatablesSimple" class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Parametro:</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <div hidden="true"><%= @number = 1 %></div>
+        <% @hash_parametros.each do |elemento_padre| %>
+          <tr>
+            <th scope="row"><%= @number %></th>
+            <td>
+              <%= elemento_padre.nombre_parametro %>
+              <%# elemento_padre.each do |elemento| %>
+                <%#= elemento.nombre_parametro %>
+              <%# end %>
+            </td>
+            <td>
+              <%= button_to "Eliminar", elemento_padre, method: :delete, :class => "btn btn-outline-danger", name: "eliminar_parametro_new",  form: {data: {turbo_confirm: 'Are you sure?'}} %>
+            </td>
+            <td>
+          </tr>
+          <div hidden="true"><%= @number = @number + 1 %></div>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
 <br>
 

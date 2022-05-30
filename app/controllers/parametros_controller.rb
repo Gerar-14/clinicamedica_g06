@@ -16,6 +16,31 @@ class ParametrosController < ApplicationController
     @parametro = Parametro.new
     @id_type_examn = TypeExam.select(:id).last(1).to_s.tr('[#<TypeExam id:]>', '')
     @condicion_parametro = TypeExamParametro.find_by_sql(["select id, nombre_parametro from parametros where id in ( select parametro_id from type_exam_parametros where type_exam_id = ? )", @id_type_examn])
+    @hash_parametros = parametros_padre_hijo_by_type_exam(@id_type_examn)
+  end
+
+  def parametros_padre_hijo_by_type_exam(idTypeExam)
+    @parametros_padre = Parametro.find_by_sql(["select parametros.id, parametros.nombre_parametro from parametros join (select * from type_exam_parametros
+where type_exam_id = ?) tep on parametros.id = tep.parametro_id", idTypeExam])
+
+    @hash_return = {}
+    @list_params = []
+    @parametros_padre.each do | param_padre |
+      @padre_hash = {}
+      @padre_hash["id"] = param_padre.id
+      @padre_hash["nombre_parametro_padre"] = param_padre.nombre_parametro
+      @parametros_hijo = Parametro.find_by_sql(["select id, nombre_parametro from parametros where parametro_id = ?", param_padre.id])
+      @hijos_values = []
+      @parametros_hijo.each do | param_hijo |
+        @hijo_hash = {}
+        @hijo_hash["id"] = param_hijo.id
+        @hijo_hash["nombre_parametro_hijo"] = param_hijo.nombre_parametro
+        @hijos_values << @hijo_hash
+      end
+      @padre_hash["hijos"] = @hijos_values
+      @list_params << @padre_hash
+    end
+    # puts(@list_params)
   end
 
   # GET /parametros/1/edit

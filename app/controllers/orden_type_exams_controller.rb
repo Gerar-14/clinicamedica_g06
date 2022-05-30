@@ -30,7 +30,8 @@ class OrdenTypeExamsController < ApplicationController
   end
 
   def ordenes_tipo_examen_by_id(idOrden)
-    @ordenes_tipo_examen_creadas = OrdenTypeExam.find_by_sql(["select name_type_examn from type_exams where id in (select type_exam_id from orden_type_exams where orden_id = ?)", idOrden])
+    @ordenes_tipo_examen_creadas = OrdenTypeExam.find_by_sql(["select ote.id, type_exams.name_type_examn from type_exams join (select * from orden_type_exams
+where orden_id = ?) ote on type_exams.id = ote.type_exam_id", idOrden])
     # @ordenes_tipo_examen_creadas = OrdenTypeExam.find_by_sql(["select id from orden_type_exams where orden_id = ?", idOrden])
   end
 
@@ -82,8 +83,15 @@ class OrdenTypeExamsController < ApplicationController
     @orden_type_exam.destroy
 
     respond_to do |format|
-      format.html { redirect_to orden_type_exams_url, notice: "Orden type exam was successfully destroyed." }
-      format.json { head :no_content }
+      if params[:eliminar_orden_type_exam_new]
+        format.html { redirect_to new_orden_type_exam_path, notice: "Orden de tipo examen eliminada correctamente." }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to orden_type_exams_url, notice: "Orden de tipo examen eliminada correctamente." }
+        format.json { head :no_content }
+      end
+
+
     end
   end
 

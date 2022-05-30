@@ -25,7 +25,9 @@
             <tr>
               <th scope="row"><%= @number %></th>
               <td><%= orden.name_type_examn %></td>
-              <td><%= button_to "Eliminar", orden.id, method: :delete, :class => "btn btn-outline-danger" %></td>
+              <td>
+              <%= button_to "Eliminar", orden, method: :delete,:class => "btn btn-outline-danger",
+                            name: "eliminar_orden_type_exam_new" %>
               <td>
             </tr>
             <div hidden="true"><%= @number = @number + 1 %></div>
