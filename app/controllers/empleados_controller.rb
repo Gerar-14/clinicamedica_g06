@@ -6,7 +6,7 @@ class EmpleadosController < HomeController
     @empleados = Empleado.all
 
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Mostar el boton crear verde, se le debe poner como argumento 2
     @menu_principal = "empleados"
@@ -24,7 +24,7 @@ class EmpleadosController < HomeController
   # GET /empleados/1 or /empleados/1.json
   def show
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Inicia mostrar o no boton editar y eliminar
     @menu_principal = "empleados" #En realidad es de la ruta por eso va plural
@@ -44,7 +44,7 @@ class EmpleadosController < HomeController
     @empleado = Empleado.new
 
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Iniciar Seguridad
     @menu = Empleado.new #Singular y el primero en mayuscula
@@ -57,7 +57,7 @@ class EmpleadosController < HomeController
   # GET /empleados/1/edit
   def edit
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Iniciar Seguridad
     @menu_edit = edit_empleado_path #singular

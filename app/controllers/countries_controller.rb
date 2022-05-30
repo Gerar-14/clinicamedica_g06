@@ -6,7 +6,7 @@ class CountriesController < HomeController
     @countries = Country.all
 
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Inicia mostrar o no boton editar y eliminar, se le pasa como argumento 2 para que devuelva un bool
     @menu_principal = "countries"
@@ -24,7 +24,7 @@ class CountriesController < HomeController
   # GET /countries/1 or /countries/1.json
   def show
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Inicia mostrar o no boton editar y eliminar, se le pasa como argumento 1 para que devuelva array
     @menu_principal = "countries"
@@ -42,7 +42,7 @@ class CountriesController < HomeController
   # GET /countries/new
   def new
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
     
     #Iniciar Seguridad
     @country = Country.new
@@ -55,7 +55,7 @@ class CountriesController < HomeController
   # GET /countries/1/edit
   def edit
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Iniciar Seguridad
     @menu_edit = edit_country_path	

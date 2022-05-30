@@ -2,8 +2,7 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
   # before_filter :authenticate_user!
   def index
-      @menu_rol = menus_y_submenus_usuario(1)
-      puts @menu_rol
+      @menu_rol_nav = menus_y_submenus_usuario(1)
   end
 
 
