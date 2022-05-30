@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :value_references
   resources :ordens
   get '/ordens/:id/seleccionado' => "ordens#seleccionado", as: :seleccionado_orden
+  get '/ordens/:id/finalizado' => "ordens#finalizado", as: :finalizado_orden
   resources :laboratory_workers
   resources :muestras
   resources :orden_type_exams

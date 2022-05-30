@@ -14,6 +14,7 @@
           <th scope="col">Fecha de examen:</th>
           <th scope="col">Paciente:</th>
           <th scope="col">Laboratorista:</th>
+          <th scope="col">Estado orden:</th>
           <th scope="col">Acciones</th>
         </tr>
         </thead>
@@ -25,9 +26,12 @@
             <td><%= orden.fecha_examen %></td>
             <td><%= orden.paciente.nombre_paciente %></td>
             <td><%= orden.laboratory_worker.empleado.nombre_empleado %></td>
+            <td><%= orden.estado %></td>
             <td>
                 <%= link_to "Ver", orden, :class => "btn btn-outline-primary" %>
                 <%= link_to "Realizar", seleccionado_orden_path(orden), :class => "btn btn-outline-primary" %>
+                <%= link_to "Finalizar", finalizado_orden_path(orden), :class => "btn btn-outline-primary" %>
+                
             </td>
           </tr>
           <%#= render country %>
