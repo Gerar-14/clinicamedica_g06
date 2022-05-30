@@ -6,9 +6,9 @@ class TipoSangresController < HomeController
     @tipo_sangres = TipoSangre.all
 
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
     puts("Este es el aside")
-    puts @menu_rol
+    puts @menu_rol_nav
 
     #Mostar el boton crear verde, se le debe poner como argumento 2
     @menu_principal = "tipo_sangres"
@@ -26,7 +26,7 @@ class TipoSangresController < HomeController
   # GET /tipo_sangres/1 or /tipo_sangres/1.json
   def show
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Inicia mostrar o no boton editar y eliminar
     @menu_principal = "tipo_sangres" #En realidad es de la ruta por eso va plural
@@ -46,7 +46,7 @@ class TipoSangresController < HomeController
     @tipo_sangre = TipoSangre.new
 
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Iniciar Seguridad
     @menu = TipoSangre.new #Singular y el primero en mayuscula
@@ -59,7 +59,7 @@ class TipoSangresController < HomeController
   # GET /tipo_sangres/1/edit
   def edit
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Iniciar Seguridad
     @menu_edit = edit_tipo_sangre_path #singular

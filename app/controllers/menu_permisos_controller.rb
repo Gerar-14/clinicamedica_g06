@@ -7,7 +7,7 @@ class MenuPermisosController < HomeController
     @menu_permisos = MenuPermiso.all
     
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
     # Pegar en la vista <%= render template: "home/nav" %>
 
     #mostrara el boton crar verde, poner como argumento 2
@@ -26,7 +26,7 @@ class MenuPermisosController < HomeController
   # GET /menu_permisos/1 or /menu_permisos/1.json
   def show
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
     
     #Inicia mostrar o no boton editar y eliminar
     @menu_principal = "menu_permisos"
@@ -46,7 +46,7 @@ class MenuPermisosController < HomeController
     @menu_permiso1 = MenuPermiso.new
 
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Iniciar Seguridad
     @menu = MenuPermiso.new
@@ -60,7 +60,7 @@ class MenuPermisosController < HomeController
   def edit
 
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Iniciar Seguridad
     @menu_edit = edit_menu_permiso_path
@@ -133,7 +133,7 @@ end
 #     @menu_permisos = MenuPermiso.all
 
 #     #ASIDE
-#     @menu_rol = menus_y_submenus_usuario(1)
+#     @menu_rol_nav = menus_y_submenus_usuario(1)
 
 #     #Mostar el boton crear verde, se le debe poner como argumento 2
 #     @menu_principal = "menu_permisos"
@@ -151,7 +151,7 @@ end
 #   # GET /menu_permisos/1 or /menu_permisos/1.json
 #   def show
 #     #ASIDE
-#     @menu_rol = menus_y_submenus_usuario(1)
+#     @menu_rol_nav = menus_y_submenus_usuario(1)
 
 #     #Inicia mostrar o no boton editar y eliminar
 #     @menu_principal = "menu_permisos" #En realidad es de la ruta por eso va plural
@@ -171,7 +171,7 @@ end
 #     @menu_permiso = MenuPermiso.new
 
 #     #ASIDE
-#     @menu_rol = menus_y_submenus_usuario(1)
+#     @menu_rol_nav = menus_y_submenus_usuario(1)
 
 #     #Iniciar Seguridad
 #     @menu = MenuPermiso.new #Singular y el primero en mayuscula
@@ -184,7 +184,7 @@ end
 #   # GET /menu_permisos/1/edit
 #   def edit
 #     #ASIDE
-#     @menu_rol = menus_y_submenus_usuario(1)
+#     @menu_rol_nav = menus_y_submenus_usuario(1)
 
 #     #Iniciar Seguridad
 #     @menu_edit = edit_menu_permiso_path #singular

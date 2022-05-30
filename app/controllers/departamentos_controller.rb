@@ -6,7 +6,7 @@ class DepartamentosController < HomeController
     @departamentos = Departamento.all
 
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Mostar el boton crear verde, se le debe poner como argumento 2
     @menu_principal = "departamentos"
@@ -26,7 +26,7 @@ class DepartamentosController < HomeController
   # GET /departamentos/1 or /departamentos/1.json
   def show
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Inicia mostrar o no boton editar y eliminar
     @menu_principal = "departamentos"
@@ -46,7 +46,7 @@ class DepartamentosController < HomeController
     @departamento = Departamento.new
 
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Iniciar Seguridad
     @menu = Departamento.new
@@ -59,7 +59,7 @@ class DepartamentosController < HomeController
   # GET /departamentos/1/edit
   def edit
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Iniciar Seguridad
     @menu_edit = edit_departamento_path

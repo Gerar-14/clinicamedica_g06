@@ -1,7 +1,7 @@
 <% content_for :content do %>
 
 
-<% @menu_rol.each do |key, value|%>
+<% @menu_rol_nav.each do |key, value|%>
     <h2><%= key %></h2>
     <% value.each do |submenu|%>
         <% nombre = submenu["nombre"] %>

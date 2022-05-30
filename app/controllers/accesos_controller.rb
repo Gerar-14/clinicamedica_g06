@@ -6,7 +6,7 @@ class AccesosController < HomeController
     @accesos = Acceso.all
 
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Mostar el boton crear verde, se le debe poner como argumento 2
     @menu_principal = "accesos"
@@ -24,7 +24,7 @@ class AccesosController < HomeController
   # GET /accesos/1 or /accesos/1.json
   def show
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Inicia mostrar o no boton editar y eliminar
     @menu_principal = "accesos" #En realidad es de la ruta por eso va plural
@@ -44,7 +44,7 @@ class AccesosController < HomeController
     @acceso = Acceso.new
 
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Iniciar Seguridad
     @menu = Acceso.new #Singular y el primero en mayuscula
@@ -56,6 +56,14 @@ class AccesosController < HomeController
 
   # GET /accesos/1/edit
   def edit
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu_edit = edit_acceso_path #singular
+    @ruta_local = "/accesos/:id/edit"
+    @direccion = direccionador(@ruta_local,@menu_edit)   
+    @direccion
+    #Finaliza Seguridad    
   end
 
   # POST /accesos or /accesos.json
