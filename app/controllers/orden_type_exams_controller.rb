@@ -43,19 +43,19 @@ class OrdenTypeExamsController < ApplicationController
         #format.html { redirect_to orden_type_exam_url(@orden_type_exam), notice: "Orden type exam was successfully created." }
         format.html { redirect_to new_orden_type_exam_path, notice: "Orden type exam was successfully created." }
         format.json { render :show, status: :created, location: @orden_type_exam }
-      elsif params[:finish_examen]
-        #format.html { redirect_to orden_type_exam_url(@orden_type_exam), notice: "Orden type exam was successfully created." }
-        format.html { redirect_to new_muestra_path, notice: "Muestra." }
-        format.json { render :show, status: :created, location: @orden_type_exam }
-      elsif params[:delete_examen]
-          #@id = OrdenTypeExam.find_by_sql(["SELECT orden_id FROM orden_type_exams ORDER BY orden_id DESC LIMIT 1"])
-          @id = OrdenTypeExam.select(:orden_id).last(1).to_s.tr('[#<OrdenTypeExam id: nil, orden_id:]>', '')
-          #puts "impresion " + @id.to_s.tr('[#<OrdenTypeExam id: nil, orden_id:]>', '')
-          eliminar_ordenes_y_examenes_de_ordenes(@id)
-          eliminar_orden(@id)
+      # elsif params[:finish_examen]
+      #   #format.html { redirect_to orden_type_exam_url(@orden_type_exam), notice: "Orden type exam was successfully created." }
+      #   format.html { redirect_to new_muestra_path, notice: "Muestra." }
+      #   format.json { render :show, status: :created, location: @orden_type_exam }
+      # elsif params[:delete_examen]
+      #     #@id = OrdenTypeExam.find_by_sql(["SELECT orden_id FROM orden_type_exams ORDER BY orden_id DESC LIMIT 1"])
+      #     @id = OrdenTypeExam.select(:orden_id).last(1).to_s.tr('[#<OrdenTypeExam id: nil, orden_id:]>', '')
+      #     #puts "impresion " + @id.to_s.tr('[#<OrdenTypeExam id: nil, orden_id:]>', '')
+      #     eliminar_ordenes_y_examenes_de_ordenes(@id)
+      #     eliminar_orden(@id)
 
-          format.html { redirect_to new_orden_path, notice: "Proceso eliminado" }
-          format.json { head :no_content }
+      #     format.html { redirect_to new_orden_path, notice: "Proceso eliminado" }
+      #     format.json { head :no_content }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @orden_type_exam.errors, status: :unprocessable_entity }

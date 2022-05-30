@@ -50,20 +50,20 @@ class MuestrasController < ApplicationController
       if @muestra.save && params[:add_muestra]
         format.html { redirect_to new_muestra_path, notice: "Muestra was successfully created." }
         format.json { render :show, status: :created, location: @muestra }
-      elsif params[:finish_muestra]
-        format.html { redirect_to muestra_url(@muestra), notice: "Muestra con la misma orden finalizada." }
-        format.json { render :show, status: :created, location: @muestra }
-      elsif params[:delete_muestra]
-        #@id = OrdenTypeExam.find_by_sql(["SELECT orden_id FROM orden_type_exams ORDER BY orden_id DESC LIMIT 1"])
-        #@id = OrdenTypeExam.select(:orden_id).last(1).to_s.tr('[#<OrdenTypeExam id: nil, orden_id:]>', '')
-        @id = Muestra.select(:orden_id).last(1).to_s.tr('[#<Muestra id: nil, orden_id:]>', '')
-        #puts "impresion " + @id.to_s.tr('[#<OrdenTypeExam id: nil, orden_id:]>', '')
-        eliminar_muestra(@id)
-        eliminar_ordenes_y_examenes_de_ordenes(@id)
-        eliminar_orden(@id)
+      # elsif params[:finish_muestra]
+      #   format.html { redirect_to muestra_url(@muestra), notice: "Muestra con la misma orden finalizada." }
+      #   format.json { render :show, status: :created, location: @muestra }
+      # elsif params[:delete_muestra]
+      #   #@id = OrdenTypeExam.find_by_sql(["SELECT orden_id FROM orden_type_exams ORDER BY orden_id DESC LIMIT 1"])
+      #   #@id = OrdenTypeExam.select(:orden_id).last(1).to_s.tr('[#<OrdenTypeExam id: nil, orden_id:]>', '')
+      #   @id = Muestra.select(:orden_id).last(1).to_s.tr('[#<Muestra id: nil, orden_id:]>', '')
+      #   #puts "impresion " + @id.to_s.tr('[#<OrdenTypeExam id: nil, orden_id:]>', '')
+      #   eliminar_muestra(@id)
+      #   eliminar_ordenes_y_examenes_de_ordenes(@id)
+      #   eliminar_orden(@id)
 
-        format.html { redirect_to new_orden_path, notice: "Proceso eliminado" }
-        format.json { head :no_content }
+      #   format.html { redirect_to new_orden_path, notice: "Proceso eliminado" }
+      #   format.json { head :no_content }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @muestra.errors, status: :unprocessable_entity }

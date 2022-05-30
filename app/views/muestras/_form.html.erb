@@ -28,14 +28,15 @@
 
   <div class="form-group col-md-6">
     <%= form.label :orden_id, style: "display: block" %>
-    <%= form.collection_select :orden_id, Orden.last(1),:id, :id %>
+    <%= form.collection_select :orden_id, Orden.all,:id, :id %>
   </div>
 
   <br>
   <div>
     <%= form.submit "Guardar", class:"btn btn-outline-success", name: "add_muestra"%>
-    <%= form.submit "Finalizar", class:"btn btn-outline-success", name: "finish_muestra" %>
-    <%# <%= link_to "Cancelar", muestras_path, :class => "btn btn-outline-danger"%>
-    <%= form.submit "Cancelar", :class => "btn btn-outline-danger" , name: "delete_muestra"%>
+    <%# <%= form.submit "Finalizar", class:"btn btn-outline-success", name: "finish_muestra" %>
+    <%= link_to "Finalizar", home_path, :class => "btn btn-outline-success"%>
+    <%= link_to "Cancelar", muestras_path, :class => "btn btn-outline-danger"%>
+    <%# <%= form.submit "Cancelar", :class => "btn btn-outline-danger" , name: "delete_muestra"%>
   </div>
 <% end %>
