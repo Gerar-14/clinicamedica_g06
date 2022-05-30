@@ -3,7 +3,14 @@ class OrdensController < ApplicationController
 
   # GET /ordens or /ordens.json
   def index
-    @ordens = Orden.all
+    #@ordens = Orden.all
+    @id_usuario_actual = current_user.id
+    #Esta consulta SQL hace lo mismo que la linea 11
+    #@ordens = Orden.find_by_sql(["SELECT ordens.id, ordens.fecha_examen, ordens.paciente_id, ordens.laboratory_worker_id FROM ordens INNER JOIN laboratory_workers on ordens.laboratory_worker_id = laboratory_workers.id INNER JOIN empleados on laboratory_workers.empleado_id = empleados.id INNER JOIN users on empleados.user_id = users.id WHERE empleados.profesion = 'Laboratorista' and empleados.user_id = ? ", @id_usuario_actual])
+    #Esta consulta SQL es con los metodos de ActiveRecord que usa rails
+    @ordens = Orden.select(:id,:fecha_examen,:paciente_id,:laboratory_worker_id)
+    .joins(laboratory_worker: [empleado: :user])
+    .where('empleados.profesion' => 'Laboratorista').where('empleados.user_id' => @id_usuario_actual)
   end
 
   # GET /ordens/1 or /ordens/1.json
@@ -71,7 +78,7 @@ class OrdensController < ApplicationController
 
   def seleccionado
     @orden = Orden.find(params[:id])
-    @ordenss = OrdenTypeExam.find_by_sql(["select * from orden_type_exams where orden_id = ?", @orden])
+    @orden_seleccionada = OrdenTypeExam.find_by_sql(["select * from orden_type_exams where orden_id = ?", @orden])
   end
 
   private
