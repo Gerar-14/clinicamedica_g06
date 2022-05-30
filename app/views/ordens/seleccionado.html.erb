@@ -1,0 +1,48 @@
+<h1>seleccion</h1>
+
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
+
+  <h1>Ordenes tipo examen</h1>
+
+  <%= link_to "Agregar orden tipo examen", new_orden_type_exam_path, :class => "btn btn-outline-success" %>
+
+  <div id="ordentipoexamen">
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Orden:</th>
+          <th scope="col">Tipo examen:</th>
+          <th scope="col">Estado:</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% @ordenss.each do |orden_type_exam| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= orden_type_exam.orden_id %></td>
+            <td><%= orden_type_exam.type_exam.name_type_examn %></td>
+            <%# VANE HACER UN IF del estado, 0 es finalizado y 1 pendiente o en proceso%>
+            <td><%= orden_type_exam.estado %></td>
+            <td><%= link_to "Ver", orden_type_exam, :class => "btn btn-outline-primary" %></td>
+          </tr>
+          <%#= render country %>
+          <!--              <p><%#= link_to "Ver", orden_type_exam, :class=>"btn btn-outline-primary" %></p>-->
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%#= link_to "Agregar Pais", new_country_path %>
+
+
+<% end %>
+<%= render template: "layouts/base" %>
+
+
+

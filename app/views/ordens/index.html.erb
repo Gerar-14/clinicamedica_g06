@@ -25,7 +25,10 @@
             <td><%= orden.fecha_examen %></td>
             <td><%= orden.paciente.nombre_paciente %></td>
             <td><%= orden.laboratory_worker.empleado.nombre_empleado %></td>
-            <td><%= link_to "Ver", orden, :class => "btn btn-outline-primary" %></td>
+            <td>
+                <%= link_to "Ver", orden, :class => "btn btn-outline-primary" %>
+                <%= link_to "Realizar", seleccionado_orden_path(orden), :class => "btn btn-outline-primary" %>
+            </td>
           </tr>
           <%#= render country %>
           <!--              <p><%#= link_to "Ver", orden, :class=>"btn btn-outline-primary" %></p>-->

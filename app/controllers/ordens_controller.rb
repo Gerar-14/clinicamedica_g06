@@ -1,5 +1,5 @@
 class OrdensController < ApplicationController
-  before_action :set_orden, only: %i[ show edit update destroy ]
+  before_action :set_orden, only: %i[ show edit update destroy seleccionado]
 
   # GET /ordens or /ordens.json
   def index
@@ -67,6 +67,11 @@ class OrdensController < ApplicationController
       format.html { redirect_to ordens_url, notice: "Orden was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def seleccionado
+    @orden = Orden.find(params[:id])
+    @ordenss = OrdenTypeExam.find_by_sql(["select * from orden_type_exams where orden_id = ?", @orden])
   end
 
   private
