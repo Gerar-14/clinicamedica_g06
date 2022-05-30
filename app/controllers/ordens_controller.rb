@@ -14,7 +14,16 @@ class OrdensController < ApplicationController
   def new
     @orden = Orden.new
     @orden_fecha_actual = Time.now.strftime("%Y-%m-%dT%k:%M")
-    @laboratoristas = Orden.find_by_sql("select laboratory_worker_id,fecha_examen,count(laboratory_worker_id) as conteo from ordens WHERE estado = 1 GROUP by laboratory_worker_id, substring(fecha_examen,1,10)")
+    #@labo = Orden.find_by_sql("select laboratory_worker_id,count(laboratory_worker_id) as conteo from ordens WHERE estado = 1 GROUP by laboratory_worker_id")
+    #@laboratory_workers = LaboratoryWorker.find_by_sql("select * from laboratory_workers")
+    #@laboratory_workers.each do |laboratory_worker|
+    #  @labo.each do |l|
+    #    if l.laboratory_worker_id != laboratory_worker.id
+    #      laboratory_workers.destroy(laboratory_worker);
+    #    end
+    #  end
+    #end
+    @laboratoristas = Orden.find_by_sql("SELECT *, count(ordens.laboratory_worker_id) as conteo from ordens INNER JOIN laboratory_workers ON (ordens.laboratory_worker_id =laboratory_workers.id) INNER join empleados on (laboratory_workers.empleado_id = empleados.id) where estado = 1 GROUP by laboratory_worker_id HAVING conteo < 11;")
 
   end
 
