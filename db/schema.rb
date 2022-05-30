@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_27_004838) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_30_033847) do
   create_table "accesos", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "rol_id", null: false
     t.bigint "permiso_id", null: false
@@ -130,6 +130,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_27_004838) do
     t.bigint "orden_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "estado", default: 1, null: false
     t.index ["orden_id"], name: "index_orden_type_exams_on_orden_id"
     t.index ["type_exam_id"], name: "index_orden_type_exams_on_type_exam_id"
   end

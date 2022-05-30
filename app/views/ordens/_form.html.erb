@@ -23,7 +23,7 @@
 
   <div class="form-group col-md-6">
     <%= form.label :laboratory_worker_id, style: "display: block" %>
-    <%= form.collection_select :laboratory_worker_id, LaboratoryWorker.all,:id, :num_junta_vigilancia %>
+    <%= form.collection_select :laboratory_worker_id, @laboratoristas,:laboratory_worker_id, :nombre_empleado %>
   </div>
 
   <br>
