@@ -1,5 +1,5 @@
 class OrdensController < ApplicationController
-  before_action :set_orden, only: %i[ show edit update destroy seleccionado]
+  before_action :set_orden, only: %i[ show edit update destroy seleccionado finalizado]
 
   # GET /ordens or /ordens.json
   def index
@@ -8,7 +8,7 @@ class OrdensController < ApplicationController
     #Esta consulta SQL hace lo mismo que la linea 11
     #@ordens = Orden.find_by_sql(["SELECT ordens.id, ordens.fecha_examen, ordens.paciente_id, ordens.laboratory_worker_id FROM ordens INNER JOIN laboratory_workers on ordens.laboratory_worker_id = laboratory_workers.id INNER JOIN empleados on laboratory_workers.empleado_id = empleados.id INNER JOIN users on empleados.user_id = users.id WHERE empleados.profesion = 'Laboratorista' and empleados.user_id = ? ", @id_usuario_actual])
     #Esta consulta SQL es con los metodos de ActiveRecord que usa rails
-    @ordens = Orden.select(:id,:fecha_examen,:paciente_id,:laboratory_worker_id)
+    @ordens = Orden.select(:id,:fecha_examen,:paciente_id,:laboratory_worker_id, :estado)
     .joins(laboratory_worker: [empleado: :user])
     .where('empleados.profesion' => 'Laboratorista').where('empleados.user_id' => @id_usuario_actual)
   end
@@ -79,6 +79,22 @@ class OrdensController < ApplicationController
   def seleccionado
     @orden = Orden.find(params[:id])
     @orden_seleccionada = OrdenTypeExam.find_by_sql(["select * from orden_type_exams where orden_id = ?", @orden])
+    # @orden_estado_actualizar = Orden.find_by_sql(["update ordens set ordens.estado = 0 where ordens.id = 
+    #   (select DISTINCT orden_id from orden_type_exams where orden_id = ? and orden_type_exams.estado = 1)", @orden])
+  end
+
+  def finalizado
+    @orden = Orden.find(params[:id])
+    @orden_estado_actualizar = Orden.find_by_sql(["update ordens set ordens.estado = 0 where ordens.id in
+      (select orden_id from orden_type_exams where orden_id = ? and orden_type_exams.estado = 1)", @orden])
+
+      @id_usuario_actual = current_user.id
+    #Esta consulta SQL hace lo mismo que la linea 11
+    #@ordens = Orden.find_by_sql(["SELECT ordens.id, ordens.fecha_examen, ordens.paciente_id, ordens.laboratory_worker_id FROM ordens INNER JOIN laboratory_workers on ordens.laboratory_worker_id = laboratory_workers.id INNER JOIN empleados on laboratory_workers.empleado_id = empleados.id INNER JOIN users on empleados.user_id = users.id WHERE empleados.profesion = 'Laboratorista' and empleados.user_id = ? ", @id_usuario_actual])
+    #Esta consulta SQL es con los metodos de ActiveRecord que usa rails
+    @ordens = Orden.select(:id,:fecha_examen,:paciente_id,:laboratory_worker_id, :estado)
+    .joins(laboratory_worker: [empleado: :user])
+    .where('empleados.profesion' => 'Laboratorista').where('empleados.user_id' => @id_usuario_actual)
   end
 
   private

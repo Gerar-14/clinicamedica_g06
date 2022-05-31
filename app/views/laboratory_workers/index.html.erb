@@ -3,7 +3,10 @@
 
   <h1>Laboratoristas</h1>
 
+  <% if @permisos_crud%>
   <%= link_to "Agregar laboratorista", new_laboratory_worker_path, :class => "btn btn-outline-success" %>
+  <% end %>
+
 
   <div id="laboratorista">
     <div class="card-body">
@@ -40,4 +43,5 @@
   </div>
 
 <% end %>
+<%= render template: "home/nav" %>
 <%= render template: "layouts/base" %>

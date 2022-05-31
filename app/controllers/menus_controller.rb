@@ -3,7 +3,7 @@ class MenusController < HomeController
 
   # GET /menus or /menus.json
   def index
-    @menus = Menu.all
+    @menuss = Menu.all
     #@accesos = verificarAcceso()
 
     #ASIDE

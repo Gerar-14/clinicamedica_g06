@@ -23,6 +23,17 @@
       <%= link_to "Regresar", empleados_path, :class => "btn btn-outline-dark" %> &nbsp;
   </div>
 
+  <div class="btn-group">
+  <% @permisos_crud.each do |submenu|%>
+    <% if submenu == 2 %>
+    Eliminar
+    <% elsif submenu == 1 %>
+    Editar
+    <% end %>
+    <% end %>
+    Regresar
+  </div>
+
 <% end %>
 <%= render template: "home/nav" %>
 <%= render template: "layouts/base" %>

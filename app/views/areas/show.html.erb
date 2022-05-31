@@ -3,11 +3,16 @@
 
 <%= render @area %>
 
-<div class="btn-group">
-    <%= link_to "Editar área", edit_area_path(@area), :class => "btn btn-outline-warning" %> &nbsp;
-    <%= link_to "Regresar", areas_path, :class => "btn btn-outline-dark" %> &nbsp;
+  <div class="btn-group">
+  <% @permisos_crud.each do |submenu|%>
+    <% if submenu == 2 %>
     <%= button_to "Eliminar", @area, method: :delete, :class => "btn btn-outline-danger" %>
+    <% elsif submenu == 1 %>
+    <%= link_to "Editar área", edit_area_path(@area), :class => "btn btn-outline-warning" %> &nbsp;
+    <% end %>
+    <% end %>
+    <%= link_to "Regresar", areas_path, :class => "btn btn-outline-dark" %> &nbsp;
   </div>
-
 <% end %>
+<%= render template: "home/nav" %>
 <%= render template: "layouts/base" %>
