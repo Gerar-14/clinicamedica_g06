@@ -3,7 +3,9 @@
 
   <h1>Áreas</h1>
 
+  <% if @permisos_crud%>
   <%= link_to "Agregar área", new_area_path, :class => "btn btn-outline-success" %>
+  <% end %>
 
   <div id="areas">
     <div class="card-body">
@@ -30,4 +32,5 @@
 
 
 <% end %>
+<%= render template: "home/nav" %>
 <%= render template: "layouts/base" %>

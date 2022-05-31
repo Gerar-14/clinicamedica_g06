@@ -1,22 +1,70 @@
-class PacientesController < ApplicationController
+class PacientesController < HomeController
   before_action :set_paciente, only: %i[ show edit update destroy ]
 
   # GET /pacientes or /pacientes.json
   def index
     @pacientes = Paciente.all
+
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Mostar el boton crear verde, se le debe poner como argumento 2
+    @menu_principal = "pacientes"
+    @permisos_crud = get_crud_permisos(@menu_principal, 2)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia seguridad
+    @menu_show = Paciente.all
+    @ruta_local = "/pacientes"
+    @direccion = direccionador(@ruta_local,@menu_show)   
+    @direccion
+    #Finaliza seguridad    
   end
 
   # GET /pacientes/1 or /pacientes/1.json
   def show
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Inicia mostrar o no boton editar y eliminar
+    @menu_principal = "pacientes" #En realidad es de la ruta por eso va plural
+    @permisos_crud = get_crud_permisos(@menu_principal, 1)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia Seguridad 
+    @menu_detalle = @paciente #Singular
+    @ruta_local = "/pacientes/:id" #plural
+    @direccion = direccionador(@ruta_local,@menu_detalle)   
+    @direccion
+    #Termina Seguridad    
   end
 
   # GET /pacientes/new
   def new
     @paciente = Paciente.new
+
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu = Paciente.new #Singular y el primero en mayuscula
+    @ruta_local = "/pacientes/new" #plural
+    @direccion = direccionador(@ruta_local,@menu)   
+    @direccion
+    #Finaliza Seguridad    
   end
 
   # GET /pacientes/1/edit
   def edit
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu_edit = edit_paciente_path #singular
+    @ruta_local = "/pacientes/:id/edit"
+    @direccion = direccionador(@ruta_local,@menu_edit)   
+    @direccion
+    #Finaliza Seguridad    
   end
 
   # POST /pacientes or /pacientes.json
@@ -49,12 +97,12 @@ class PacientesController < ApplicationController
 
   # DELETE /pacientes/1 or /pacientes/1.json
   def destroy
-    @paciente.destroy
-
-    respond_to do |format|
-      format.html { redirect_to pacientes_url, notice: "Paciente was successfully destroyed." }
-      format.json { head :no_content }
-    end
+   #definimos la ruta para eliminar
+   @ruta_local = "/pacientes/:id"
+   @url_delete = @paciente #Singular
+   @url_path = pacientes_url #Plural
+   #metodo para determinar si tiene permisos de eliminar 
+   direccionador_destroy(@ruta_local, @url_delete, @url_path, "Paciente ") #ultimo argumento es para mensaje de exito
   end
 
   private
