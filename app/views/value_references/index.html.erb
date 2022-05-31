@@ -3,7 +3,9 @@
 
   <h1>Valores de referencia</h1>
 
+  <% if @permisos_crud%>
   <%= link_to "Agregar valor de referencia", new_value_reference_path, :class => "btn btn-outline-success" %>
+  <% end %>
 
   <div id="valuereference">
     <div class="card-body">
@@ -38,4 +40,5 @@
 
 
 <% end %>
+<%= render template: "home/nav" %>
 <%= render template: "layouts/base" %>

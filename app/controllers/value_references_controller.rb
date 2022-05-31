@@ -1,22 +1,70 @@
-class ValueReferencesController < ApplicationController
+class ValueReferencesController < HomeController
   before_action :set_value_reference, only: %i[ show edit update destroy ]
 
   # GET /value_references or /value_references.json
   def index
     @value_references = ValueReference.all
+  
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Mostar el boton crear verde, se le debe poner como argumento 2
+    @menu_principal = "value_references"
+    @permisos_crud = get_crud_permisos(@menu_principal, 2)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia seguridad
+    @menu_show = ValueReference.all
+    @ruta_local = "/value_references"
+    @direccion = direccionador(@ruta_local,@menu_show)   
+    @direccion
+    #Finaliza seguridad
   end
 
   # GET /value_references/1 or /value_references/1.json
   def show
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Inicia mostrar o no boton editar y eliminar
+    @menu_principal = "value_references" #En realidad es de la ruta por eso va plural
+    @permisos_crud = get_crud_permisos(@menu_principal, 1)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia Seguridad 
+    @menu_detalle = @value_reference #Singular
+    @ruta_local = "/value_references/:id" #plural
+    @direccion = direccionador(@ruta_local,@menu_detalle)   
+    @direccion
+    #Termina Seguridad    
   end
 
   # GET /value_references/new
   def new
     @value_reference = ValueReference.new
+
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu = ValueReference.new #Singular y el primero en mayuscula
+    @ruta_local = "/value_references/new" #plural
+    @direccion = direccionador(@ruta_local,@menu)   
+    @direccion
+    #Finaliza Seguridad    
   end
 
   # GET /value_references/1/edit
   def edit
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu_edit = edit_value_reference_path #singular
+    @ruta_local = "/value_references/:id/edit"
+    @direccion = direccionador(@ruta_local,@menu_edit)   
+    @direccion
+    #Finaliza Seguridad    
   end
 
   # POST /value_references or /value_references.json
@@ -49,12 +97,12 @@ class ValueReferencesController < ApplicationController
 
   # DELETE /value_references/1 or /value_references/1.json
   def destroy
-    @value_reference.destroy
-
-    respond_to do |format|
-      format.html { redirect_to value_references_url, notice: "Value reference was successfully destroyed." }
-      format.json { head :no_content }
-    end
+   #definimos la ruta para eliminar
+   @ruta_local = "/value_references/:id"
+   @url_delete = @value_reference #Singular
+   @url_path = value_references_url #Plural
+   #metodo para determinar si tiene permisos de eliminar 
+   direccionador_destroy(@ruta_local, @url_delete, @url_path, "Valor de referencia ") #ultimo argumento es para mensaje de exito    
   end
 
   private
