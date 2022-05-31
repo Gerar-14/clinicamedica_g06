@@ -1,10 +1,10 @@
 <% content_for :content do %>
   <p style="color: green"><%= notice %></p>
 
-  <h1>Pais</h1>
+  <h1>País</h1>
 
   <% if @permisos_crud%>
-    <%= link_to "Agregar Pais", new_country_path, :class => "btn btn-outline-success" %>
+    <%= link_to "Agregar País", new_country_path, :class => "btn btn-outline-success" %>
   <% end %>
 
   <div id="countries">
@@ -13,17 +13,18 @@
         <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Pais:</th>
+          <th scope="col">País:</th>
           <th scope="col">Acciones</th>
         </tr>
         </thead>
         <tbody>
-
+        <div hidden="true"><%= @number = 1 %></div>
         <% @countries.each do |country| %>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row"><%= @number %></th>
             <td><%= country.nombre_country %></td>
             <td><%= link_to "Ver", country, :class => "btn btn-outline-primary" %></td>
+            <div hidden="true"><%= @number = @number + 1 %></div>
           </tr>
           <%#= render country %>
           <!--              <p><%#= link_to "Ver", country, :class=>"btn btn-outline-primary" %></p>-->

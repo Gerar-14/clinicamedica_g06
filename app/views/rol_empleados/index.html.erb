@@ -18,12 +18,15 @@
         </tr>
         </thead>
         <tbody>
+        <div hidden="true"><%= @number = 1 %></div>
         <% @rol_empleados.each do |rol_empleado| %>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row"><%= @number %></th>
             <td><%= rol_empleado.rol.nombre_rol %></td>
             <td><%= rol_empleado.empleado.nombre_empleado %></td>
             <th><%= link_to "Ver", rol_empleado, :class => "btn btn-outline-primary" %></th>
+            <div hidden="true"><%= @number = @number + 1 %></div>
+          </tr>
         <% end %>
         </tr>
         </tbody>

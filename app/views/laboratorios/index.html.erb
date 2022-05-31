@@ -18,13 +18,14 @@
         </tr>
         </thead>
         <tbody>
-
+        <div hidden="true"><%= @number = 1 %></div>
         <% @laboratorios.each do |laboratorio| %>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row"><%= @number %></th>
             <td><%= laboratorio.nombre_laboratorio %></td>
             <td><%= link_to "Ver", laboratorio, :class => "btn btn-outline-primary" %></td>
           </tr>
+          <div hidden="true"><%= @number = @number + 1 %></div>
           <%#= render country %>
           <!--              <p><%#= link_to "Ver", laboratorio, :class=>"btn btn-outline-primary" %></p>-->
         <% end %>

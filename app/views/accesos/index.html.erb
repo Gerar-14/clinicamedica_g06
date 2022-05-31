@@ -17,12 +17,15 @@
         </tr>
         </thead>
         <tbody>
+        <div hidden="true"><%= @number = 1 %></div>
         <% @accesos.each do |acceso| %>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row"><%= @number %></th>
             <td><%= acceso.rol.nombre_rol %></td>
             <td><%= acceso.permiso.nombre_permiso %></td>
             <th><%= link_to "Ver", acceso, :class => "btn btn-outline-primary" %></th>
+            <div hidden="true"><%= @number = @number + 1 %></div>
+          </tr>
         <% end %>
         </tbody>
       </table>

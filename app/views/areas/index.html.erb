@@ -16,11 +16,13 @@
         </tr>
         </thead>
         <tbody>
+        <div hidden="true"><%= @number = 1 %></div>
         <% @areas.each do |area| %>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row"><%= @number %></th>
             <td><%= area.nombre_area %></td>
             <td><%= link_to "Ver", area, :class => "btn btn-outline-primary" %></td>
+            <div hidden="true"><%= @number = @number + 1 %></div>
           </tr>
         <% end %>
         </tbody>

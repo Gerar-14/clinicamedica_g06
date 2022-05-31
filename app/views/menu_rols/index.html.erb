@@ -17,13 +17,16 @@
           <th scope="col">Acciones</th>
         </tr>
         </thead>
+        
         <tbody>
+        <div hidden="true"><%= @number = 1 %></div>
         <% @menu_rols.each do |menu_rol| %>
           <tr>
-            <td scope="row">1</td>
+            <th scope="row"><%= @number %></th>
             <td><%= menu_rol.menu.nombre %></td>
             <td><%= menu_rol.rol.nombre_rol %></td>
             <td><%= link_to "Ver", menu_rol, :class => "btn btn-outline-primary" %></td>
+            <div hidden="true"><%= @number = @number + 1 %></div>
           </tr>
         <% end %>
         </tbody>

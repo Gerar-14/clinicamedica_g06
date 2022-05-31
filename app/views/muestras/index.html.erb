@@ -16,12 +16,13 @@
         </tr>
         </thead>
         <tbody>
-
+        <div hidden="true"><%= @number = 1 %></div>
         <% @muestras.each do |muestra| %>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row"><%= @number %></th>
             <td><%= muestra.tipo_muestra %></td>
             <td><%= link_to "Ver", muestra, :class => "btn btn-outline-primary" %></td>
+            <div hidden="true"><%= @number = @number + 1 %></div>
           </tr>
           <%#= render country %>
           <!--              <p><%#= link_to "Ver", muestra, :class=>"btn btn-outline-primary" %></p>-->

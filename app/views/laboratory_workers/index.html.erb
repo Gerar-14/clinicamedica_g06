@@ -19,16 +19,20 @@
           <th scope="col">Acciones</th>
         </tr>
         </thead>
+        
         <tbody>
+        <div hidden="true"><%= @number = 1 %></div>
         <% @laboratory_workers.each do |laboratory_worker| %>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row"><%= @number %></th>
             <td><%= laboratory_worker.empleado.nombre_empleado %></td>
             <td><%= laboratory_worker.empleado.apellido_empleado %></td>
             <td><%= laboratory_worker.num_junta_vigilancia %></td>
             <td><%= laboratory_worker.empleado.dui_empleado %></td>
             <td><%= laboratory_worker.laboratorio.nombre_laboratorio %></td>
             <th><%= link_to "Ver", laboratory_worker, :class => "btn btn-outline-primary" %></th>
+            <div hidden="true"><%= @number = @number + 1 %></div>
+          </tr>
         <% end %>
         </tbody>
       </table>

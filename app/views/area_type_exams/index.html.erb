@@ -1,14 +1,37 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Area type exams</h1>
+  <h1>Área tipo examen</h1>
 
-<div id="area_type_exams">
-  <% @area_type_exams.each do |area_type_exam| %>
-    <%= render area_type_exam %>
-    <p>
-      <%= link_to "Show this area type exam", area_type_exam %>
-    </p>
-  <% end %>
-</div>
+  <%= link_to "Agregar área tipo examen", new_area_type_exam_path, :class => "btn btn-outline-success" %>
 
-<%= link_to "New area type exam", new_area_type_exam_path %>
+  <div id="area_type_exam">
+    <div class="card-body">
+      <table id="datatablesSimple" class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Área </th>
+          <th scope="col">Tipo de examen</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <div hidden="true"><%= @number = 1 %></div>
+        <% @area_type_exams.each do |area_type_exam| %>
+          <tr>
+            <th scope="row"><%= @number %></th>
+            <td><%= area_type_exam.area.nombre_area %></td>
+            <td><%= area_type_exam.type_exam.name_type_examn %></td>
+            <th><%= link_to "Ver", area_type_exam, :class => "btn btn-outline-primary" %></th>
+            <div hidden="true"><%= @number = @number + 1 %></div>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<% end %>
+
+<%= render template: "layouts/base" %>
+

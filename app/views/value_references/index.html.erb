@@ -17,13 +17,14 @@
         </tr>
         </thead>
         <tbody>
-
+        <div hidden="true"><%= @number = 1 %></div>
         <% @value_references.each do |value_reference| %>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row"><%= @number %></th>
             <td><%= value_reference.value_reference %></td>      
             <td><%= value_reference.parametro.nombre_parametro %></td>
             <td><%= link_to "Ver", value_reference, :class => "btn btn-outline-primary" %></td>
+            <div hidden="true"><%= @number = @number + 1 %></div>
           </tr>
           <%#= render country %>
           <!--              <p><%#= link_to "Ver", muestra, :class=>"btn btn-outline-primary" %></p>-->

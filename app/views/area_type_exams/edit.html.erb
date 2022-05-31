@@ -1,10 +1,14 @@
-<h1>Editing area type exam</h1>
+<% content_for :content do %>
+  <h1>Editar área tipo examen</h1>
 
 <%= render "form", area_type_exam: @area_type_exam %>
 
 <br>
 
-<div>
-  <%= link_to "Show this area type exam", @area_type_exam %> |
-  <%= link_to "Back to area type exams", area_type_exams_path %>
-</div>
+<!--<div>-->
+<!--  <%#= link_to "Ver", @laboratorio %> |-->
+  <%#= link_to "Regresar", laboratorios_path %>
+<!--</div>-->
+<% end %>
+
+<%= render template: "layouts/base" %>

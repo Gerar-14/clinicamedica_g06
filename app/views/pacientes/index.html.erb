@@ -19,15 +19,16 @@
         </tr>
         </thead>
         <tbody>
-
+        <div hidden="true"><%= @number = 1 %></div>
         <% @pacientes.each do |paciente| %>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row"><%= @number %></th>
             <td><%= paciente.nombre_paciente + " " + paciente.apellido_paciente %></td>
             <td><%= paciente.telefono_celular %></td>
             <td><%= paciente.tipo_sangre.nombre_tipo_sangre %></td>
             <td><%= paciente.municipio.nombre_municipio %></td>
             <td><%= link_to "Ver", paciente, :class => "btn btn-outline-primary" %></td>
+            <div hidden="true"><%= @number = @number + 1 %></div>
           </tr>
           <%#= render country %>
           <!--              <p><%#= link_to "Ver", muestra, :class=>"btn btn-outline-primary" %></p>-->
