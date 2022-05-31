@@ -3,7 +3,9 @@
 
   <h1>Ordenes de exámenes</h1>
 
+  <% if @permisos_crud%>
   <%= link_to "Agregar orden de examen", new_orden_path, :class => "btn btn-outline-success" %>
+  <% end %>
 
   <div id="ordenes">
     <div class="card-body">
@@ -53,5 +55,6 @@
 
 
 <% end %>
+<%= render template: "home/nav" %>
 <%= render template: "layouts/base" %>
 
