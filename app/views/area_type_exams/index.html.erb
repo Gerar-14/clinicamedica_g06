@@ -3,8 +3,6 @@
 
   <h1>Área tipo examen</h1>
 
-  <%= link_to "Agregar área tipo examen", new_area_type_exam_path, :class => "btn btn-outline-success" %>
-
   <div id="area_type_exam">
     <div class="card-body">
       <table id="datatablesSimple" class="table">
@@ -32,6 +30,6 @@
   </div>
 
 <% end %>
-
+<%= render template: "home/nav" %>
 <%= render template: "layouts/base" %>
 
