@@ -1,22 +1,70 @@
-class ResultadosController < ApplicationController
+class ResultadosController < HomeController
   before_action :set_resultado, only: %i[ show edit update destroy ]
 
   # GET /resultados or /resultados.json
   def index
     @resultados = Resultado.all
+
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Mostar el boton crear verde, se le debe poner como argumento 2
+    @menu_principal = "resultados"
+    @permisos_crud = get_crud_permisos(@menu_principal, 2)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia seguridad
+    @menu_show = Resultado.all
+    @ruta_local = "/resultados"
+    @direccion = direccionador(@ruta_local,@menu_show)   
+    @direccion
+    #Finaliza seguridad    
   end
 
   # GET /resultados/1 or /resultados/1.json
   def show
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Inicia mostrar o no boton editar y eliminar
+    @menu_principal = "resultados" #En realidad es de la ruta por eso va plural
+    @permisos_crud = get_crud_permisos(@menu_principal, 1)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia Seguridad 
+    @menu_detalle = @resultado #Singular
+    @ruta_local = "/resultados/:id" #plural
+    @direccion = direccionador(@ruta_local,@menu_detalle)   
+    @direccion
+    #Termina Seguridad    
   end
 
   # GET /resultados/new
   def new
     @resultado = Resultado.new
+
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu = Resultado.new #Singular y el primero en mayuscula
+    @ruta_local = "/resultados/new" #plural
+    @direccion = direccionador(@ruta_local,@menu)   
+    @direccion
+    #Finaliza Seguridad    
   end
 
   # GET /resultados/1/edit
   def edit
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu_edit = edit_resultado_path #singular
+    @ruta_local = "/resultados/:id/edit"
+    @direccion = direccionador(@ruta_local,@menu_edit)   
+    @direccion
+    #Finaliza Seguridad    
   end
 
   # POST /resultados or /resultados.json
@@ -49,12 +97,12 @@ class ResultadosController < ApplicationController
 
   # DELETE /resultados/1 or /resultados/1.json
   def destroy
-    @resultado.destroy
-
-    respond_to do |format|
-      format.html { redirect_to resultados_url, notice: "Resultado was successfully destroyed." }
-      format.json { head :no_content }
-    end
+   #definimos la ruta para eliminar
+   @ruta_local = "/resultados/:id"
+   @url_delete = @resultado #Singular
+   @url_path = resultados_url #Plural
+   #metodo para determinar si tiene permisos de eliminar 
+   direccionador_destroy(@ruta_local, @url_delete, @url_path, "Resultado ") #ultimo argumento es para mensaje de exito    
   end
 
   private

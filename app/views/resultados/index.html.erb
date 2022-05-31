@@ -3,7 +3,9 @@
 
   <h1>Resultados</h1>
 
+  <% if @permisos_crud%>
   <%= link_to "Agregar resultado", new_resultado_path, :class => "btn btn-outline-success" %>
+  <% end %>
 
   <div id="resultados">
     <div class="card-body">
@@ -40,4 +42,5 @@
 
 
 <% end %>
+<%= render template: "home/nav" %>
 <%= render template: "layouts/base" %>
