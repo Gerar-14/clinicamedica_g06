@@ -149,6 +149,9 @@ class OrdensController < HomeController
   end
 
   def seleccionado
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
     @orden = Orden.find(params[:id])
     @orden_seleccionada = OrdenTypeExam.find_by_sql(["select * from orden_type_exams where orden_id = ?", @orden])
     # @orden_estado_actualizar = Orden.find_by_sql(["update ordens set ordens.estado = 0 where ordens.id = 
@@ -156,9 +159,22 @@ class OrdensController < HomeController
   end
 
   def finalizado
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
     @orden = Orden.find(params[:id])
-    @orden_estado_actualizar = Orden.find_by_sql(["update ordens set ordens.estado = 0 where ordens.id in
-      (select orden_id from orden_type_exams where orden_id = ? and orden_type_exams.estado = 1)", @orden])
+    
+    @orden_condicion = comprobar_estado_examenes(params[:id])
+
+    if @orden_condicion
+      @orden_estado_actualizar = Orden.find_by_sql(["update ordens set ordens.estado = 0 where ordens.id = ?", @orden])
+    else
+      respond_to do |format|
+        format.html { redirect_to finalizado_orden_path, notice: "F la orden." }
+        format.json { render :finalizado, status: :ok, location: @orden }
+        
+      end
+    end
 
       @id_usuario_actual = current_user.id
     #Esta consulta SQL hace lo mismo que la linea 11
@@ -167,6 +183,20 @@ class OrdensController < HomeController
     @ordens = Orden.select(:id,:fecha_examen,:paciente_id,:laboratory_worker_id, :estado)
     .joins(laboratory_worker: [empleado: :user])
     .where('empleados.profesion' => 'Laboratorista').where('empleados.user_id' => @id_usuario_actual)
+  end
+
+  def comprobar_estado_examenes(idOrden)
+    #recibimos el numero de examenes de esta orden
+    @orders_all = OrdenTypeExam.find_by_sql(["SELECT * FROM orden_type_exams where orden_id = ?;", idOrden])
+
+    @orders_finish = OrdenTypeExam.find_by_sql(["SELECT * FROM orden_type_exams where orden_id = ? and estado = 0;", idOrden])
+
+    if @orders_all == @orders_finish
+      return true
+    else
+      return false
+    end
+
   end
 
   private
