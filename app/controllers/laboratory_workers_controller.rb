@@ -42,6 +42,7 @@ class LaboratoryWorkersController < HomeController
   # GET /laboratory_workers/new
   def new
     @laboratory_worker = LaboratoryWorker.new
+    @laboratoristas = Empleado.find_by_sql("SELECT * FROM empleados INNER join rol_empleados on (empleados.id = rol_empleados.empleado_id) WHERE rol_id= 3 and empleados.id not in (SELECT empleado_id from laboratory_workers)")
 
     #ASIDE
     @menu_rol_nav = menus_y_submenus_usuario(1)

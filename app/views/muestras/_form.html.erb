@@ -23,7 +23,7 @@
 
   <div class="form-group col-md-6">
     <%= form.label :"Recibido por:", style: "display: block" %>
-    <%= form.collection_select :empleado_id, Empleado.all,:id, :nombre_empleado %>
+    <%= form.collection_select :empleado_id, @recibio,:id, :nombre_empleado,{},{class:"form-control"} %>
   </div>
 
   <div class="form-group col-md-6">
