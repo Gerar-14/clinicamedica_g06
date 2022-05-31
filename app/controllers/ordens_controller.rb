@@ -107,7 +107,9 @@ class OrdensController < HomeController
     @ruta_local = "/ordens/:id/edit"
     @direccion = direccionador(@ruta_local,@menu_edit)   
     @direccion
-    #Finaliza Seguridad    
+    #Finaliza Seguridad 
+    
+    @laboratoristas = Orden.find_by_sql("SELECT *, count(ordens.laboratory_worker_id) as conteo from ordens INNER JOIN laboratory_workers ON (ordens.laboratory_worker_id =laboratory_workers.id) INNER join empleados on (laboratory_workers.empleado_id = empleados.id) where estado = 1 GROUP by laboratory_worker_id HAVING conteo < 10;")
   end
 
   # POST /ordens or /ordens.json
