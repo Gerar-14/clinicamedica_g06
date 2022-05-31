@@ -171,11 +171,7 @@ class OrdensController < HomeController
     if @orden_condicion
       @orden_estado_actualizar = Orden.find_by_sql(["update ordens set ordens.estado = 0 where ordens.id = ?", @orden])
     else
-      respond_to do |format|
-        format.html { redirect_to finalizado_orden_path, notice: "F la orden." }
-        format.json { render :finalizado, status: :ok, location: @orden }
-        
-      end
+      
     end
 
       @id_usuario_actual = current_user.id
