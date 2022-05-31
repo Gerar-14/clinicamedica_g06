@@ -352,10 +352,10 @@ class HomeController < ApplicationController
   def get_permiso_of_empleado_by_id_empleado(id_empleado)
     @permisos_empleado = Permiso.find_by_sql(["SELECT * from permisos where id in (SELECT permiso_id from accesos where rol_id in (SELECT rol_id from rol_empleados where empleado_id = ?))", id_empleado])
     
-    puts "Estos son los permisos de este usuario"
-    @permisos_empleado.each do |permiso|
-      puts permiso.ruta
-    end
+    # puts "Estos son los permisos de este usuario"
+    # @permisos_empleado.each do |permiso|
+    #   puts permiso.ruta
+    # end
 
     return @permisos_empleado
   end
