@@ -1,12 +1,13 @@
 class PermisosController < HomeController
   before_action :set_permiso, only: %i[ show edit update destroy ]
+  before_action :set_permiso1, only: %i[ show edit update destroy ]
 
   # GET /permisos or /permisos.json
   def index
     @permisos = Permiso.all
 
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Mostar el boton crear verde, se le debe poner como argumento 2
     @menu_principal = "permisos"
@@ -24,7 +25,7 @@ class PermisosController < HomeController
   # GET /permisos/1 or /permisos/1.json
   def show
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Inicia mostrar o no boton editar y eliminar
     @menu_principal = "permisos" #En realidad es de la ruta por eso va plural
@@ -32,7 +33,7 @@ class PermisosController < HomeController
     #finaliza mostrar o no boton editar y eliminar
 
     #Inicia Seguridad 
-    @menu_detalle = @permiso #Singular
+    @menu_detalle = @permiso1 #Singular
     @ruta_local = "/permisos/:id" #plural
     @direccion = direccionador(@ruta_local,@menu_detalle)   
     @direccion
@@ -44,7 +45,7 @@ class PermisosController < HomeController
     @permiso = Permiso.new
     
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Iniciar Seguridad
     @menu = Permiso.new #Singular y el primero en mayuscula
@@ -57,7 +58,7 @@ class PermisosController < HomeController
   # GET /permisos/1/edit
   def edit
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Iniciar Seguridad
     @menu_edit = edit_permiso_path #singular
@@ -109,6 +110,10 @@ class PermisosController < HomeController
     # Use callbacks to share common setup or constraints between actions.
     def set_permiso
       @permiso = Permiso.find(params[:id])
+    end
+
+    def set_permiso1
+      @permiso1 = Permiso.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

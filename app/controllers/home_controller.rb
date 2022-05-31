@@ -408,8 +408,8 @@ class HomeController < ApplicationController
 
     sub_menu_list.each do |sub_menu|
       @submen_crud = get_crud_permiso_by_id_menu(sub_menu.id)
-      puts "Estos son los permisos"
-      puts @submen_crud
+      #puts "Estos son los permisos"
+      #puts @submen_crud
 
       if  @submen_crud ==  4
         permisos_crud << 1

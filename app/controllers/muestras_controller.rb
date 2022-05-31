@@ -1,17 +1,59 @@
-class MuestrasController < ApplicationController
+class MuestrasController < HomeController
   before_action :set_muestra, only: %i[ show edit update destroy ]
 
   # GET /muestras or /muestras.json
   def index
     @muestras = Muestra.all
+
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+    # Pegar en la vista <%= render template: "home/nav" %>
+
+    #mostrara el boton crar verde, poner como argumento 2
+    @menu_principal = "muestras"
+    @permisos_crud = get_crud_permisos(@menu_principal, 2)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia seguridad
+    @menu_show = Muestra.all
+    @ruta_local = "/muestras"
+    @direccion = direccionador(@ruta_local,@menu_show)   
+    @direccion
+    #Finaliza seguridad
   end
 
   # GET /muestras/1 or /muestras/1.json
   def show
+
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+    
+    #Inicia mostrar o no boton editar y eliminar
+    @menu_principal = "muestras"
+    @permisos_crud = get_crud_permisos(@menu_principal, 1)
+    #finaliza mostrar o no boton editar y eliminar
+    
+    #Inicia Seguridad 
+    @menu_detalle = @muestra #@menu es como el modelo pero en singular
+    @ruta_local = "/muestras/:id"
+    @direccion = direccionador(@ruta_local,@menu_detalle)   
+    @direccion
+    #Termina Seguridad
   end
 
   # GET /muestras/new
   def new
+
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu = Muestra.new
+    @ruta_local = "/muestras/new"
+    @direccion = direccionador(@ruta_local,@menu)   
+    @direccion
+    #Finaliza Seguridad
+
     @muestra = Muestra.new
     @muestra_fecha_actual = Time.now.strftime("%Y-%m-%dT%k:%M")
   #  Para mostrar la tabla con las muestras para el paciente
@@ -21,6 +63,17 @@ class MuestrasController < ApplicationController
 
   # GET /muestras/1/edit
   def edit
+
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu_edit = edit_muestra_path
+    @ruta_local = "/muestras/:id/edit"
+    @direccion = direccionador(@ruta_local,@menu_edit)   
+    @direccion
+    #Finaliza Seguridad
+
   end
 
   # Funcion que devuelve las muestras de examenes mediante el id de la orden
@@ -86,18 +139,12 @@ class MuestrasController < ApplicationController
 
   # DELETE /muestras/1 or /muestras/1.json
   def destroy
-    @muestra.destroy
-
-    respond_to do |format|
-        if params[:boton_eliminar_new]
-          format.html { redirect_to new_muestra_path, notice: "Muestra fue eliminada correctamente." }
-          format.json { head :no_content }
-        # elsif params[:boton_eliminar_new]
-        else
-          format.html { redirect_to muestras_url, notice: "Muestra fue eliminada correctamente." }
-          format.json { head :no_content }
-        end
-    end
+    #definimos la ruta para eliminar
+   @ruta_local = "/muestras/:id"
+   @url_delete = @muestra #Singular
+   @url_path = muestra_url #Plural
+   #metodo para determinar si tiene permisos de eliminar 
+   direccionador_destroy(@ruta_local, @url_delete, @url_path, "Muestra")
   end
 
   private

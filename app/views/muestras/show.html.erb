@@ -4,11 +4,17 @@
 <%= render @muestra %>
 
 <div class="btn-group">
+<% @permisos_crud.each do |submenu|%>
+    <% if submenu == 2 %>
     <%= link_to "Editar muestra", edit_muestra_path(@muestra), :class => "btn btn-outline-warning" %> &nbsp;
+    <% elsif submenu == 1 %>
+    <%= button_to "Eliminar", @muestra, method: :delete, :class => "btn btn-outline-danger",name: "boton_eliminar_show" %>
+    <% end %>
+    <% end %>
     <%= link_to "Regresar", muestras_path, :class => "btn btn-outline-dark" %> &nbsp;
-    <%= button_to "Eliminar", @muestra, method: :delete, :class => "btn btn-outline-danger",
-        name: "boton_eliminar_show" %>
+        
   </div>
 
 <% end %>
+<%= render template: "home/nav" %>
 <%= render template: "layouts/base" %>
