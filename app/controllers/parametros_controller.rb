@@ -1,14 +1,42 @@
-class ParametrosController < ApplicationController
+class ParametrosController < HomeController
   before_action :set_parametro, only: %i[ show edit update destroy ]
 
   # GET /parametros or /parametros.json
   def index
     @parametros = Parametro.all
-    
+
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Mostar el boton crear verde, se le debe poner como argumento 2
+    @menu_principal = "parametros"
+    @permisos_crud = get_crud_permisos(@menu_principal, 2)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia seguridad
+    @menu_show = Parametro.all
+    @ruta_local = "/parametros"
+    @direccion = direccionador(@ruta_local,@menu_show)   
+    @direccion
+    #Finaliza seguridad        
   end
 
   # GET /parametros/1 or /parametros/1.json
   def show
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Inicia mostrar o no boton editar y eliminar
+    @menu_principal = "parametros" #En realidad es de la ruta por eso va plural
+    @permisos_crud = get_crud_permisos(@menu_principal, 1)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia Seguridad 
+    @menu_detalle = @parametro #Singular
+    @ruta_local = "/parametros/:id" #plural
+    @direccion = direccionador(@ruta_local,@menu_detalle)   
+    @direccion
+    #Termina Seguridad    
   end
 
   # GET /parametros/new
@@ -17,6 +45,16 @@ class ParametrosController < ApplicationController
     @id_type_examn = TypeExam.select(:id).last(1).to_s.tr('[#<TypeExam id:]>', '')
     @condicion_parametro = TypeExamParametro.find_by_sql(["select id, nombre_parametro from parametros where id in ( select parametro_id from type_exam_parametros where type_exam_id = ? )", @id_type_examn])
     @hash_parametros = parametros_padre_hijo_by_type_exam(@id_type_examn)
+
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu = Parametro.new #Singular y el primero en mayuscula
+    @ruta_local = "/parametros/new" #plural
+    @direccion = direccionador(@ruta_local,@menu)   
+    @direccion
+    #Finaliza Seguridad    
   end
 
   def parametros_padre_hijo_by_type_exam(idTypeExam)
@@ -45,6 +83,15 @@ where type_exam_id = ?) tep on parametros.id = tep.parametro_id", idTypeExam])
 
   # GET /parametros/1/edit
   def edit
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu_edit = edit_parametro_path #singular
+    @ruta_local = "/parametros/:id/edit"
+    @direccion = direccionador(@ruta_local,@menu_edit)   
+    @direccion
+    #Finaliza Seguridad    
   end
 
   def insertar_tipo_examen_parametro1(idParametro, idTipoExamen)
@@ -103,12 +150,12 @@ where type_exam_id = ?) tep on parametros.id = tep.parametro_id", idTypeExam])
 
   # DELETE /parametros/1 or /parametros/1.json
   def destroy
-    @parametro.destroy
-
-    respond_to do |format|
-      format.html { redirect_to parametros_url, notice: "Parametro was successfully destroyed." }
-      format.json { head :no_content }
-    end
+   #definimos la ruta para eliminar
+   @ruta_local = "/parametros/:id"
+   @url_delete = @parametro #Singular
+   @url_path = parametros_url #Plural
+   #metodo para determinar si tiene permisos de eliminar 
+   direccionador_destroy(@ruta_local, @url_delete, @url_path, "Parametro ") #ultimo argumento es para mensaje de exito    
   end
 
   private

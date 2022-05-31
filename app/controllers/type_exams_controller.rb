@@ -27,7 +27,7 @@ class TypeExamsController < HomeController
     @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Inicia mostrar o no boton editar y eliminar
-    @menu_principal = "type_exams" #En realidad es de la ruta por eso va plural
+    @menu_principal = "/type_exams/" #En realidad es de la ruta por eso va plural
     @permisos_crud = get_crud_permisos(@menu_principal, 1)
     #finaliza mostrar o no boton editar y eliminar
 

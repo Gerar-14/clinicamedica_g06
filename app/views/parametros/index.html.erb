@@ -3,7 +3,9 @@
 
   <h1>Parametros</h1>
 
+  <% if @permisos_crud%>
   <%= link_to "Agregar parametro", new_parametro_path, :class => "btn btn-outline-success" %>
+  <% end %>
 
   <div id="parametros">
     <div class="card-body">
@@ -36,4 +38,5 @@
 
 
 <% end %>
+<%= render template: "home/nav" %>
 <%= render template: "layouts/base" %>
