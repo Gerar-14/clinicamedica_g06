@@ -1,22 +1,70 @@
-class TypeExamsController < ApplicationController
+class TypeExamsController < HomeController
   before_action :set_type_exam, only: %i[ show edit update destroy ]
 
   # GET /type_exams or /type_exams.json
   def index
     @type_exams = TypeExam.all
+
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Mostar el boton crear verde, se le debe poner como argumento 2
+    @menu_principal = "type_exams"
+    @permisos_crud = get_crud_permisos(@menu_principal, 2)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia seguridad
+    @menu_show = TypeExam.all
+    @ruta_local = "/type_exams"
+    @direccion = direccionador(@ruta_local,@menu_show)   
+    @direccion
+    #Finaliza seguridad    
   end
 
   # GET /type_exams/1 or /type_exams/1.json
   def show
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Inicia mostrar o no boton editar y eliminar
+    @menu_principal = "type_exams" #En realidad es de la ruta por eso va plural
+    @permisos_crud = get_crud_permisos(@menu_principal, 1)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia Seguridad 
+    @menu_detalle = @type_exam #Singular
+    @ruta_local = "/type_exams/:id" #plural
+    @direccion = direccionador(@ruta_local,@menu_detalle)   
+    @direccion
+    #Termina Seguridad    
   end
 
   # GET /type_exams/new
   def new
     @type_exam = TypeExam.new
+
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu = TypeExam.new #Singular y el primero en mayuscula
+    @ruta_local = "/type_exams/new" #plural
+    @direccion = direccionador(@ruta_local,@menu)   
+    @direccion
+    #Finaliza Seguridad    
   end
 
   # GET /type_exams/1/edit
   def edit
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu_edit = edit_type_exam_path #singular
+    @ruta_local = "/type_exams/:id/edit"
+    @direccion = direccionador(@ruta_local,@menu_edit)   
+    @direccion
+    #Finaliza Seguridad    
   end
 
   # def insertar_area_tipo_examen(idArea, idTipoExamen)
@@ -58,12 +106,12 @@ class TypeExamsController < ApplicationController
 
   # DELETE /type_exams/1 or /type_exams/1.json
   def destroy
-    @type_exam.destroy
-
-    respond_to do |format|
-      format.html { redirect_to type_exams_url, notice: "Type exam was successfully destroyed." }
-      format.json { head :no_content }
-    end
+   #definimos la ruta para eliminar
+   @ruta_local = "/type_exams/:id"
+   @url_delete = @type_exam #Singular
+   @url_path = type_exams_url #Plural
+   #metodo para determinar si tiene permisos de eliminar 
+   direccionador_destroy(@ruta_local, @url_delete, @url_path, "TypeExam ") #ultimo argumento es para mensaje de exito    
   end
 
   private
