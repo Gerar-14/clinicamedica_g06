@@ -19,11 +19,13 @@
         </tr>
         </thead>
         <tbody>
+        <div hidden="true"><%= @number = 1 %></div>
         <% @menuss.each do |menu| %>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row"><%= @number %></th>
             <td><%= menu.nombre %></td>
             <td><%= link_to "Ver", menu, :class => "btn btn-outline-primary" %></td>
+            <div hidden="true"><%= @number = @number + 1 %></div>
           </tr>
         <% end %>
         </tbody>

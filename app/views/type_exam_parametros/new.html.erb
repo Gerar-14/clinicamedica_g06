@@ -1,9 +1,13 @@
-<h1>New type exam parametro</h1>
+<% content_for :content do %>
+  <h1>Agregar tipo examen parametro</h1>
 
 <%= render "form", type_exam_parametro: @type_exam_parametro %>
 
 <br>
 
 <div>
-  <%= link_to "Back to type exam parametros", type_exam_parametros_path %>
+  <%#= link_to "Cancelar", resultados_path, :class => "btn btn-outline-danger"%>
 </div>
+<% end %>
+<%= render template: "layouts/base" %>
+

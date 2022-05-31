@@ -1,9 +1,13 @@
-<h1>New area type exam</h1>
+<% content_for :content do %>
+  <h1>Agregar área tipo examen</h1>
 
 <%= render "form", area_type_exam: @area_type_exam %>
 
 <br>
 
 <div>
-  <%= link_to "Back to area type exams", area_type_exams_path %>
+  <%#= link_to "Cancelar", laboratory_workers_path, :class => "btn btn-outline-danger"%>
 </div>
+<% end %>
+
+<%= render template: "layouts/base" %>

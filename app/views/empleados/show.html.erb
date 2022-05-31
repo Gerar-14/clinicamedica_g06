@@ -4,23 +4,25 @@
   <%= render @empleado %>
 
   <div class="btn-group">
-  <% @control_edit = 0%>
-  <% @control_delete = 0%>
-  <% @control = 0%>
   <% @permisos_crud.each do |submenu|%>
-    <% if @control == 2%>
-    <% break%>
-    <% end %>
-    <% if submenu == 2 && @control_delete == 0 %>
+    <% if submenu == 2 %>
       <%= button_to "Eliminar", @empleado, method: :delete, :class => "btn btn-outline-danger" %>
-      <% @control_delete = @control_delete + 1%>  
-    <% elsif submenu == 1 && @control_edit == 0 %>
+    <% elsif submenu == 1 %>
       <%= link_to "Editar", edit_empleado_path(@empleado), :class => "btn btn-outline-warning" %> &nbsp;
-      <% @control_edit = @control_edit + 1%>  
     <% end %>
-    <% @control = @control + 1%>
     <% end %>
       <%= link_to "Regresar", empleados_path, :class => "btn btn-outline-dark" %> &nbsp;
+  </div>
+
+  <div class="btn-group">
+  <% @permisos_crud.each do |submenu|%>
+    <% if submenu == 2 %>
+    Eliminar
+    <% elsif submenu == 1 %>
+    Editar
+    <% end %>
+    <% end %>
+    Regresar
   </div>
 
 <% end %>

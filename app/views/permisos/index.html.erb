@@ -7,7 +7,8 @@
   <%= link_to "Agregar permiso", new_permiso_path, :class => "btn btn-outline-success" %>
   <% end %>
   <div id="permisos">
-    <table id="menusDataTable" class="table">
+   <div class="card-body">
+    <table id="datatablesSimple" class="table">
       <thead>
       <tr>
         <th scope="col">#</th>
@@ -18,17 +19,20 @@
       </tr>
       </thead>
       <tbody>
+      <div hidden="true"><%= @number = 1 %></div>
       <% @permisos.each do |permiso| %>
         <tr>
-          <th scope="row">1</th>
+          <th scope="row"><%= @number %></th>
           <td><%= permiso.nombre_permiso %></td>
           <td><%= permiso.ruta %></td>
           <td><%= permiso.crud %></td>
           <th><%= link_to "Ver", permiso, :class => "btn btn-outline-primary" %></th>
+          <div hidden="true"><%= @number = @number + 1 %></div>
         </tr>
       <% end %>
       </tbody>
     </table>
+   </div>
   </div>
 
 <% end %>

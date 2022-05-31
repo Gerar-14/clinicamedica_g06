@@ -18,13 +18,17 @@
           <th scope="col">Acciones</th>
         </tr>
         </thead>
+        
         <tbody>
+        <div hidden="true"><%= @number = 1 %></div>
         <% @menu_permisos.each do |menu_permiso| %>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row"><%= @number %></th>
             <td><%= menu_permiso.menu.nombre %></td>
             <td><%= menu_permiso.permiso.nombre_permiso %></td>
             <th><%= link_to "Ver", menu_permiso, :class => "btn btn-outline-primary" %></th>
+          </tr>
+          <div hidden="true"><%= @number = @number + 1 %></div>
         <% end %>
         </tbody>
       </table>

@@ -6,7 +6,11 @@
 
   <p>
     <strong>Tipo parametro:</strong>
-    <%= parametro.tipo_parametro %>
+    <%if parametro.tipo_parametro == 0 %>
+      Texto
+    <%else%>
+      Número
+    <%end%>
   </p>
 
   <p>

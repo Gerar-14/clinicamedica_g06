@@ -3,10 +3,10 @@ class MunicipiosController < HomeController
 
   # GET /municipios or /municipios.json
   def index
-    @municipios = Municipio.
+    @municipios = Municipio.all
     
     #ASIDE
-    @menu_rol = menus_y_submenus_usuario(1)
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
     #Mostar el boton crear verde, se le debe poner como argumento 2
     @menu_principal = "municipios"
@@ -14,7 +14,7 @@ class MunicipiosController < HomeController
     #finaliza mostrar o no boton editar y eliminar
 
     #Inicia seguridad
-    @menu_show = municipio.all
+    @menu_show = Municipio.all
     @ruta_local = "/municipios"
     @direccion = direccionador(@ruta_local,@menu_show)   
     @direccion
@@ -23,15 +23,48 @@ class MunicipiosController < HomeController
 
   # GET /municipios/1 or /municipios/1.json
   def show
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Inicia mostrar o no boton editar y eliminar
+    @menu_principal = "municipios" #En realidad es de la ruta por eso va plural
+    @permisos_crud = get_crud_permisos(@menu_principal, 1)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia Seguridad 
+    @menu_detalle = @municipio #Singular
+    @ruta_local = "/municipios/:id" #plural
+    @direccion = direccionador(@ruta_local,@menu_detalle)   
+    @direccion
+    #Termina Seguridad    
   end
 
   # GET /municipios/new
   def new
     @municipio = Municipio.new
+
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu = Municipio.new #Singular y el primero en mayuscula
+    @ruta_local = "/municipios/new" #plural
+    @direccion = direccionador(@ruta_local,@menu)   
+    @direccion
+    #Finaliza Seguridad    
   end
 
   # GET /municipios/1/edit
   def edit
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu_edit = edit_municipio_path #singular
+    @ruta_local = "/municipios/:id/edit"
+    @direccion = direccionador(@ruta_local,@menu_edit)   
+    @direccion
+    #Finaliza Seguridad    
   end
 
   # POST /municipios or /municipios.json
@@ -64,12 +97,12 @@ class MunicipiosController < HomeController
 
   # DELETE /municipios/1 or /municipios/1.json
   def destroy
-    @municipio.destroy
-
-    respond_to do |format|
-      format.html { redirect_to municipios_url, notice: "Municipio was successfully destroyed." }
-      format.json { head :no_content }
-    end
+       #definimos la ruta para eliminar
+   @ruta_local = "/municipios/:id"
+   @url_delete = @municipio #Singular
+   @url_path = municipios_url #Plural
+   #metodo para determinar si tiene permisos de eliminar 
+   direccionador_destroy(@ruta_local, @url_delete, @url_path, "Municipio ") #ultimo argumento es para mensaje de exito
   end
 
   private

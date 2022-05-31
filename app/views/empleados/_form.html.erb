@@ -25,7 +25,7 @@
 
   <div class="form-row">
     <div class="form-group col-md-4">
-      <%= form.label :profesion, style: "display: block" %>
+      <%= form.label :"Profesión", style: "display: block" %>
       <%= form.text_field :profesion, class: "form-control" %>
     </div>
 
@@ -41,7 +41,7 @@
       <%= form.collection_select :municipio_id, Municipio.all,:id, :nombre_municipio %>
     </div>
 
-    <div class="form-group col-md-4">
+    <div hidden= true>
       <%= form.label :users_id, style: "display: block" %>
       <%= form.text_field :user_id, value: current_user.id, class: "form-control" %>
     </div>

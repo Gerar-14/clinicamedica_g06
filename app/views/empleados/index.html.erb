@@ -21,16 +21,20 @@
           <th scope="col">Acciones</th>
         </tr>
         </thead>
+        
         <tbody>
+        <div hidden="true"><%= @number = 1 %></div>
         <% @empleados.each do |empleado| %>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row"><%= @number %></th>
             <td><%= empleado.nombre_empleado %></td>
             <td><%= empleado.apellido_empleado %></td>
             <td><%= empleado.profesion %></td>
             <td><%= empleado.dui_empleado %></td>
             <td><%= empleado.municipio.nombre_municipio %></td>
             <th><%= link_to "Ver", empleado, :class => "btn btn-outline-primary" %></th>
+            <div hidden="true"><%= @number = @number + 1 %></div>
+          </tr>
         <% end %>
         </tbody>
       </table>

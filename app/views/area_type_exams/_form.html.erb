@@ -11,17 +11,19 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :area_id, style: "display: block" %>
+  <div class="form-group col-md-6">
+    <%= form.label :"Área", style: "display: block" %>
     <%= form.collection_select :area_id , Area.all,:id, :nombre_area, class: "form-control", style: "display: block"%>
   </div>
 
-  <div>
-    <%= form.label :type_exam_id, style: "display: block" %>
+  <div class="form-group col-md-6">
+    <%= form.label :"Tipo de examen", style: "display: block" %>
     <%= form.collection_select :type_exam_id , TypeExam.last(1),:id, :name_type_examn, class: "form-control", style: "display: block"%>
   </div>
 
+  <br>
   <div>
-    <%= form.submit %>
+    <%= form.submit "Guardar", class:"btn btn-outline-success"%>
+    <%= link_to "Cancelar", area_type_exams_path, :class => "btn btn-outline-danger"%>
   </div>
 <% end %>

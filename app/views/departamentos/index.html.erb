@@ -18,12 +18,15 @@
           <th scope="col">Acciones</th>
         </tr>
         </thead>
+        
         <tbody>
+        <div hidden="true"><%= @number = 1 %></div>
         <% @departamentos.each do |departamento| %>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row"><%= @number %></th>
             <td><%= departamento.nombre_departamento %></td>
             <td><%= link_to "Ver", departamento, :class => "btn btn-outline-primary" %></td>
+            <div hidden="true"><%= @number = @number + 1 %></div>
           </tr>
         <% end %>
         </tbody>

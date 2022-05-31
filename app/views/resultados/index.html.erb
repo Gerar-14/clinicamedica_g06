@@ -18,14 +18,15 @@
         </tr>
         </thead>
         <tbody>
-
+        <div hidden="true"><%= @number = 1 %></div>
         <% @resultados.each do |resultado| %>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row"><%= @number %></th>
             <td><%= resultado.orden_id %></td>
             <td><%= resultado.parametro.nombre_parametro %></td>
             <td><%= resultado.descripcion %></td>
             <td><%= link_to "Ver", resultado, :class => "btn btn-outline-primary" %></td>
+            <div hidden="true"><%= @number = @number + 1 %></div>
           </tr>
           <%#= render country %>
           <!--              <p><%#= link_to "Ver", muestra, :class=>"btn btn-outline-primary" %></p>-->

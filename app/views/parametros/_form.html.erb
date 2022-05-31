@@ -18,7 +18,7 @@
 
   <div class="form-group col-md-6">
     <%= form.label :tipo_parametro, style: "display: block" %>
-    <%= form.number_field :tipo_parametro, class:"form-control" %>
+    <%= form.select :tipo_parametro, [['Texto', '0'],['Número', '1'] ], {}%>
   </div>
 
   <div class="form-group col-md-6">
