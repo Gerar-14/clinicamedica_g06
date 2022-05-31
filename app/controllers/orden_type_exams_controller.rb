@@ -1,13 +1,45 @@
-class OrdenTypeExamsController < ApplicationController
+class OrdenTypeExamsController < HomeController
   before_action :set_orden_type_exam, only: %i[ show edit update destroy]
 
   # GET /orden_type_exams or /orden_type_exams.json
   def index
     @orden_type_exams = OrdenTypeExam.all
+
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+    # Pegar en la vista <%= render template: "home/nav" %>
+
+    #mostrara el boton crar verde, poner como argumento 2
+    @menu_principal = "orden_type_exams"
+    @permisos_crud = get_crud_permisos(@menu_principal, 2)
+    #finaliza mostrar o no boton editar y eliminar
+
+    #Inicia seguridad
+    @menu_show = OrdenTypeExam.all
+    @ruta_local = "/orden_type_exams"
+    @direccion = direccionador(@ruta_local,@menu_show)   
+    @direccion
+    #Finaliza seguridad
   end
 
   # GET /orden_type_exams/1 or /orden_type_exams/1.json
   def show
+
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+    
+    #Inicia mostrar o no boton editar y eliminar
+    @menu_principal = "orden_type_exams"
+    @permisos_crud = get_crud_permisos(@menu_principal, 1)
+    #finaliza mostrar o no boton editar y eliminar
+    
+    #Inicia Seguridad 
+    @menu_detalle = @orden_type_exam #@menu es como el modelo pero en singular
+    @ruta_local = "/orden_type_exams/:id"
+    @direccion = direccionador(@ruta_local,@menu_detalle)   
+    @direccion
+    #Termina Seguridad
+
   end
 
   # GET /orden_type_exams/new
@@ -15,10 +47,31 @@ class OrdenTypeExamsController < ApplicationController
     @orden_type_exam = OrdenTypeExam.new
     @id_orden = Orden.select(:id).last(1).to_s.tr('[#<Orden id:]>', '')
     @ordenes_tipo_examen_creadas = ordenes_tipo_examen_by_id(@id_orden)
+
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu = OrdenTypeExam.new
+    @ruta_local = "/orden_type_exams/new"
+    @direccion = direccionador(@ruta_local,@menu)   
+    @direccion
+    #Finaliza Seguridad
   end
 
   # GET /orden_type_exams/1/edit
   def edit
+
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
+    #Iniciar Seguridad
+    @menu_edit = edit_orden_type_exam_path
+    @ruta_local = "/orden_type_exams/:id/edit"
+    @direccion = direccionador(@ruta_local,@menu_edit)   
+    @direccion
+    #Finaliza Seguridad
+
   end
 
   def eliminar_ordenes_y_examenes_de_ordenes(idOrdenTipoExamen)

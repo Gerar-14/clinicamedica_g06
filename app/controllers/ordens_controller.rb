@@ -16,7 +16,7 @@ class OrdensController < HomeController
     @id_usuario_actual = current_user.id
 
     if @id_rol[0] == 3 #Laboratorista
-      #Esta consulta SQL hace lo mismo que la linea 11
+      #Esta consulta SQL hace lo mismo que la linea 22
       #@ordens = Orden.find_by_sql(["SELECT ordens.id, ordens.fecha_examen, ordens.paciente_id, ordens.laboratory_worker_id FROM ordens INNER JOIN laboratory_workers on ordens.laboratory_worker_id = laboratory_workers.id INNER JOIN empleados on laboratory_workers.empleado_id = empleados.id INNER JOIN users on empleados.user_id = users.id WHERE empleados.profesion = 'Laboratorista' and empleados.user_id = ? ", @id_usuario_actual])
       #Esta consulta SQL es con los metodos de ActiveRecord que usa rails
       @ordens = Orden.select(:id,:fecha_examen,:paciente_id,:laboratory_worker_id, :estado)
@@ -83,7 +83,7 @@ class OrdensController < HomeController
     #    end
     #  end
     #end
-    @laboratoristas = Orden.find_by_sql("SELECT *, count(ordens.laboratory_worker_id) as conteo from ordens INNER JOIN laboratory_workers ON (ordens.laboratory_worker_id =laboratory_workers.id) INNER join empleados on (laboratory_workers.empleado_id = empleados.id) where estado = 1 GROUP by laboratory_worker_id HAVING conteo < 11;")
+    @laboratoristas = Orden.find_by_sql("SELECT *, count(ordens.laboratory_worker_id) as conteo from ordens INNER JOIN laboratory_workers ON (ordens.laboratory_worker_id =laboratory_workers.id) INNER join empleados on (laboratory_workers.empleado_id = empleados.id) where estado = 1 GROUP by laboratory_worker_id HAVING conteo < 10;")
 
     #ASIDE
     @menu_rol_nav = menus_y_submenus_usuario(1)
