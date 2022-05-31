@@ -43,15 +43,15 @@ class EmpleadosController < HomeController
   def new
     @empleado = Empleado.new
 
-    #ASIDE
-    @menu_rol_nav = menus_y_submenus_usuario(1)
+    # #ASIDE
+    # @menu_rol_nav = menus_y_submenus_usuario(1)
 
-    #Iniciar Seguridad
-    @menu = Empleado.new #Singular y el primero en mayuscula
-    @ruta_local = "/empleados/new" #plural
-    @direccion = direccionador(@ruta_local,@menu)   
-    @direccion
-    #Finaliza Seguridad    
+    # #Iniciar Seguridad
+    # @menu = Empleado.new #Singular y el primero en mayuscula
+    # @ruta_local = "/empleados/new" #plural
+    # @direccion = direccionador(@ruta_local,@menu)   
+    # @direccion
+    # #Finaliza Seguridad    
   end
 
   # GET /empleados/1/edit
