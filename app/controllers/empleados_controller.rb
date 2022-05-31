@@ -73,7 +73,8 @@ class EmpleadosController < HomeController
 
     respond_to do |format|
       if @empleado.save
-        format.html { redirect_to empleado_url(@empleado), notice: "Empleado was successfully created." }
+        #format.html { redirect_to empleado_url(@empleado), notice: "Empleado was successfully created." }
+        format.html { redirect_to home_path, notice: "Empleado was successfully created." }
         format.json { render :show, status: :created, location: @empleado }
       else
         format.html { render :new, status: :unprocessable_entity }
