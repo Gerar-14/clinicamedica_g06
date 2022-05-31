@@ -1,4 +1,4 @@
-<%= form_with(model: permiso) do |form| %>
+<%= form_with(model: @permiso1) do |form| %>
   <% if permiso.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(permiso.errors.count, "error") %> prohibited this permiso from being saved:</h2>
