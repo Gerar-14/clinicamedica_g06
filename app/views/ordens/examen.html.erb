@@ -1,4 +1,13 @@
-<% @arreglo_todo.each do |a| %>
-    <%= a.nombre_parametro %>
+<% @arreglo_todo.each do |single| %>
+    
+    <% single.each do |key, value| %>
+
+        <%= key %>
+        
+        <%= value %>
+        <br>
+    <% end %>
+    
 <% end %>
+
 

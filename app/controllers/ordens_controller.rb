@@ -199,6 +199,13 @@ class OrdensController < HomeController
     @obteniendo_id_type_exam = OrdenTypeExam.find_by_sql(["select * from orden_type_exams where id = ?", params[:id]])
     #@obteniendo_id_type_exam[0].type_exam_id.to_s
     @arreglo_todo = get_parametros_y_subparametros_by_id_exam(@obteniendo_id_type_exam[0].type_exam_id.to_s)
+
+    @arreglo_todo.each do |arreglo|
+      arreglo.each do |key, value|
+        puts key
+        puts value
+      end
+    end
     #puts @obteniendo_id_type_exam[0].type_exam_id.to_s
 
   end
@@ -226,8 +233,13 @@ class OrdensController < HomeController
 
       @atributo_padre['hijos'] = get_subparametro_by_id_padre(padre.parametro_id)
 
+      if get_subparametro_by_id_padre(padre.parametro_id).size != 0
+        @atributo_padre['attr'] = true
+      else
+        @atributo_padre['attr'] = false
+      end
+      
       @list_params << @atributo_padre
-    
     end
     
     return @list_params
