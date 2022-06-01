@@ -144,6 +144,9 @@ class OrdensController < HomeController
   end
 
   def seleccionado
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+
     @orden = Orden.find(params[:id])
     @orden_seleccionada = OrdenTypeExam.find_by_sql(["select * from orden_type_exams where orden_id = ?", @orden])
     # @orden_estado_actualizar = Orden.find_by_sql(["update ordens set ordens.estado = 0 where ordens.id = 
@@ -151,17 +154,41 @@ class OrdensController < HomeController
   end
 
   def finalizado
-    @orden = Orden.find(params[:id])
-    @orden_estado_actualizar = Orden.find_by_sql(["update ordens set ordens.estado = 0 where ordens.id in
-      (select orden_id from orden_type_exams where orden_id = ? and orden_type_exams.estado = 1)", @orden])
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
 
-      @id_usuario_actual = current_user.id
+    @orden = Orden.find(params[:id])
+    
+    @orden_condicion = comprobar_estado_examenes(params[:id])
+
+    if @orden_condicion
+      @orden_estado_actualizar = Orden.find_by_sql(["update ordens set ordens.estado = 0 where ordens.id = ?", @orden])
+      @mensaje_orden = "Orden finalizada"
+    else
+      @mensaje_orden = "Orden no se pudo finalizar porque tiene examenes pendientes"
+    end
+
+    @id_usuario_actual = current_user.id
     #Esta consulta SQL hace lo mismo que la linea 11
     #@ordens = Orden.find_by_sql(["SELECT ordens.id, ordens.fecha_examen, ordens.paciente_id, ordens.laboratory_worker_id FROM ordens INNER JOIN laboratory_workers on ordens.laboratory_worker_id = laboratory_workers.id INNER JOIN empleados on laboratory_workers.empleado_id = empleados.id INNER JOIN users on empleados.user_id = users.id WHERE empleados.profesion = 'Laboratorista' and empleados.user_id = ? ", @id_usuario_actual])
     #Esta consulta SQL es con los metodos de ActiveRecord que usa rails
     @ordens = Orden.select(:id,:fecha_examen,:paciente_id,:laboratory_worker_id, :estado)
     .joins(laboratory_worker: [empleado: :user])
     .where('empleados.profesion' => 'Laboratorista').where('empleados.user_id' => @id_usuario_actual)
+  end
+
+  def comprobar_estado_examenes(idOrden)
+    #recibimos el numero de examenes de esta orden
+    @orders_all = OrdenTypeExam.find_by_sql(["SELECT * FROM orden_type_exams where orden_id = ?;", idOrden])
+
+    @orders_finish = OrdenTypeExam.find_by_sql(["SELECT * FROM orden_type_exams where orden_id = ? and estado = 0;", idOrden])
+
+    if @orders_all == @orders_finish
+      return true
+    else
+      return false
+    end
+
   end
 
   private
