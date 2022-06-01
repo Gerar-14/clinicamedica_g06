@@ -170,11 +170,12 @@ class OrdensController < HomeController
 
     if @orden_condicion
       @orden_estado_actualizar = Orden.find_by_sql(["update ordens set ordens.estado = 0 where ordens.id = ?", @orden])
+      @mensaje_orden = "Orden finalizada"
     else
-      
+      @mensaje_orden = "Orden no se pudo finalizar porque tiene examenes pendientes"
     end
 
-      @id_usuario_actual = current_user.id
+    @id_usuario_actual = current_user.id
     #Esta consulta SQL hace lo mismo que la linea 11
     #@ordens = Orden.find_by_sql(["SELECT ordens.id, ordens.fecha_examen, ordens.paciente_id, ordens.laboratory_worker_id FROM ordens INNER JOIN laboratory_workers on ordens.laboratory_worker_id = laboratory_workers.id INNER JOIN empleados on laboratory_workers.empleado_id = empleados.id INNER JOIN users on empleados.user_id = users.id WHERE empleados.profesion = 'Laboratorista' and empleados.user_id = ? ", @id_usuario_actual])
     #Esta consulta SQL es con los metodos de ActiveRecord que usa rails

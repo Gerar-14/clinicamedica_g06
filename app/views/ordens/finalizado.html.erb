@@ -1,13 +1,13 @@
-
-
 <% content_for :content do %>
   <p style="color: green"><%= notice %></p>
+    
+    <div class="alert alert-primary" role="alert">
+        <%= @mensaje_orden %>
+    </div>
 
   <h1>Ordenes de exámenes</h1>
 
-<h2>
-<%= @mensaje_orden %>
-</h2>
+
 
   <% if @permisos_crud%>
   <%= link_to "Agregar orden de examen", new_orden_path, :class => "btn btn-outline-success" %>
