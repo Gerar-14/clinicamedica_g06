@@ -18,7 +18,7 @@
 
   <div class="form-group col-md-6">
     <%= form.label :menu_id, style: "display: block" %>
-    <%= form.text_field :menu_id, class:"form-control" %>
+    <%= form.collection_select :menu_id,Menu.all,:id,:nombre,{:prompt => ' – N/A –'},{:id => 'simple-example'} %>
   </div>
 
   <br>
@@ -26,4 +26,13 @@
     <%= form.submit "Guardar", class:"btn btn-outline-success" %>
     <%= link_to "Cancelar", menus_path, :class => "btn btn-outline-danger" %>
   </div>
+
+  <% content_for :js do %>
+    <script>
+        $(document).ready(function () {
+            $('#simple-example').select2();
+        });
+    </script>
+  <% end %>
+
 <% end %>

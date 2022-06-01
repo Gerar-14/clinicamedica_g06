@@ -18,7 +18,7 @@
 
   <div class="form-group col-md-6">
     <%= form.label :municipio_id, style: "display: block" %>
-    <%= form.collection_select :municipio_id, Municipio.all,:id, :nombre_municipio %>
+    <%= form.collection_select :municipio_id, Municipio.all,:id, :nombre_municipio,{}, {:id => 'simple-example'} %>
   </div>
 
   <br>
@@ -26,4 +26,13 @@
     <%= form.submit "Guardar", class:"btn btn-outline-success"%>
     <%= link_to "Cancelar", laboratorios_path, :class => "btn btn-outline-danger"%>
   </div>
+
+  <% content_for :js do %>
+    <script>
+        $(document).ready(function () {
+            $('#simple-example').select2();
+        });
+    </script>
+  <% end %>
+
 <% end %>

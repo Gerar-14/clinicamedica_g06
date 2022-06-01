@@ -23,7 +23,7 @@
 
   <div class="form-group col-md-6">
     <%= form.label :crud, style: "display: block" %>
-    <%= form.text_field :crud, class:"form-control" %>
+    <%= form.select :crud, [['Mostrar', '1'],['Detalle', '2'],['Crear', '3'],['Editar', '4'],['Eliminar', '5'] ],{prompt: "Seleccione una opción"},{:id => 'simple-example'} %>
   </div>
 
   <br>
@@ -31,4 +31,14 @@
     <%= form.submit "Guardar", class:"btn btn-outline-success" %>
     <%= link_to "Cancelar", permisos_path, :class => "btn btn-outline-danger" %>
   </div>
+
+  <% content_for :js do %>
+    <script>
+        $(document).ready(function () {
+            $('#simple-example').select2();
+
+        });
+    </script>
+  <% end %>
+
 <% end %>

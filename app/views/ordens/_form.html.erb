@@ -18,7 +18,6 @@
 
   <div class="form-group col-md-6">
     <%= form.label :paciente_id, style: "display: block" %>
-    <%#= form.collection_select :paciente_id, Paciente.all,:id, :nombre_paciente %>
     <%= form.collection_select :paciente_id, Paciente.all,:id, :nombre_paciente, {}, {:id => 'simple-example'} %>
   </div>
 

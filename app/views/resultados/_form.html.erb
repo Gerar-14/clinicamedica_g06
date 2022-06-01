@@ -18,12 +18,12 @@
 
   <div class="form-group col-md-6">
     <%= form.label :parametro_id, style: "display: block" %>
-    <%= form.text_field :parametro_id, class:"form-control"  %>
+    <%= form.collection_select :parametro_id,Parametro.all,:id,:nombre_parametro, {}, {:id => 'simple-example'}  %>
   </div>
 
   <div class="form-group col-md-6">
     <%= form.label :orden_id, style: "display: block" %>
-    <%= form.text_field :orden_id, class:"form-control"  %>
+    <%= form.collection_select :orden_id,Orden.all,:id,:id, {}, {:id => 'simple-example2'} %>
   </div>
 
   <br>
@@ -31,5 +31,15 @@
     <%= form.submit "Guardar", class:"btn btn-outline-success"%>
     <%= link_to "Cancelar", resultados_path, :class => "btn btn-outline-danger"%>
   </div>
+
+  <% content_for :js do %>
+    <script>
+        $(document).ready(function () {
+            $('#simple-example').select2();
+            $('#simple-example2').select2();
+        });
+    </script>
+  <% end %>
+
 <% end %>
 
