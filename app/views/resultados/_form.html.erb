@@ -18,12 +18,12 @@
 
   <div class="form-group col-md-6">
     <%= form.label :parametro_id, style: "display: block" %>
-    <%= form.collection_select :parametro_id,Parametro.all,:id,:nombre_parametro, {}, {:id => 'simple-example'}  %>
+    <%= form.collection_select :parametro_id,Parametro.all,:id,:nombre_parametro, {prompt: "Seleccione un parametro"}, {:id => 'simple-example'}  %>
   </div>
 
   <div class="form-group col-md-6">
     <%= form.label :orden_id, style: "display: block" %>
-    <%= form.collection_select :orden_id,Orden.all,:id,:id, {}, {:id => 'simple-example2'} %>
+    <%= form.collection_select :orden_id,Orden.all,:id,:id, {prompt: "Seleccione una orden"}, {:id => 'simple-example2'} %>
   </div>
 
   <br>
@@ -36,7 +36,7 @@
     <script>
         $(document).ready(function () {
             $('#simple-example').select2();
-            $('#simple-example2').select2();
+            $('#simple-example2').select2({ width: '30%' });
         });
     </script>
   <% end %>

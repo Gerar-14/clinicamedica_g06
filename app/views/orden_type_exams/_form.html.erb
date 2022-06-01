@@ -13,7 +13,7 @@
 
   <div class="form-group col-md-6">
     <%= form.label :"Tipo de examen", style: "display: block" %>
-    <%= form.collection_select :type_exam_id, TypeExam.all,:id, :name_type_examn,{}, {:id => 'simple-example'} %>
+    <%= form.collection_select :type_exam_id, TypeExam.all,:id, :name_type_examn,{prompt: "Seleccione un tipo de examen"}, {:id => 'simple-example'} %>
   </div>
 
   <div class="form-group col-md-6">
@@ -34,8 +34,8 @@
   <% content_for :js do %>
     <script>
         $(document).ready(function () {
-            $('#simple-example').select2();
-            $('#simple-example2').select2();
+            $('#simple-example').select2({ width: '65%' });
+            $('#simple-example2').select2({ width: '15%' });
         });
     </script>
   <% end %>
