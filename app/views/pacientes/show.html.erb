@@ -1,19 +1,76 @@
 <% content_for :content do %>
   <p style="color: green"><%= notice %></p>
 
-<%= render @paciente %>
-
+  <%= render @paciente %>
+  
   <div class="btn-group">
   <% @permisos_crud.each do |submenu|%>
     <% if submenu == 2 %>
-    <%= button_to "Eliminar", @paciente, method: :delete, :class => "btn btn-outline-danger" %>
+    <%= button_to "Eliminar", @paciente, method: :delete, :class => "btn btn-outline-danger" %> &nbsp;
     <% elsif submenu == 1 %>
-    <%= link_to "Editar paciente", edit_paciente_path(@paciente), :class => "btn btn-outline-warning" %> &nbsp;
+    <%= link_to "Editar", edit_paciente_path(@paciente), :class => "btn btn-outline-warning" %> &nbsp;
     <% end %>
     <% end %>
     <%= link_to "Regresar", pacientes_path, :class => "btn btn-outline-dark" %> &nbsp;
   </div>  
-
+  <br>
+  <br>
+  
+  <div id="examenespaciente">
+    <h2>Exámenes clínicos de <%= @pacien.nombre_paciente + " " + @pacien.apellido_paciente %></h2>
+    <div class="card-body">
+      <!-- Muestra la tabla con los examenes realizados al paciente en diferentes fechas-->
+      <table id="datatablesSimple" class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Orden:</th>
+          <th scope="col">Fecha examen:</th>
+          <th scope="col">Tipo examen:</th>
+          <th scope="col">Estado:</th>
+          <th scope="col">Acciones:</th>
+        </tr>
+        </thead>
+        <tbody>
+        <div hidden="true"><%= @conteo = 0 %></div>
+        <div hidden="true"><%= @number = 1 %></div>
+        <% @examenes_paciente.each do |examen_paciente| %>
+          <tr>
+            <th scope="row"><%= @number %></th>
+            <td><%= examen_paciente.id %></td>
+            <td><%= examen_paciente.fecha_examen %></td>
+            <td><%= examen_paciente.name_type_examn %></td>
+            <%if examen_paciente.estado_type_exam == 1 %>
+              <td>Pendiente</td>
+            <%else%>
+              <td>Finalizado</td>
+            <%end%>
+            <td>
+              <%= button_to "Ver resultados", examen_paciente, method: :delete, :class => "btn btn-outline-primary", name: "eliminar_parametro_new",  form: {data: {turbo_confirm: 'Are you sure?'}} %>
+            </td>
+          </tr>
+          <div hidden="true"><%= @number = @number + 1 %></div>
+          <div hidden="true"><%= @conteo = @conteo + 1 %></div>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <%if @conteo != 0 %>
+    <p align="right">
+      <button type="button" class="mt-3 mb-3 btn btn-primary" onclick="printThisDiv('examenespaciente')">Descargar PDF</button>
+    </p>
+  <%end%>
 <% end %>
 <%= render template: "home/nav" %>
 <%= render template: "layouts/base" %>
+
+<script>
+  var printThisDiv = (id) => {
+    var printContents = document.getElementById(id).innerHTML;
+    var originalContent = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContent;
+  }
+</script>

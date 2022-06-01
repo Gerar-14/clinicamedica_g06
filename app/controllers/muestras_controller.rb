@@ -60,6 +60,7 @@ class MuestrasController < HomeController
     @id_orden = Orden.select(:id).last(1).to_s.tr('[#<Orden id:]>', '')
     @muestras_by_orden = muestras_by_orden_id(@id_orden)
 
+    #Mandar a llamar al empleado que esta logueado 
     @usuario = current_user.id
     @recibio = Empleado.find_by_sql(["select id, nombre_empleado from empleados where user_id = ?", current_user.id])
   end
