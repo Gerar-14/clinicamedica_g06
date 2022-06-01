@@ -23,7 +23,7 @@
 
   <div class="form-group col-md-6">
     <%= form.label :genero_paciente, style: "display: block" %>
-    <%= form.select :genero_paciente, [['Femenino', 'F'],['Masculino', 'M']], {}%>
+    <%= form.select :genero_paciente, [['Femenino', 'F'],['Masculino', 'M']], {}, {:id => 'simple-example'}%>
   </div>
 
   <div class="form-group col-md-6">
@@ -63,7 +63,7 @@
 
   <div class="form-group col-md-6">
     <%= form.label :estado_civil, style: "display: block" %>
-    <%= form.select :estado_civil, [['Soltero', 'S'],['Casado', 'C'],['Viudo', 'V'] ], {}%>
+    <%= form.select :estado_civil, [['Soltero', 'S'],['Casado', 'C'],['Viudo', 'V'] ], {}, {:id => 'simple-example2'}%>
   </div>
 
   <div class="form-group col-md-6">
@@ -78,12 +78,12 @@
 
   <div class="form-group col-md-6">
     <%= form.label :municipio_id, style: "display: block" %>
-    <%= form.collection_select :municipio_id, Municipio.all,:id, :nombre_municipio %>
+    <%= form.collection_select :municipio_id, Municipio.all,:id, :nombre_municipio,{}, {:id => 'simple-example3'} %>
   </div>
 
   <div class="form-group col-md-6">
     <%= form.label :tipo_sangre_id, style: "display: block" %>
-    <%= form.collection_select :tipo_sangre_id, TipoSangre.all,:id, :nombre_tipo_sangre %>
+    <%= form.collection_select :tipo_sangre_id, TipoSangre.all,:id, :nombre_tipo_sangre,{}, {:id => 'simple-example4'} %>
   </div>
 
   <br>
@@ -91,11 +91,17 @@
     <%= form.submit "Guardar", class:"btn btn-outline-success"%>
     <%= link_to "Cancelar", pacientes_path, :class => "btn btn-outline-danger"%>
   </div>
-<% end %>
 
-<script>
-  $(document).ready(function(){
-    $("#select").select2();
-  });
-</script>
+  <% content_for :js do %>
+    <script>
+        $(document).ready(function () {
+            $('#simple-example').select2();
+            $('#simple-example2').select2();
+            $('#simple-example3').select2();
+            $('#simple-example4').select2();
+        });
+    </script>
+  <% end %>
+
+<% end %>
 

@@ -38,7 +38,7 @@
   <div class="form-row">
     <div class="form-group col-md-4">
       <%= form.label :municipio_id, style: "display: block" %>
-      <%= form.collection_select :municipio_id, Municipio.all,:id, :nombre_municipio %>
+      <%= form.collection_select :municipio_id, Municipio.all,:id, :nombre_municipio,{}, {:id => 'simple-example'} %>
     </div>
 
     <div hidden= true>
@@ -52,4 +52,14 @@
     <%= form.submit "Guardar", class: "btn btn-outline-success" %>
     <%= link_to "Cancelar", empleados_path, :class => "btn btn-outline-danger" %>
   </div>
+
+  <% content_for :js do %>
+    <script>
+        $(document).ready(function () {
+            $('#simple-example').select2();
+            $('#simple-example2').select2();
+        });
+    </script>
+  <% end %>
+
 <% end %>

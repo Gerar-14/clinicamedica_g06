@@ -18,19 +18,18 @@
 
   <div class="form-group col-md-6">
     <%= form.label :tipo_parametro, style: "display: block" %>
-    <%= form.select :tipo_parametro, [['Texto', '0'],['Número', '1'] ], {}%>
+    <%= form.select :tipo_parametro, [['Texto', '0'],['Número', '1'] ], {}, {:id => 'simple-example'}%>
   </div>
 
   <div class="form-group col-md-6">
     <%= form.label :unidad_medida_id, style: "display: block" %>
-    <%= form.collection_select :unidad_medida_id, UnidadMedida.all,:id, :nombre_unidad_medida, class: "form-control", style: "display: block", 
-    :prompt => " – N/A – " %>  
+    <%= form.collection_select :unidad_medida_id, UnidadMedida.all,:id, :nombre_unidad_medida, {:prompt => ' – N/A –'}, {:id => 'simple-example2'}%>  
   </div>
 
   <div class="form-group col-md-6">
     <%= form.label :parametro_id, style: "display: block" %>
-    <%= form.collection_select :parametro_id, @condicion_parametro,:id, :nombre_parametro, class: "form-control", style: "display: block", 
-    prompt: " – N/A – "%>
+    <%= form.collection_select :parametro_id, @condicion_parametro,:id, :nombre_parametro, 
+    {:prompt => ' – N/A –'}, {:id => 'simple-example3'}%>
   </div>
 
   <br>
@@ -40,33 +39,16 @@
     <%= link_to "Cancelar", parametros_path, :class => "btn btn-outline-danger"%>
   </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script>
-    $(document).ready(function(){
-      $("#unidad_medida_si").change(function() {
-        if (this.checked) {
-          document.getElementById('unidad_medida_no').checked = false;
-          document.getElementById('unidad_medida_select').style.display = 'block';
-        }else{
-          document.getElementById('unidad_medida_no').checked = true;
-          document.getElementById('unidad_medida_select').style.display = 'none';
-        }
-      });
-      
-      $("#unidad_medida_no").change(function() {
-        if (this.checked) {
-          document.getElementById('unidad_medida_select_null').style.display = 'block';
-          document.getElementById('unidad_medida_select_null').value = "";
-          document.getElementById('unidad_medida_si').checked = false;
-          
-        }else{
-          document.getElementById('unidad_medida_si').checked = true;
-        }
-      });
+  <% content_for :js do %>
+    <script>
+        $(document).ready(function () {
+            $('#simple-example').select2();
+            $('#simple-example2').select2();
+            $('#simple-example3').select2();
+        });
+    </script>
+  <% end %>
 
-    });
-  </script>
 <% end %>
-
 
 

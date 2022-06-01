@@ -13,12 +13,12 @@
 
   <div class="form-group col-md-6">
     <%= form.label :"Menú", style: "display: block" %>
-    <%= form.collection_select :menu_id, Menu.all,:id, :nombre %>
+    <%= form.collection_select :menu_id, Menu.all,:id, :nombre,{prompt: "Seleccione un menú"}, {:id => 'simple-example'} %>
   </div>
 
   <div class="form-group col-md-6">
     <%= form.label :permiso_id, style: "display: block" %>
-    <%= form.collection_select :permiso_id, Permiso.all,:id, :nombre_permiso %>
+    <%= form.collection_select :permiso_id, Permiso.all,:id, :nombre_permiso,{prompt: "Seleccione un permiso"}, {:id => 'simple-example2'} %>
   </div>
 
   <br>
@@ -26,4 +26,14 @@
     <%= form.submit "Guardar", class:"btn btn-outline-success" %>
     <%= link_to "Cancelar", menu_permisos_path, :class => "btn btn-outline-danger" %>
   </div>
+
+  <% content_for :js do %>
+    <script>
+        $(document).ready(function () {
+            $('#simple-example').select2();
+            $('#simple-example2').select2();
+        });
+    </script>
+  <% end %>
+  
 <% end %>

@@ -18,7 +18,7 @@
 
   <div class="form-group col-md-6">
     <%= form.label :"Departamento:", style: "display: block" %>
-    <%= form.collection_select :departamento_id, Departamento.all,:id, :nombre_departamento %>
+    <%= form.collection_select :departamento_id, Departamento.all,:id, :nombre_departamento,{prompt: "Seleccione un departamento"},{:id => 'simple-example'} %>
   </div>
 
   <br>
@@ -27,5 +27,13 @@
     <%= form.submit "Guardar", class:"btn btn-outline-success"%>
     <%= link_to "Cancelar", municipios_path, :class => "btn btn-outline-danger"%>
   </div>
+
+  <% content_for :js do %>
+    <script>
+        $(document).ready(function () {
+            $('#simple-example').select2();
+        });
+    </script>
+  <% end %>
 
 <% end %>

@@ -13,12 +13,12 @@
 
   <div class="form-group col-md-6">
     <%= form.label :rol_id, style: "display: block" %>
-    <%= form.collection_select :rol_id, Rol.all,:id, :nombre_rol %>
+    <%= form.collection_select :rol_id, Rol.all,:id, :nombre_rol,{}, {:id => 'simple-example'} %>
   </div>
 
   <div class="form-group col-md-6">
     <%= form.label :empleado_id, style: "display: block" %>
-    <%= form.collection_select :empleado_id, Empleado.all,:id, :nombre_empleado %>
+    <%= form.collection_select :empleado_id, Empleado.all,:id, :nombre_empleado,{}, {:id => 'simple-example2'} %>
   </div>
 
   <br>
@@ -26,4 +26,14 @@
     <%= form.submit "Guardar", class:"btn btn-outline-success" %>
     <%= link_to "Cancelar", rol_empleados_path, :class => "btn btn-outline-danger" %>
   </div>
+
+  <% content_for :js do %>
+    <script>
+        $(document).ready(function () {
+            $('#simple-example').select2();
+            $('#simple-example2').select2();
+        });
+    </script>
+  <% end %>
+
 <% end %>

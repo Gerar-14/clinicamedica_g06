@@ -21,14 +21,14 @@
     <%= form.datetime_field :fecha_entrega_muestra, class:"form-control", value: @muestra_fecha_actual %>
   </div>
 
-  <div class="form-group col-md-6">
+  <div class="form-group col-md-10">
     <%= form.label :"Recibido por:", style: "display: block" %>
-    <%= form.collection_select :empleado_id, @recibio,:id, :nombre_empleado,{},{class:"form-control"} %>
+    <%= form.collection_select :empleado_id, @recibio,:id, :nombre_empleado,{},{:id => 'simple-example'} %>
   </div>
 
   <div class="form-group col-md-6">
     <%= form.label :orden_id, style: "display: block" %>
-    <%= form.collection_select :orden_id, Orden.all,:id, :id %>
+    <%= form.collection_select :orden_id, Orden.all,:id, :id,{},{:id => 'simple-example2'} %>
   </div>
 
   <br>
@@ -39,4 +39,14 @@
     <%= link_to "Cancelar", muestras_path, :class => "btn btn-outline-danger"%>
     <%# <%= form.submit "Cancelar", :class => "btn btn-outline-danger" , name: "delete_muestra"%>
   </div>
+
+  <% content_for :js do %>
+    <script>
+        $(document).ready(function () {
+            $('#simple-example').select2();
+            $('#simple-example2').select2();
+        });
+    </script>
+  <% end %>
+
 <% end %>
