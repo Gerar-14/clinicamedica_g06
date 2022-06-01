@@ -3,7 +3,10 @@
 
   <h1>Tipo examen parametros</h1>
 
-  <%= link_to "Agregar tipo examen parametro", new_type_exam_parametro_path, :class => "btn btn-outline-success" %>
+  <% if @permisos_crud%>
+    <%= link_to "Agregar tipo examen parametro", new_type_exam_parametro_path, :class => "btn btn-outline-success" %>
+  <% end %>
+  
 
   <div id="typeexamparametro">
     <div class="card-body">
@@ -38,4 +41,5 @@
 
 
 <% end %>
+<%= render template: "home/nav" %>
 <%= render template: "layouts/base" %>

@@ -36,7 +36,11 @@ class PacientesController < HomeController
     @ruta_local = "/pacientes/:id" #plural
     @direccion = direccionador(@ruta_local,@menu_detalle)   
     @direccion
-    #Termina Seguridad    
+    #Termina Seguridad 
+    
+    #Expediente clinico del paciente
+    @pacien = Paciente.find(params[:id])
+    @examenes_paciente = Orden.find_by_sql(["SELECT *, orden_type_exams.estado as estado_type_exam from ordens INNER join orden_type_exams on (ordens.id=orden_type_exams.orden_id) INNER JOIN type_exams on (type_exams.id = orden_type_exams.type_exam_id) where paciente_id = ?",@paciente])
   end
 
   # GET /pacientes/new

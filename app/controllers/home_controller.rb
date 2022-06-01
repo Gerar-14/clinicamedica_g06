@@ -224,6 +224,48 @@ class HomeController < ApplicationController
     end
   end
 
+  def direccionador_destroy_orden_type_exam(ruta, url_delete, url_path, menu_name)
+    # metodo destroy original
+    # @orden_type_exam.destroy
+
+    # respond_to do |format|
+    #   if params[:eliminar_orden_type_exam_new]
+    #     format.html { redirect_to new_orden_type_exam_path, notice: "Orden de tipo examen eliminada correctamente." }
+    #     format.json { head :no_content }
+    #   else
+    #     format.html { redirect_to orden_type_exams_url, notice: "Orden de tipo examen eliminada correctamente." }
+    #     format.json { head :no_content }
+    #   end
+    # end
+    @accesoss = verificarAcceso()
+    @control = false
+    
+    @accesoss.each do |a|
+      puts a.ruta + " vs " + ruta
+      if a.ruta == ruta
+        @control = true
+        break
+      else 
+        @control = false
+      end
+    end
+
+    if @control == true
+      url_delete.destroy
+      respond_to do |format|
+        if params[:eliminar_orden_type_exam_new]
+        format.html { redirect_to url_path, notice: menu_name + " fue eliminado exitosamente." }
+        format.json { head :no_content }
+        else
+        format.html { redirect_to orden_type_exams_url, notice: "Orden de tipo examen eliminada correctamente." }
+        format.json { head :no_content }
+        end
+      end
+    else
+      redirect_to('/acceso_denegado')
+    end
+  end
+
 
   def menus_y_submenus_usuario(peticion)
     @accesos = Acceso.all

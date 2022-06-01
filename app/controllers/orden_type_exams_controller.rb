@@ -132,20 +132,27 @@ where orden_id = ?) ote on type_exams.id = ote.type_exam_id", idOrden])
 
   # DELETE /orden_type_exams/1 or /orden_type_exams/1.json
   def destroy
-    puts(@orden_type_exam)
-    @orden_type_exam.destroy
+    #puts(@orden_type_exam)
 
-    respond_to do |format|
-      if params[:eliminar_orden_type_exam_new]
-        format.html { redirect_to new_orden_type_exam_path, notice: "Orden de tipo examen eliminada correctamente." }
-        format.json { head :no_content }
-      else
-        format.html { redirect_to orden_type_exams_url, notice: "Orden de tipo examen eliminada correctamente." }
-        format.json { head :no_content }
-      end
+    #definimos la ruta para eliminar
+    @ruta_local = "/orden_type_exams/:id"
+    @url_delete = @orden_type_exam #Singular
+    @url_path = new_orden_type_exam_path #Plural
+    #metodo para determinar si tiene permisos de eliminar 
+    direccionador_destroy_orden_type_exam(@ruta_local, @url_delete, @url_path, "Orden Tipo Examen")
 
+    # metodo destroy original
+    # @orden_type_exam.destroy
 
-    end
+    # respond_to do |format|
+    #   if params[:eliminar_orden_type_exam_new]
+    #     format.html { redirect_to new_orden_type_exam_path, notice: "Orden de tipo examen eliminada correctamente." }
+    #     format.json { head :no_content }
+    #   else
+    #     format.html { redirect_to orden_type_exams_url, notice: "Orden de tipo examen eliminada correctamente." }
+    #     format.json { head :no_content }
+    #   end
+    # end
   end
 
   private

@@ -42,7 +42,7 @@ class PermisosController < HomeController
 
   # GET /permisos/new
   def new
-    @permiso = Permiso.new
+    @permiso1 = Permiso.new
     
     #ASIDE
     @menu_rol_nav = menus_y_submenus_usuario(1)
@@ -70,15 +70,15 @@ class PermisosController < HomeController
 
   # POST /permisos or /permisos.json
   def create
-    @permiso = Permiso.new(permiso_params)
+    @permiso1 = Permiso.new(permiso_params)
 
     respond_to do |format|
-      if @permiso.save
-        format.html { redirect_to permiso_url(@permiso), notice: "Permiso was successfully created." }
-        format.json { render :show, status: :created, location: @permiso }
+      if @permiso1.save
+        format.html { redirect_to permiso_url(@permiso1), notice: "Permiso was successfully created." }
+        format.json { render :show, status: :created, location: @permiso1 }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @permiso.errors, status: :unprocessable_entity }
+        format.json { render json: @permiso1.errors, status: :unprocessable_entity }
       end
     end
   end

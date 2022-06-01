@@ -4,10 +4,16 @@
 <%= render @type_exam_parametro %>
 
 <div class="btn-group">
-    <%= link_to "Editar", edit_type_exam_parametro_path(@type_exam_parametro), :class => "btn btn-outline-warning" %> &nbsp;
-    <%= link_to "Regresar", type_exam_parametros_path, :class => "btn btn-outline-dark" %> &nbsp;
+<% @permisos_crud.each do |submenu|%>
+    <% if submenu == 2 %>
     <%= button_to "Eliminar", @type_exam_parametro, method: :delete, :class => "btn btn-outline-danger" %>
+    <% elsif submenu == 1 %>
+    <%= link_to "Editar", edit_type_exam_parametro_path(@type_exam_parametro), :class => "btn btn-outline-warning" %> &nbsp;
+    <% end %>
+    <% end %>
+    <%= link_to "Regresar", type_exam_parametros_path, :class => "btn btn-outline-dark" %> &nbsp;
   </div>
 
 <% end %>
+<%= render template: "home/nav" %>
 <%= render template: "layouts/base" %>

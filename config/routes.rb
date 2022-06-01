@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  get 'reporte/index'
   resources :value_references
   resources :ordens
   get '/ordens/:id/seleccionado' => "ordens#seleccionado", as: :seleccionado_orden
   get '/ordens/:id/finalizado' => "ordens#finalizado", as: :finalizado_orden
+  get '/ordens/:id/examen/' => "ordens#examen", as: :examen
   resources :laboratory_workers
   resources :muestras
   resources :orden_type_exams
@@ -48,6 +50,7 @@ Rails.application.routes.draw do
   get 'acceso_denegado', to: "acceso_denegado#acceso_denegado", as: :denegado
   root to: "home#index"
   Rails.application.routes.draw do
+  get 'reporte/index'
     match "/404", to: "errors#not_found", via: :all
   end
     

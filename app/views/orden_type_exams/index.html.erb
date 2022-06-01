@@ -3,7 +3,10 @@
 
   <h1>Ordenes tipo examen</h1>
 
-  <%= link_to "Agregar orden tipo examen", new_orden_type_exam_path, :class => "btn btn-outline-success" %>
+  <% if @permisos_crud%>
+    <%= link_to "Agregar orden tipo examen", new_orden_type_exam_path, :class => "btn btn-outline-success" %>
+  <% end %>
+  
 
   <!-- We will put our React component inside this div. -->
   <div id="like_button_container"></div>
