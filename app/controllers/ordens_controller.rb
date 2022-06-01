@@ -1,5 +1,5 @@
 class OrdensController < HomeController
-  before_action :set_orden, only: %i[ show edit update destroy seleccionado finalizado]
+  before_action :set_orden, only: %i[ show edit update destroy seleccionado finalizado examen]
 
   # GET /ordens or /ordens.json
   def index
@@ -150,6 +150,7 @@ class OrdensController < HomeController
    direccionador_destroy(@ruta_local, @url_delete, @url_path, "Orden ") #ultimo argumento es para mensaje de exito    
   end
 
+  #metodo para la vista examen /ordens/:id/seleccionado
   def seleccionado
     #ASIDE
     @menu_rol_nav = menus_y_submenus_usuario(1)
@@ -159,7 +160,8 @@ class OrdensController < HomeController
     # @orden_estado_actualizar = Orden.find_by_sql(["update ordens set ordens.estado = 0 where ordens.id = 
     #   (select DISTINCT orden_id from orden_type_exams where orden_id = ? and orden_type_exams.estado = 1)", @orden])
   end
-
+  
+  #metodo para la vista examen /ordens/:id/finalizado
   def finalizado
     #ASIDE
     @menu_rol_nav = menus_y_submenus_usuario(1)
@@ -195,6 +197,75 @@ class OrdensController < HomeController
     else
       return false
     end
+
+  end
+
+  #metodo para la vista examen /ordens/:id/examen
+  def examen   
+
+    @obteniendo_id_type_exam = OrdenTypeExam.find_by_sql(["select * from orden_type_exams where id = ?", params[:id]])
+    #@obteniendo_id_type_exam[0].type_exam_id.to_s
+    @arreglo_todo = get_parametros_y_subparametros_by_id_exam(@obteniendo_id_type_exam[0].type_exam_id.to_s)
+    #puts @obteniendo_id_type_exam[0].type_exam_id.to_s
+
+  end
+
+  def get_parametros_y_subparametros_by_id_exam(idExamen)
+  
+    @parametros_padre = TypeExamParametro.find_by_sql(["select * from type_exam_parametros where type_exam_id = ?", idExamen])
+    #puts "parametro padre " + @parametros_padre.to_s
+    @list_params = []
+    @parametros_padre.each do |padre|
+      
+      @parametros_pdres = Parametro.find_by_sql(["select * from parametros where id = ?", padre.parametro_id])
+      @atributo_padre = {}
+      @atributo_padre['nombre_padre'] = @parametros_pdres[0].nombre_parametro
+
+      @unidad_medidas = UnidadMedida.find_by_sql(["select * from unidad_medidas where id = ?", @parametros_pdres[0].unidad_medida_id])
+
+      @atributo_padre['unidad_medida_padre'] = @unidad_medidas
+      
+      @atributo_padre['tipo_parametro_padre'] = @parametros_pdres[0].tipo_parametro
+
+      @valores_referencias = ValueReference.find_by_sql(["select * from value_references where parametro_id = ?", padre.parametro_id])
+
+      @atributo_padre['valor_referencia_padre'] = @valores_referencias
+
+      @atributo_padre['hijos'] = get_subparametro_by_id_padre(padre.parametro_id)
+
+      @list_params << @atributo_padre
+    
+    end
+    
+    return @list_params
+
+  end
+
+  def get_subparametro_by_id_padre(idPadre)
+
+    @parametros_hijos = Parametro.find_by_sql(["select * from parametros where parametro_id = ?", idPadre])
+
+    @arreglo_hash = []
+
+    @parametros_hijos.each do |hijo|
+    
+    @atributo = {}
+    @atributo['nombre'] = hijo.nombre_parametro
+
+    @unidad_medidas = UnidadMedida.find_by_sql(["select * from unidad_medidas where id = ?", hijo.unidad_medida_id])
+
+    @atributo['unidad_medida'] = @unidad_medidas
+
+    @atributo['tipo_parametro'] = hijo.tipo_parametro
+
+    @valores_referencias = ValueReference.find_by_sql(["select * from value_references where parametro_id = ?", hijo.id])
+
+    @atributo['valor_referencia'] = @valores_referencias
+
+    @arreglo_hash << @atributo
+    end
+
+    return @arreglo_hash
 
   end
 

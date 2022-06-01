@@ -27,10 +27,14 @@
             <td><%= orden_type_exam.orden_id %></td>
             <td><%= orden_type_exam.type_exam.name_type_examn %></td>
             <%# VANE HACER UN IF del estado, 0 es finalizado y 1 pendiente o en proceso%>
-            <td><%= orden_type_exam.estado %></td>
+            <%if orden_type_exam.estado == 1 %>
+              <td>Pendiente</td>
+            <%else%>
+              <td>Finalizado</td>
+            <%end%>
             <td>
               <%= link_to "Ver", orden_type_exam, :class => "btn btn-outline-primary" %>
-              <%= link_to "Realizar", home_path, :class => "btn btn-outline-primary" %>
+              <%= link_to "Realizar", examen_path(orden_type_exam), :class => "btn btn-outline-primary" %>
             </td>
           </tr>
           <%#= render country %>
