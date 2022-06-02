@@ -18,7 +18,7 @@
 
   <div class="form-group col-md-6">
     <%= form.label :"Parametro", style: "display: block" %>
-    <%= form.collection_select :parametro_id, Parametro.all,:id, :nombre_parametro %>
+    <%= form.collection_select :parametro_id, Parametro.all,:id, :nombre_parametro, {prompt: "Seleccione un parametro"}, {:id => 'simple-example'} %>
   </div>
 
   <br>
@@ -26,4 +26,13 @@
     <%= form.submit "Guardar", class:"btn btn-outline-success"%>
     <%= link_to "Cancelar", value_references_path, :class => "btn btn-outline-danger"%>
   </div>
+
+  <% content_for :js do %>
+    <script>
+        $(document).ready(function () {
+            $('#simple-example').select2();
+        });
+    </script>
+  <% end %>
+
 <% end %>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :ordens
   get '/ordens/:id/seleccionado' => "ordens#seleccionado", as: :seleccionado_orden
   get '/ordens/:id/finalizado' => "ordens#finalizado", as: :finalizado_orden
+  get '/ordens/:id/examen/' => "ordens#examen", as: :examen
   resources :laboratory_workers
   resources :muestras
   resources :orden_type_exams

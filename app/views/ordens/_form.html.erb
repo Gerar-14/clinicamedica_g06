@@ -18,13 +18,12 @@
 
   <div class="form-group col-md-6">
     <%= form.label :paciente_id, style: "display: block" %>
-    <%#= form.collection_select :paciente_id, Paciente.all,:id, :nombre_paciente %>
-    <%= form.collection_select :paciente_id, Paciente.all,:id, :nombre_paciente, {}, {:id => 'simple-example'} %>
+    <%= form.collection_select :paciente_id, Paciente.all,:id, :nombre_paciente, {prompt: "Seleccione un paciente"}, {:id => 'simple-example'} %>
   </div>
 
   <div class="form-group col-md-6">
     <%= form.label :laboratory_worker_id, style: "display: block" %>
-    <%= form.collection_select :laboratory_worker_id, @laboratoristas,:laboratory_worker_id, :nombre_empleado, {}, {:id => 'simple-example2'} %>
+    <%= form.collection_select :laboratory_worker_id, @laboratoristas,:laboratory_worker_id, :nombre_empleado, {prompt: "Seleccione un laboratorista"}, {:id => 'simple-example2'} %>
   </div>
 
   <br>
@@ -36,8 +35,8 @@
   <% content_for :js do %>
     <script>
         $(document).ready(function () {
-            $('#simple-example').select2();
-            $('#simple-example2').select2();
+            $('#simple-example').select2({ width: '30%'} );
+            $('#simple-example2').select2({ width: '30%'} );
         });
     </script>
   <% end %>
