@@ -5,7 +5,7 @@ class ReporteController < ApplicationController
     #Reporte de estadísticas por áreas la cantidad de exámenes realizados por departamento
     @reporte_2 = cantidad_examanes_realizados_por_area_by_departamento(10, '1990-05-27 19:32:18.000000', '2050-05-27 19:32:18.000000')
 
-    metodo_prueba(2, '1990-05-27 19:32:18.000000', '2050-05-27 19:32:18.000000')
+    metodo_prueba(1, '1990-05-27 19:32:18.000000', '2050-05-27 19:32:18.000000', 1)
   end
 
   def cantidad_examanes_realizados_por_area_by_municipio(id_municipio, fecha_inicio, fecha_fin)
@@ -73,10 +73,17 @@ class ReporteController < ApplicationController
     return @municipio.count
   end
 
-  def metodo_prueba(id_municipio, fecha_inicio, fecha_fin, id_area)
-    @municipio = Municipio.find_by_sql(["SELECT orden_type_exams_own.id, type_exams_own.id ,type_exams_own.name_type_examn, count(type_exams_own.id) FROM (SELECT * FROM orden_type_exams where orden_id in (SELECT id FROM ordens where laboratory_worker_id in (SELECT id FROM laboratory_workers WHERE laboratorio_id in (SELECT id from laboratorios where municipio_id = ?) and fecha_examen BETWEEN ? AND ? ))) orden_type_exams_own INNER JOIN (SELECT * from type_exams where id in (SELECT type_exam_id from area_type_exams where area_id = ?)) type_exams_own ON orden_type_exams_own.type_exam_id = type_exams_own.id GROUP BY orden_type_exams_own.id, type_exams_own.id", id_municipio, fecha_inicio, fecha_fin, id_area])
-    @municipio.each do |mus|
-      puts mus
+  def contador_tipo_examenes(id_municipio, fecha_inicio, fecha_fin, id_area)
+    @cons_sql = Municipio.find_by_sql(["SELECT orden_type_exams_own.id as orden, type_exams_own.id as id_tipo_examen,type_exams_own.name_type_examn as nombre_examen, count(type_exams_own.id) as contador FROM (SELECT * FROM orden_type_exams where orden_id in (SELECT id FROM ordens where laboratory_worker_id in (SELECT id FROM laboratory_workers WHERE laboratorio_id in (SELECT id from laboratorios where municipio_id = ?) and fecha_examen BETWEEN ? AND ? ))) orden_type_exams_own INNER JOIN (SELECT * from type_exams where id in (SELECT type_exam_id from area_type_exams where area_id = ?)) type_exams_own ON orden_type_exams_own.type_exam_id = type_exams_own.id GROUP BY type_exams_own.id, type_exams_own.name_type_examn", id_municipio, fecha_inicio, fecha_fin, id_area])
+    #orden, id_tipo_examen , nombre_examen , contador 
+    @data_array = []
+    @cons_sql.each do |mus|
+      puts mus.nombre_examen
+      puts mus.contador
+      @hash_data[mus.nombre_examen] = mus.contador
+      @data_array << @hash_data
     end 
+
+    return @data_array
   end 
 end
