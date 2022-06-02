@@ -1,13 +1,66 @@
-<% @arreglo_todo.each do |single| %>
-    
-    <% single.each do |key, value| %>
-
-        <%= key %>
+<% content_for :content do %>
+  <p style="color: green"><%= notice %></p>
+  <h1>Exámenes</h1>
+  <%# <div class="form-group col-md-6">
+    <%#= form.label :fecha_examen, style: "display: block" %>
+    <%#= form.datetime_field :fecha_examen, class:"form-control", value: @orden_fecha_actual %>
+  <%# </div> %>
+  <div id="ordenes">
+    <div class="card-body">
+    <%= form_tag(examens_path) do %>
+        <% @arreglo_todo.each do |padre| %>
+          <div style="margin-top: 50px">
+            <div>
+              <% if padre["nombre_padre"] %>
+                <%= padre["nombre_padre"] %>
+              <% end %>
+            </div>
+            <div style="margin-left: 30px">
+            <% padre["hijos"].each do |hijos| %>
+              <%# <%= hijos["id_hijo"]%>
+              <%= hijos["nombre"]%>
+              <%= text_field_tag('parametro_id[]', hijos["id_hijo"], {class: "form-control", hidden: true})%>
+              <%# <%= text_field_tag(:descripcion,{}, {name: hijos["nombre"]})%>
+              <%= text_field_tag('descripcion[]')%>
+              <%# <input type="text" id="hijos"> %>
+              <% if hijos["unidad_medida"].size > 0 %>
+                <%= hijos["unidad_medida"] %>
+              <% end %>
+              <% if hijos["valor_referencia"].size > 0 %>
+                <%= hijos["valor_referencia"] %>
+              <% end %>
+              <br>
+            <% end %>
+            </div>
+          </div>
+        <% end %>
         
-        <%= value %>
-        <br>
-    <% end %>
-    
+        <% @arreglo_todo.each do |padre_sin_hijo| %>
+          <div>
+            <div>
+              <%# <%= padre_sin_hijo["id_padre_f"] %>
+              <%= padre_sin_hijo["nombre_padre_f"] %>
+              <% if padre_sin_hijo["nombre_padre_f"] %>
+                <%# <input type="text" id="padres">   %>
+                <%= text_field_tag('parametro_id[]', padre_sin_hijo["id_padre_f"], {class: "form-control", hidden: true})%>
+                <%= text_field_tag('descripcion[]')%>
+                <% %>
+              <% end %>
+            </div>
+            <div>
+              <% if padre_sin_hijo["unidad_medida_padre"].size > 0 %>
+                <%= padre_sin_hijo["unidad_medida_padre"] %>
+              <% end %>
+              <% if padre_sin_hijo["valor_referencia_padre"].size > 0 %>
+                <%= padre_sin_hijo["valor_referencia_padre"] %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+        <%= submit_tag "Submit", name: "boton_enviar"%>
+        <% end %>
+    </div>
+  </div>
 <% end %>
-
-
+<%= render template: "home/nav" %>
+<%= render template: "layouts/base" %>

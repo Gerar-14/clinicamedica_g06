@@ -1,5 +1,6 @@
 class OrdensController < HomeController
   before_action :set_orden, only: %i[ show edit update destroy seleccionado finalizado examen]
+  before_action :set_resultado, only: %i[ seleccionado finalizado examen]
 
   # GET /ordens or /ordens.json
   def index
@@ -73,6 +74,7 @@ class OrdensController < HomeController
   # GET /ordens/new
   def new
     @orden = Orden.new
+    @resultado = Resultado.new
     @orden_fecha_actual = Time.now.strftime("%Y-%m-%dT%k:%M")
  
     #Llamar a los laboratoristas que tienen menos de 10 ordenes de examen pendientes
@@ -116,6 +118,18 @@ class OrdensController < HomeController
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @orden.errors, status: :unprocessable_entity }
+      end
+    end
+
+    @resultado = Resultado.new(resultado_params)
+
+    respond_to do |format|
+      if @resultado.save
+        format.html { redirect_to resultado_url(@resultado), notice: "Resultado was successfully created." }
+        format.json { render :show, status: :created, location: @resultado }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @resultado.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -196,18 +210,35 @@ class OrdensController < HomeController
   #metodo para la vista examen /ordens/:id/examen
   def examen   
 
+    #ASIDE
+    @menu_rol_nav = menus_y_submenus_usuario(1)
+    
     @obteniendo_id_type_exam = OrdenTypeExam.find_by_sql(["select * from orden_type_exams where id = ?", params[:id]])
     #@obteniendo_id_type_exam[0].type_exam_id.to_s
     @arreglo_todo = get_parametros_y_subparametros_by_id_exam(@obteniendo_id_type_exam[0].type_exam_id.to_s)
 
     @arreglo_todo.each do |arreglo|
       arreglo.each do |key, value|
-        puts key
-        puts value
+        #puts key
+        #puts value
       end
     end
-    #puts @obteniendo_id_type_exam[0].type_exam_id.to_s
 
+    @descripcion_array = params[:descripcion]
+    @parametro_array = params[:parametro_id]
+
+    if params[:boton_enviar] 
+      @fin = @descripcion_array.size - 1
+      
+      for i in 0..@fin
+        #puts "Value of local variable is #{i}"
+        @resultado = Resultado.create(:descripcion => @descripcion_array[i], :parametro_id => @parametro_array[i], :orden_id => @obteniendo_id_type_exam[0].orden_id.to_s)
+      end
+
+      redirect_to orden_type_exams_path, notice: "Resultado was successfully created."
+    end
+    #puts "este es la descripcion " + @parametro_array.to_s 
+    #puts @obteniendo_id_type_exam[0].type_exam_id.to_s
   end
 
   def get_parametros_y_subparametros_by_id_exam(idExamen)
@@ -219,13 +250,24 @@ class OrdensController < HomeController
       
       @parametros_pdres = Parametro.find_by_sql(["select * from parametros where id = ?", padre.parametro_id])
       @atributo_padre = {}
-      @atributo_padre['nombre_padre'] = @parametros_pdres[0].nombre_parametro
+
+      if get_subparametro_by_id_padre(padre.parametro_id).size != 0
+        #@atributo_padre['attr'] = true
+        @atributo_padre['id_padre'] = @parametros_pdres[0].id
+        @atributo_padre['nombre_padre'] = @parametros_pdres[0].nombre_parametro
+      else
+        #@atributo_padre['attrf'] = false
+        @atributo_padre['id_padre_f'] = @parametros_pdres[0].id
+        @atributo_padre['nombre_padre_f'] = @parametros_pdres[0].nombre_parametro
+      end
+
+      #@atributo_padre['nombre_padre'] = @parametros_pdres[0].nombre_parametro
 
       @unidad_medidas = UnidadMedida.find_by_sql(["select * from unidad_medidas where id = ?", @parametros_pdres[0].unidad_medida_id])
 
       @atributo_padre['unidad_medida_padre'] = @unidad_medidas
       
-      @atributo_padre['tipo_parametro_padre'] = @parametros_pdres[0].tipo_parametro
+      #@atributo_padre['tipo_parametro_padre'] = @parametros_pdres[0].tipo_parametro
 
       @valores_referencias = ValueReference.find_by_sql(["select * from value_references where parametro_id = ?", padre.parametro_id])
 
@@ -233,11 +275,11 @@ class OrdensController < HomeController
 
       @atributo_padre['hijos'] = get_subparametro_by_id_padre(padre.parametro_id)
 
-      if get_subparametro_by_id_padre(padre.parametro_id).size != 0
-        @atributo_padre['attr'] = true
-      else
-        @atributo_padre['attr'] = false
-      end
+      # if get_subparametro_by_id_padre(padre.parametro_id).size != 0
+      #   @atributo_padre['attr'] = true
+      # else
+      #   @atributo_padre['attrf'] = false
+      # end
       
       @list_params << @atributo_padre
     end
@@ -255,13 +297,14 @@ class OrdensController < HomeController
     @parametros_hijos.each do |hijo|
     
     @atributo = {}
+    @atributo['id_hijo'] = hijo.id
     @atributo['nombre'] = hijo.nombre_parametro
 
     @unidad_medidas = UnidadMedida.find_by_sql(["select * from unidad_medidas where id = ?", hijo.unidad_medida_id])
 
-    @atributo['unidad_medida'] = @unidad_medidas
+    @atributo['unidad_medida'] = @unidad_medidas  
 
-    @atributo['tipo_parametro'] = hijo.tipo_parametro
+    #@atributo['tipo_parametro'] = hijo.tipo_parametro
 
     @valores_referencias = ValueReference.find_by_sql(["select * from value_references where parametro_id = ?", hijo.id])
 
@@ -283,5 +326,14 @@ class OrdensController < HomeController
     # Only allow a list of trusted parameters through.
     def orden_params
       params.require(:orden).permit(:fecha_examen, :paciente_id, :laboratory_worker_id)
+    end
+
+    def set_resultado
+      @resultado = Resultado
+    end
+
+    # Only allow a list of trusted parameters through.
+    def resultado_params
+      params.require(:resultado).permit(:descripcion, :parametro_id, :orden_id)
     end
 end

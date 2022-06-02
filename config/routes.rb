@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  get 'reporte/index'
+    get 'reporte/index'
   resources :value_references
   resources :ordens
-  get '/ordens/:id/seleccionado' => "ordens#seleccionado", as: :seleccionado_orden
-  get '/ordens/:id/finalizado' => "ordens#finalizado", as: :finalizado_orden
-  get '/ordens/:id/examen/' => "ordens#examen", as: :examen
+    get '/ordens/:id/seleccionado' => "ordens#seleccionado", as: :seleccionado_orden
+    get '/ordens/:id/finalizado' => "ordens#finalizado", as: :finalizado_orden
+    get '/ordens/:id/examen/' => "ordens#examen", as: :examen
+    post '/ordens/:id/examen/' => "ordens#examen", as: :examens
   resources :laboratory_workers
   resources :muestras
   resources :orden_type_exams
