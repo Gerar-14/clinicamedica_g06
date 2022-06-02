@@ -6,7 +6,33 @@ class ReporteController < ApplicationController
     @fechaFin = params[:fechaFin]
     @departamento = params[:departamento]
     @municipio = params[:municipio]
+
     puts "AQUI INICIA LA PRUEBA ******************"
+    if @tipoReporte == '1'
+      puts "******************** SOY 1 ************************"
+    elsif @tipoReporte == '2'
+      puts "******************** SOY 2 ************************"
+    elsif @tipoReporte == '3'
+      puts "******************** SOY 3 ************************"
+    elsif @tipoReporte == '4'
+      puts "******************** SOY 4 ************************"
+    elsif @tipoReporte == '5'
+      #Reporte de la cantidad de pacientes por tipo de sangre por zona geográfica
+      @reporteCantidadPacientesPorTipoSangre = cantidadPacientePorTipeoSangrePorZonaGeografica("2022-05-26", "2022-05-29", 10, "")
+      @reporteCantidadPacientesPorTipoSangre.each do |e|
+        puts(e.fecha_examen)
+        puts(e.nombre_departamento)
+        puts(e.nombre_municipio)
+        puts(e.nombre_tipo_sangre)
+        puts(e.cantidad)
+      end
+    elsif @tipoReporte == '6'
+      puts "******************** SOY 6 ************************"
+    elsif @tipoReporte == '7'
+      puts "******************** SOY 7 ************************"
+    elsif @tipoReporte == '8'
+      puts "******************** SOY 8 ************************"
+    end
     puts @tipoReporte
     puts @fechaInicio
     puts @fechaFin
@@ -21,13 +47,8 @@ class ReporteController < ApplicationController
     @reporte_2 = cantidad_examanes_realizados_por_area_by_departamento(10, '1990-05-27 19:32:18.000000', '2050-05-27 19:32:18.000000')
 
     metodo_prueba(1, '1990-05-27 19:32:18.000000', '2050-05-27 19:32:18.000000', 1)
-    @reporteCantidadPacientesPorTipoSangre = cantidadPacientePorTipeoSangrePorZonaGeografica("2022-05-26", "2022-05-29", 10, 1)
-    @reporteCantidadPacientesPorTipoSangre.each do |e|
-      puts(e.nombre_departamento)
-      puts(e.nombre_municipio)
-      puts(e.nombre_tipo_sangre)
-      puts(e.cantidad)
-    end
+
+
   end
 
   def options
@@ -36,24 +57,33 @@ class ReporteController < ApplicationController
 
   def cantidadPacientePorTipeoSangrePorZonaGeografica(fechaInicio, fechaFin, idDepartamento, idMunicipio)
     @cantidadPacientesPorTipoSangre = ""
-    @consultaSQL = "select d.nombre_departamento, m.nombre_municipio , p.tipo_sangre_id, ts.nombre_tipo_sangre, count(p.id) cantidad  from pacientes p
+    @consultaSQL = "select o.fecha_examen, d.nombre_departamento, m.nombre_municipio , p.tipo_sangre_id, ts.nombre_tipo_sangre, count(p.id) cantidad  from pacientes p
       inner join tipo_sangres ts on ts.id = p.tipo_sangre_id
       inner join municipios m on p.municipio_id = m.id
       inner join departamentos d on m.departamento_id = d.id
       inner join ordens o on o.paciente_id = p.id
-      where (nullif(str_to_date(o.created_at,'%Y-%m-%d'), from_days(0))  between str_to_date(?,  '%Y-%m-%d')
-      and str_to_date(?,  '%Y-%m-%d')) and d.id = ? "
-    if idMunicipio.blank?
-      #No posee municipio
-      @consultaSQL = @consultaSQL + "group by m.nombre_municipio
-      order by d.nombre_departamento , count(ts.id)"
-      @cantidadPacientesPorTipoSangre = Paciente.find_by_sql([@consultaSQL, fechaInicio, fechaFin, idDepartamento])
-    else
-      #Posee municipio
-      @consultaSQL = @consultaSQL + "and m.id = ? group by m.nombre_municipio
+      where (nullif(str_to_date(o.fecha_examen,'%Y-%m-%d'), from_days(0))  between str_to_date(?,  '%Y-%m-%d')
+      and str_to_date(?,  '%Y-%m-%d')) "
+    if idMunicipio.blank? && idDepartamento.blank?
+      puts "AMBOS ESTAN VACIOS *********************"
+      @consultaSQL = @consultaSQL + " group by m.nombre_municipio order by d.nombre_departamento , count(ts.id)"
+      @cantidadPacientesPorTipoSangre = Paciente.find_by_sql([@consultaSQL, fechaInicio, fechaFin])
+    elsif idMunicipio.present? && idDepartamento.present?
+      puts "AMBOS VIENEN *********************"
+      @consultaSQL = @consultaSQL + " and d.id = ? and m.id = ? group by m.nombre_municipio
       order by d.nombre_departamento , count(ts.id)"
       @cantidadPacientesPorTipoSangre = Paciente.find_by_sql([@consultaSQL, fechaInicio, fechaFin, idDepartamento, idMunicipio])
+    elsif idMunicipio.blank?
+      puts "NO POSEE MUNICIPIO *********************"
+      #No posee municipio
+      @consultaSQL = @consultaSQL + " and d.id = ? group by m.nombre_municipio
+      order by d.nombre_departamento , count(ts.id)"
+      @cantidadPacientesPorTipoSangre = Paciente.find_by_sql([@consultaSQL, fechaInicio, fechaFin, idDepartamento])
     end
+    #Posee municipio
+    # @consultaSQL = @consultaSQL + " and d.id = ? and m.id = ? group by m.nombre_municipio
+    #   order by d.nombre_departamento , count(ts.id)"
+    # @cantidadPacientesPorTipoSangre = Paciente.find_by_sql([@consultaSQL, fechaInicio, fechaFin, idDepartamento, idMunicipio])
     return @cantidadPacientesPorTipoSangre
     # @cantidadPacientesPorTipoSangre = Paciente.find_by_sql(["", fechaInicio, fechaFin])
   end
