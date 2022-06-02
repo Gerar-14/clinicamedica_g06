@@ -256,7 +256,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_30_033847) do
   end
 
   create_table "value_references", charset: "utf8mb4", force: :cascade do |t|
-    t.string "value_reference", limit: 30, null: false
+    t.string "value_reference", limit: 100, null: false
     t.bigint "parametro_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

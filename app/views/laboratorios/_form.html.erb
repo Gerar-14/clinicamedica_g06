@@ -18,7 +18,7 @@
 
   <div class="form-group col-md-6">
     <%= form.label :municipio_id, style: "display: block" %>
-    <%= form.collection_select :municipio_id, Municipio.all,:id, :nombre_municipio,{}, {:id => 'simple-example'} %>
+    <%= form.collection_select :municipio_id, Municipio.all,:id, :nombre_municipio,{prompt: "Seleccione un municipio"}, {:id => 'simple-example'} %>
   </div>
 
   <br>
@@ -30,7 +30,7 @@
   <% content_for :js do %>
     <script>
         $(document).ready(function () {
-            $('#simple-example').select2();
+            $('#simple-example').select2({ width: '30%' });
         });
     </script>
   <% end %>
