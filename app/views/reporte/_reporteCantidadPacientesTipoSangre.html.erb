@@ -1,0 +1,29 @@
+</br>
+</br>
+<h3>Reporte de cantidad de pacientes por tipeo sanguíneo según zona geográfica</h3>
+<table id="datatablesSimple" class="table">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Fecha de examen</th>
+    <th scope="col">Departamento</th>
+    <th scope="col">Municipio</th>
+    <th scope="col">Tipo de sangre</th>
+    <th scope="col">Cantidad</th>
+  </tr>
+  </thead>
+  <tbody>
+  <div hidden="true"><%= @number = 1 %></div>
+  <% data.each do |elemento| %>
+    <tr>
+      <th scope="row"><%= @number %></th>
+      <td><%= elemento.fecha_examen %></td>
+      <td><%= elemento.nombre_departamento %></td>
+      <td><%= elemento.nombre_municipio %></td>
+      <td><%= elemento.nombre_tipo_sangre %></td>
+      <td><%= elemento.cantidad %></td>
+      <div hidden="true"><%= @number = @number + 1 %></div>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

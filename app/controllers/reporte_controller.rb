@@ -18,13 +18,13 @@ class ReporteController < ApplicationController
       puts "******************** SOY 4 ************************"
     elsif @tipoReporte == '5'
       #Reporte de la cantidad de pacientes por tipo de sangre por zona geográfica
-      @reporteCantidadPacientesPorTipoSangre = cantidadPacientePorTipeoSangrePorZonaGeografica("2022-05-26", "2022-05-29", 10, "")
+      @reporteCantidadPacientesPorTipoSangre = cantidadPacientePorTipeoSangrePorZonaGeografica(@fechaInicio, @fechaFin, @departamento, @municipio)
       @reporteCantidadPacientesPorTipoSangre.each do |e|
-        puts(e.fecha_examen)
-        puts(e.nombre_departamento)
-        puts(e.nombre_municipio)
-        puts(e.nombre_tipo_sangre)
-        puts(e.cantidad)
+        # puts(e.fecha_examen)
+        # puts(e.nombre_departamento)
+        # puts(e.nombre_municipio)
+        # puts(e.nombre_tipo_sangre)
+        # puts(e.cantidad)
       end
     elsif @tipoReporte == '6'
       puts "******************** SOY 6 ************************"

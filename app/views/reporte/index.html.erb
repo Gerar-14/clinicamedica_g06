@@ -29,17 +29,17 @@
                            ['Tipos de exámenes realizados', '7'], ['Exámenes clínicos', '8']] %>
     </div>
     <label>Tipo de reporte * :</label>
-    <%= select_tag :tipoReporte, options_for_select(@tiposReporte), {prompt: "Seleccione una opción", :id => 'simple-example'} %>
+    <%= select_tag :tipoReporte, options_for_select(@tiposReporte), {prompt: "Seleccione una opción", :id => 'simple-example', :required => true} %>
     </br>
     </br>
     <div class="row">
       <div class="col">
         <label>Fecha de inicio * :</label>
-        <%= datetime_field_tag :fechaInicio, {}, { :class => "form-control" } %>
+        <%= datetime_field_tag :fechaInicio, {}, { :class => "form-control", :required => true } %>
       </div>
       <div class="col">
         <label>Fecha de Fin * :</label>
-        <%= datetime_field_tag :fechaFin, {}, { :class => "form-control" } %>
+        <%= datetime_field_tag :fechaFin, {}, { :class => "form-control", :required => true } %>
       </div>
     </div>
     </br>
@@ -63,6 +63,10 @@
         <%= submit_tag "Generar reporte", :class => "btn btn-outline-dark" %>
       </div>
     </div>
+  <% end %>
+
+  <% if @tipoReporte == '5' %>
+    <%= render "reporteCantidadPacientesTipoSangre", data: @reporteCantidadPacientesPorTipoSangre %>
   <% end %>
 
 
