@@ -40,20 +40,14 @@ class ReporteController < ApplicationController
     puts @municipio
     puts "FIN LA PRUEBA ******************"
 
-
-    #Reporte de estadísticas por áreas la cantidad de exámenes realizados por municipio
-    @reporte_1 = cantidad_examanes_realizados_por_area_by_municipio(2, '1990-05-27 19:32:18.000000', '2050-05-27 19:32:18.000000')
-    #Reporte de estadísticas por áreas la cantidad de exámenes realizados por departamento
-    @reporte_2 = cantidad_examanes_realizados_por_area_by_departamento(10, '1990-05-27 19:32:18.000000', '2050-05-27 19:32:18.000000')
-    #Reporte de estadisticas de examenes realizadas por municipio
-    @reporte_3 = tipo_examen_realizado_by_municipio(2, '2000-06-01T18:59', '2050-06-01T18:59')
-
-    @reporte_4 = tipo_examen_realizado_by_departamento(1, '2000-06-01T18:59', '2050-06-01T18:59')
-
-    puts "siiiiiiiiiiiiu"
-    puts @reporte_4
-
-
+        #Reporte de estadísticas por áreas la cantidad de exámenes realizados por municipio
+        @reporte_1 = cantidad_examanes_realizados_por_area_by_municipio(2, '1990-05-27 19:32:18.000000', '2050-05-27 19:32:18.000000')
+        #Reporte de estadísticas por áreas la cantidad de exámenes realizados por departamento
+        @reporte_2 = cantidad_examanes_realizados_por_area_by_departamento(10, '1990-05-27 19:32:18.000000', '2050-05-27 19:32:18.000000')
+        #Reporte de estadisticas de examenes realizadas por municipio
+        @reporte_3 = tipo_examen_realizado_by_municipio(2, '2000-06-01T18:59', '2050-06-01T18:59')
+        #Reporte de estadisticas de examenes realizadas por departamento
+        @reporte_4 = tipo_examen_realizado_by_departamento(1, '2000-06-01T18:59', '2050-06-01T18:59')
   end
 
   def options
@@ -177,13 +171,13 @@ class ReporteController < ApplicationController
     @hash_ex_rea_d["Fecha_inicio"] = fecha_inicio
     @hash_ex_rea_d["Fecha_final"] = fecha_fin
     @data_array = []
-
+    
     @muncipios_del_departamento.each do |municipio|
       @hash_muni = {}
       @hash_muni["Municipio"] = municipio.nombre_municipio
       @hash_muni["Data_municipio"] = contador_tipo_examenes(municipio.id, fecha_inicio, fecha_fin)
       @data_array << @hash_muni
-    end
+    end 
     @hash_ex_rea_d["Data"] = @data_array
 
     return @hash_ex_rea_d
@@ -192,7 +186,7 @@ class ReporteController < ApplicationController
 
   def contador_tipo_examenes(id_municipio, fecha_inicio, fecha_fin)
     @cons_sql = Municipio.find_by_sql(["SELECT orden_type_exams_own.id as orden, type_exams_own.id as id_tipo_examen,type_exams_own.name_type_examn as nombre_examen, count(type_exams_own.id) as contador FROM (SELECT * FROM orden_type_exams where orden_id in (SELECT id FROM ordens where laboratory_worker_id in (SELECT id FROM laboratory_workers WHERE laboratorio_id in (SELECT id from laboratorios where municipio_id = ?) and fecha_examen BETWEEN ? AND ? ))) orden_type_exams_own INNER JOIN (SELECT * from type_exams where id in (SELECT type_exam_id from area_type_exams where area_id in (SELECT id from areas))) type_exams_own ON orden_type_exams_own.type_exam_id = type_exams_own.id GROUP BY type_exams_own.id, type_exams_own.name_type_examn", id_municipio, fecha_inicio, fecha_fin])
-    #orden, id_tipo_examen , nombre_examen , contador
+    #orden, id_tipo_examen , nombre_examen , contador 
     @data_array_c = []
     @cons_sql.each do |mus|
       @hash_data = {}
@@ -201,4 +195,6 @@ class ReporteController < ApplicationController
     end
     return @data_array_c
   end 
+
+  
 end
