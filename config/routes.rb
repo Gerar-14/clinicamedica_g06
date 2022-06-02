@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'reporte/index'
+  post 'reporte/index'
   resources :value_references
   resources :ordens
   get '/ordens/:id/seleccionado' => "ordens#seleccionado", as: :seleccionado_orden

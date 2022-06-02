@@ -1,19 +1,37 @@
 class ReporteController < ApplicationController
   def index
+    #Declaracion de variables
+    @tipoReporte = params[:tipoReporte]
+    @fechaInicio = params[:fechaInicio]
+    @fechaFin = params[:fechaFin]
+    @departamento = params[:departamento]
+    @municipio = params[:municipio]
+    puts "AQUI INICIA LA PRUEBA ******************"
+    puts @tipoReporte
+    puts @fechaInicio
+    puts @fechaFin
+    puts @departamento
+    puts @municipio
+    puts "FIN LA PRUEBA ******************"
+
+
     #Reporte de estadísticas por áreas la cantidad de exámenes realizados por municipio
     @reporte_1 = cantidad_examanes_realizados_por_area_by_municipio(2, '1990-05-27 19:32:18.000000', '2050-05-27 19:32:18.000000')
     #Reporte de estadísticas por áreas la cantidad de exámenes realizados por departamento
     @reporte_2 = cantidad_examanes_realizados_por_area_by_departamento(10, '1990-05-27 19:32:18.000000', '2050-05-27 19:32:18.000000')
 
     metodo_prueba(1, '1990-05-27 19:32:18.000000', '2050-05-27 19:32:18.000000', 1)
-    metodo_prueba(2, '1990-05-27 19:32:18.000000', '2050-05-27 19:32:18.000000')
-    @reporteCantidadPacientesPorTipoSangre = cantidadPacientePorTipeoSangrePorZonaGeografica("2022-05-26", "2022-05-31", 10, 1)
+    @reporteCantidadPacientesPorTipoSangre = cantidadPacientePorTipeoSangrePorZonaGeografica("2022-05-26", "2022-05-29", 10, 1)
     @reporteCantidadPacientesPorTipoSangre.each do |e|
       puts(e.nombre_departamento)
       puts(e.nombre_municipio)
       puts(e.nombre_tipo_sangre)
       puts(e.cantidad)
     end
+  end
+
+  def options
+    @municipios = Municipio.where(project_id: params[:project_id])
   end
 
   def cantidadPacientePorTipeoSangrePorZonaGeografica(fechaInicio, fechaFin, idDepartamento, idMunicipio)

@@ -1,8 +1,81 @@
-<!--<h1>Reporte#index</h1>-->
-<!--<p>Find me in app/views/reporte/index.html.erb</p>-->
-<% @reporteCantidadPacientesPorTipoSangre.each do |e| %>
-  <% e.each do |key,value| %>
-    <% key %>
-  <% end %>
-<% end %>
+<% content_for :content do %>
+  <!--<h1>Reporte#index</h1>-->
+  <!--<p>Find me in app/views/reporte/index.html.erb</p>-->
+<%# @reporteCantidadPacientesPorTipoSangre.each do |e| %>
+<%# e.each do |key,value| %>
+<%# key %>
+<%# end %>
+<%# end %>
 
+  <!--<form method="post" action="/reporte/index">-->
+<%#= csrf_meta_tags %>
+<%#= csp_meta_tag %>
+  <!--<input type="text" name="fechaInicio">-->
+  <!--  <button type="submit">Enviar</button>-->
+  <!--</form>-->
+
+<%#= form_for(:reporte, :url => {:action => 'index'}) do |f| %>
+<%#= f.text_field(:fechaInicio, class: 'form-control')%>
+<%#= f.button "Submit", type: 'submit'%>
+<%# end %>
+
+
+  <%= form_tag('/reporte/index') do %>
+
+    <div hidden>
+      <%#= @tiposReporte = [{'nombre' => 'Triglicéridos altos', 'id' => 1}, {'nombre' => 'Colesterol', 'id' => 2}, {'nombre' => 'Ácido úrico', 'id' => 3}, {'nombre' => 'Glucosa', 'id' => 4}, {'nombre' => 'Tipeo de sangre (cantidad de pacientes)', 'id' => 5}, {'nombre' => 'Exámenes por área', 'id' => 6}, {'nombre' => 'Tipos de exámenes realizados', 'id' => 7}, {'nombre' => 'Exámenes clínicos', 'id' => 8}] %>
+      <%= @tiposReporte = [['Triglicéridos altos', '1'],['Colesterol', '2'],['Ácido úrico ', '3'], ['Glucosa', '4'] ,
+                           ['Tipeo de sangre (cantidad de pacientes)', '5'], ['Exámenes por área', '6'],
+                           ['Tipos de exámenes realizados', '7'], ['Exámenes clínicos', '8']] %>
+    </div>
+    <label>Tipo de reporte * :</label>
+    <%= select_tag :tipoReporte, options_for_select(@tiposReporte), {prompt: "Seleccione una opción", :id => 'simple-example'} %>
+    </br>
+    </br>
+    <div class="row">
+      <div class="col">
+        <label>Fecha de inicio * :</label>
+        <%= datetime_field_tag :fechaInicio, {}, { :class => "form-control" } %>
+      </div>
+      <div class="col">
+        <label>Fecha de Fin * :</label>
+        <%= datetime_field_tag :fechaFin, {}, { :class => "form-control" } %>
+      </div>
+    </div>
+    </br>
+    </br>
+    <div class="row">
+      <div class="col">
+        <label>Departamanto :</label>
+        </br>
+        <%= select_tag :departamento, options_from_collection_for_select(Departamento.all, "id", "nombre_departamento"), { prompt: "Seleccione un departamento", :id => 'simple-example2' } %>
+      </div>
+      <div class="col">
+        <label>Municipio * :</label>
+        </br>
+        <%= select_tag :municipio, options_from_collection_for_select(Municipio.all, "id", "nombre_municipio"), { prompt: "Seleccione un municipio", :id => 'simple-example3' } %>
+      </div>
+    </div>
+    </br>
+    </br>
+    <div class="row">
+      <div class="col">
+        <%= submit_tag "Generar reporte", :class => "btn btn-outline-dark" %>
+      </div>
+    </div>
+  <% end %>
+
+
+  <% content_for :js do %>
+    <script>
+        $(document).ready(function () {
+            $('#simple-example').select2();
+            $('#simple-example2').select2({width: '70%'});
+            $('#simple-example3').select2({width: '70%'});
+        });
+    </script>
+  <% end %>
+
+<% end %>
+<%#= render template: "home/nav" %>
+<%= render template: "layouts/base" %>
